@@ -1,17 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
+// == Import : npm
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
+// == Import : local
+// Composants
+import App from '../src/components/App';
+
+// == Render
+// 1. Élément React racine (celui qui contient l'ensemble de l'app)
+//    => crée une structure d'objets imbriqués (DOM virtuel)
+const rootReactElement = (
+  <BrowserRouter>
     <App />
-  </React.StrictMode>
+  </BrowserRouter>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// 2. La cible du DOM (là où la structure doit prendre vie dans le DOM)
+const root = createRoot(document.getElementById('root'));
+
+// 3. Déclenchement du rendu de React (virtuel) => DOM (page web)
+root.render(rootReactElement);

@@ -1,0 +1,36 @@
+.firstFooter {
+    padding: 30px;
+    /* margin: 5px; */
+    position: absolute;
+    bottom: 35px;
+    width: 100%;
+    border: 0.1px solid grey;
+    height: 20px;
+    
+
+}
+.link-footer {
+margin: 10px;
+font-weight: bold;
+padding: 17px;
+}
+
+.span-footer {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    margin: 12px;
+    
+}
+.text-footer {
+    position: absolute;
+    bottom: 0px;
+    margin: 2px;
+    padding-left: 10px; 
+    padding: 10px;
+}
+
+.newsletter {
+    display: flex;
+    justify-content: flex-end;
+}

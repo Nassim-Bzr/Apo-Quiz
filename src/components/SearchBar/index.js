@@ -4,13 +4,13 @@ import './style.scss';
 export default function SearchBar() {
     return (
         <div className='SearchBar'>
-            <button className='button-searchBar'>HOME</button>
-            <button className='button-searchBar'>CATEGORIES</button>
-            <button className='button-searchBar'>CREER UN QUIZ</button>
+            <a className='button-searchBar' href='/home'>HOME</a>
+            <a className='button-searchBar' href='/categories'>CATEGORIES</a>
+            <a className='button-searchBar' href='/create-quiz'>CREER UN QUIZ</a>
             <input  className='input-search' type="text" placeholder="Rechercher un quiz..."></input>
-            <button className='button-searchBar'>NOUS CONTACTER</button>
-            <button className='button-searchBar'>FAQ</button>
-            <button className='button-searchBar'>A PROPOS</button>
+            <a className='button-searchBar' href='/contact'>NOUS CONTACTER</a>
+            <a className='button-searchBar' href='/faq'>FAQ</a>
+            <a className='button-searchBar' href='/a-propos'>A PROPOS</a>
             
     
         </div>

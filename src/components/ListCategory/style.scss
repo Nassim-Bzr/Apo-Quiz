@@ -24,6 +24,13 @@
 }
 .link-categories {
     margin: 5px;
+    text-decoration: none;
+}
+.link-categories:hover {
+    margin: 5px;
+    text-decoration: none;
+    background-color: brown;
+    
 }
 .title-categorie{
     font-weight: bold;

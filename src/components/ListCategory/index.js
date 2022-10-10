@@ -36,7 +36,7 @@ export default function index() {
         </div>
         
         </div>
-        <div className='CurrentChoic'>
+        {/* <div className='CurrentChoic'>
             <div className='CurrentChoice'>
                 <div className='choice'>
                 
@@ -46,7 +46,7 @@ export default function index() {
                 </div>
             </div>
                  
-        </div>
+        </div> */}
         </div>
     )
 }

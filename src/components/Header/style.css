@@ -1,5 +1,6 @@
 .Header {
     background-color: rgb(162, 163, 236);
+    height: 10em;
 }
 .link-login{
     display: flex;
@@ -11,4 +12,5 @@
     text-decoration: none;
     margin: 5px;
     padding: 7px;
+    
 }

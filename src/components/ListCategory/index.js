@@ -3,6 +3,7 @@ import './style.scss'
 
 export default function index() {
     return (
+        
         <div className='app-contenor'>
         <div className='backgroundCategory'>
         <div className='ListCategory'>
@@ -10,25 +11,24 @@ export default function index() {
             <div className='categories-column'>
             <ul >
                 <li className='li-link'>
-                <a className='link-categories' href="/">
+                <a className='link-categories' href="/musique">
                     Musique
                 </a>
                 </li>
                 <li className='li-link'>
-                <a className='link-categories' href="/">
-                    Musique
+                <a className='link-categories' href="/sport">
+                    Sport
                 </a>
                 </li> <li className='li-link'>
-                <a className='link-categories' href="/">
-                    Musique
+                <a className='link-categories' href="/histoire">
+                    Histoire
                 </a>
                 </li> <li className='li-link'>
-                <a className='link-categories' href="/">
-                    Musique
+                <a className='link-categories' href="/geographie">
+                    Geographie
                 </a>
                 </li>
             </ul>
-             
 
 
 
@@ -38,15 +38,16 @@ export default function index() {
         </div>
         {/* <div className='CurrentChoic'>
             <div className='CurrentChoice'>
-                <div className='choice'>
-                
-                     <button className='button-choice'> LES + POPULAIRES </button>
-                    <button className='button-choice'> LES + RECENTS </button>
-                    <button className='button-choice'> AU HASARD </button>
-                </div>
+            <div className='choice'>
+            
+            <button className='button-choice'> LES + POPULAIRES </button>
+            <button className='button-choice'> LES + RECENTS </button>
+            <button className='button-choice'> AU HASARD </button>
             </div>
-                 
+            </div>
+            
         </div> */}
         </div>
     )
 }
+        

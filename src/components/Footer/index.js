@@ -12,11 +12,11 @@ export default function Footer() {
                 <input type='text' placeholder='votre@email.com' className='input-newsletter'/>
             </span>
             
-            </div>
-            <div className=''> 
+           
+           
                 <p className='text-footer'>Testez votre culture générale en jouant aux milliers de quizz proposés et créez votre propre quiz en quelques clics. <span className='span-footer'> © 2022 GoQuiz.com</span></p>
+            
             </div>
-        
         </div>
     )
 }

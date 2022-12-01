@@ -1,0 +1,10 @@
+.modal-dialog{
+    background-color: #fff;
+    padding: 10%;
+    border-radius: 15px;
+}
+.btn-primary {
+    margin: 10px;
+    position: relative;
+    /* left: 25em; */
+}

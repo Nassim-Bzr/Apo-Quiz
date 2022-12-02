@@ -2,9 +2,7 @@ import logo from '../../assets/logoquizz.png'
 import './style.css';
 import LoginForm from '../LoginForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionChangeInputValue } from 'actions/user';
-import { actionCheckLogin } from 'actions/user';
-
+import { actionChangeInputValue, actionCheckLogin, actionDeconnectUser } from '../../actions/user';
 
 function Header() {
     
@@ -38,10 +36,11 @@ function Header() {
          }}
          handleLogout={() => {
            console.log('handleLogout');
+              /* le user se deconnecte on dispatch actionDeconnectUser */
+          dispatch(actionDeconnectUser());
          }}
-         isLogged={false}
-         loggedMessage="Connecté"
-       />
+         isLogged={isLogged}
+         loggedMessage={`Bienvenue ${pseudo}`}       />
            
            
         </div>

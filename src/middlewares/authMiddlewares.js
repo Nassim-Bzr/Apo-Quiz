@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CHECK_LOGIN } from '../actions/user';
+import { actionSaveConnectedUser, CHECK_LOGIN } from '../actions/user';
 
 const authMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -25,7 +25,15 @@ const authMiddleware = (store) => (next) => (action) => {
         password: password,
       }).then((reponse) => {
         console.log('reponse', reponse);
-      }).catch((error) => {
+             /*
+        on a reçu un reponse 200 OK
+        Le user est connecté donc il faut aller passer isLogged à true dans le state
+        et aussi ajouter le pseudo renvoyé par le serveur
+        on va dispatcher une action pour que le reducer aille modifier ça pour nous
+        cette action elle devra avoir en payload le pseudo
+        */
+        store.dispatch(actionSaveConnectedUser(reponse.data.pseudo, reponse.data.token));
+          }).catch((error) => {
         console.log('erreur', error);
       });
 

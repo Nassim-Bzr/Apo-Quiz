@@ -11,7 +11,11 @@ import { Message, Segment } from 'semantic-ui-react';
 import SignUpModal from '../../components/SignUpModal'
 
 
-import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
+import './style.scss';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Route, Routes } from 'react-router-dom';
 import Home from '../Home';
 import './style.scss'
 import SearchBar from 'components/SearchBar'
@@ -27,18 +31,18 @@ import Footer from 'components/Footer'
 
 
 
-export default function App() {
+function App() {
     const [search, setSearch] = useState('');
     const [message, setMessage] = useState('Veuillez taper une recherche');
 
     return (
-        <>
+        <div className="app">
             
             {/* <SignUpModal /> */}
                 <Header />
                 <SearchBar search={search} handleSearchChange={setSearch} />
                 <Message>{message} </Message>
-            <Router>
+           
 
                 <Routes>
                     <Route path="/" element={<Home />} 
@@ -57,8 +61,9 @@ export default function App() {
                 </Routes>
 
 
-            </Router>
+           
             <Footer/>
-        </>
+        </div>
     );
 }
+export default App;

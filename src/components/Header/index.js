@@ -2,6 +2,8 @@ import logo from '../../assets/logoquizz.png'
 import './style.css';
 import LoginForm from '../LoginForm';
 import { useDispatch, useSelector } from 'react-redux';
+import { actionChangeInputValue } from 'actions/user';
+import { actionCheckLogin } from 'actions/user';
 
 
 function Header() {
@@ -10,13 +12,13 @@ function Header() {
     // const dispatch = useDispatch();
     // const {toggleModals} = useContext(UserContext);
   
-    // const isLogged = useSelector((state) => state.user.logged);
-    // const pseudo = useSelector((state) => state.user.pseudo);
+    const isLogged = useSelector((state) => state.user.logged);
+    const pseudo = useSelector((state) => state.user.pseudo);
   
     // const dispatch = useDispatch();
-    // const email = useSelector((state) => state.user.email);
-    // const password = useSelector((state) => state.user.password);
-    // const dispatch = useDispatch();
+    const email = useSelector((state) => state.user.email);
+    const password = useSelector((state) => state.user.password);
+    const dispatch = useDispatch();
         return (
             <>
         <div className='Header'>
@@ -24,13 +26,15 @@ function Header() {
            <img src={logo} className='img-logo' alt="GoQuizz Logo" />
            </a>
            <LoginForm 
-         email="test"
-         password="test"
-         changeField={() => {
-           console.log('changeField');
+         email={email}
+         password={password}
+         changeField={(inputValue, inputName) => {
+          
+           dispatch(actionChangeInputValue(inputValue, inputName));
          }}
          handleLogin={() => {
-           console.log('handleLogin');
+          dispatch(actionCheckLogin())
+          console.log('handleLogin');
          }}
          handleLogout={() => {
            console.log('handleLogout');

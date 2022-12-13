@@ -3,8 +3,8 @@ import './style.scss'
 
 export default function index() {
     return (
-        
-        <div className='app-contenor'>
+        <>
+        <main className='app-contenor'>
         <div className='backgroundCategory'>
         <div className='ListCategory'>
             <span className='title-categories'>Catégories :</span>
@@ -47,7 +47,8 @@ export default function index() {
             </div>
             
         </div> */}
-        </div>
+        </main>
+        </>
     )
 }
         

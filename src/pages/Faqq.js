@@ -1,18 +1,10 @@
+import React from 'react';
 
-import React from 'react'
-
-export default function Faq() {
-    return (
-      <div className='main-form'>
-        <div className='faq-form'>
-            
-            <h1 className='contact-title'>Vous avez des questions ?</h1>
-            <div className='div-contact'>
-            <p className ='contact-text' >
-                Si votre question concerne l'utilisation de <a className='GoQuiz' href='/'>GoQuiz</a>, vérifiez tout d'abord que la réponse ne se trouve pas ci-dessous, ou dans l'aide et sur le forum fonctionnement du site.
-                
-            </p>
-            <ul>
+function FAQQ() {
+  return (
+    <div>
+      <h1>Foire aux questions</h1>
+      <ul>
         <li>
           <h2>Comment fonctionne ce quiz ?</h2>
           <p>Le quiz consiste en un ensemble de questions à choix multiple. Vous devez sélectionner la réponse que vous pensez être correcte pour chaque question et cliquer sur le bouton "Soumettre" pour voir si vous avez répondu correctement.</p>
@@ -30,9 +22,14 @@ export default function Faq() {
           <p>Oui, vous pouvez recommencer le quiz autant de fois que vous le souhaitez. Il suffit de cliquer sur le bouton "Recommencer" à la fin du quiz pour recommencer depuis le début.</p>
         </li>
       </ul>
-            </div>
-           
-        </div>
-        </div>
-    )
+      <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text">Learn More</span>
+</button>
+    </div>
+  );
 }
+
+export default FAQQ;

@@ -16,15 +16,16 @@ export default function CurrentCategories() {
 
 
         <div className='contain-categories'>
-            
             <h1 className='header-categories'>Geographie :</h1>
             <div className='div-article'>
+             <a href='/quiz'>
             <article className='article'>
             <p className='title-article'>Capitales</p>
                 <img className='img-categories' src={logo_hist}></img>
                 <p>Ut eu duis duis reprehenderit proident reprehenderit deserunt dolor magna.</p>
 
             </article>
+            </a>
             <article className='article'>
             <p className='title-article'>Les pays du monde</p>
                 <img className='img-categories' src={logo_geo}></img>

@@ -1,13 +1,14 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import SearchBar from '../components/SearchBar'
-import './main.css'
+import './index.css'
 
 export default function Contact() {
     return (
+        <>
         <div className='contact-form'>
             
-            <h1 className='display-4'>Contactez nous !</h1>
+            <h1 >Contactez nous !</h1>
             <div className='div-contact'>
             <p className ='contact-text' >
                 Si votre question concerne l'utilisation de <a className='GoQuiz' href='/'>GoQuiz</a>, vérifiez tout d'abord que la réponse ne se trouve pas ci-dessous, ou dans l'aide et sur le forum fonctionnement du site.
@@ -20,5 +21,6 @@ Vous pouvez remplir le formulaire ce-dessous et nous reviendront vers vous dans 
             </div>
             
         </div>
+        </>
     )
 }

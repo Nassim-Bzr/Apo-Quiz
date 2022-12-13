@@ -1,7 +1,7 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import SearchBar from '../components/SearchBar';
-import './main.css';
+import './index.css';
 
 export default function About() {
     return (

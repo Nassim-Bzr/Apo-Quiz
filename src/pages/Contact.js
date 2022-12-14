@@ -8,7 +8,7 @@ export default function Contact() {
         <>
         <div className='contact-form'>
             
-            <h1 >Contactez nous !</h1>
+            <h1 className='title-contact' >Contactez nous !</h1>
             <div className='div-contact'>
             <p className ='contact-text' >
                 Si votre question concerne l'utilisation de <a className='GoQuiz' href='/'>GoQuiz</a>, vérifiez tout d'abord que la réponse ne se trouve pas ci-dessous, ou dans l'aide et sur le forum fonctionnement du site.

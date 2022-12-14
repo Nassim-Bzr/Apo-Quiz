@@ -21,7 +21,7 @@ export default function Categories() {
                 <div className='card'>
                     <a href='/histoire' className='title-article'>Histoire
                         <h3> Title card </h3>
-                        <img className='img-categories' src={logo_hist}></img>
+                        
                         <p>Card description</p>
                     </a>
                 </div>
@@ -33,7 +33,7 @@ export default function Categories() {
 <div className='card'>
     <a href='/histoire' className='title-article'>Histoire
         <h3> Title card </h3>
-        <img className='img-categories' src={logo_hist}></img>
+        
         <p>Card description</p>
     </a>
 </div>
@@ -44,7 +44,7 @@ export default function Categories() {
 <div className='card'>
     <a href='/histoire' className='title-article'>Histoire
         <h3> Title card </h3>
-        <img className='img-categories' src={logo_hist}></img>
+        
         <p>Card description</p>
     </a>
 </div>
@@ -55,7 +55,7 @@ export default function Categories() {
 <div className='card'>
     <a href='/histoire' className='title-article'>Histoire
         <h3> Title card </h3>
-        <img className='img-categories' src={logo_hist}></img>
+        
         <p>Card description</p>
     </a>
 </div>
@@ -66,7 +66,7 @@ export default function Categories() {
 <div className='card'>
     <a href='/histoire' className='title-article'>Histoire
         <h3> Title card </h3>
-        <img className='img-categories' src={logo_hist}></img>
+        
         <p>Card description</p>
     </a>
 </div>
@@ -77,7 +77,7 @@ export default function Categories() {
 <div className='card'>
     <a href='/histoire' className='title-article'>Histoire
         <h3> Title card </h3>
-        <img className='img-categories' src={logo_hist}></img>
+        
         <p>Card description</p>
     </a>
 </div>
@@ -88,7 +88,7 @@ export default function Categories() {
 <div className='card'>
     <a href='/histoire' className='title-article'>Histoire
         <h3> Title card </h3>
-        <img className='img-categories' src={logo_hist}></img>
+        
         <p>Card description</p>
     </a>
 </div>
@@ -99,7 +99,7 @@ export default function Categories() {
 <div className='card'>
     <a href='/histoire' className='title-article'>Histoire
         <h3> Title card </h3>
-        <img className='img-categories' src={logo_hist}></img>
+        
         <p>Card description</p>
     </a>
 </div>

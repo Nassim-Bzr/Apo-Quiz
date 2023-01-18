@@ -1,12 +1,12 @@
 .Header {
-    background-color: rgb(162, 163, 236);
+    background-color:#34495E;
     height: 10em;
 }
-.link-login{
+.button-login{
     display: flex;
-    right: 10px;
+    right: 236px;
     position: absolute;
-    top: 10px;
+    top: 67px;
     border-style: double;
     background-color: #fff;
     text-decoration: none;
@@ -14,13 +14,112 @@
     padding: 7px;
     
 }
+.button-profil{
+    display: flex;
+    right: 17em;
+    position: absolute;
+    top: 67px;
+    border-style: double;
+    background-color: #fff;
+    text-decoration: none;
+    margin: 5px;
+    padding: 7px;
+    
+}
+/* === removing default button style ===*/
+.button-logo {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+  
+  /* button styling */
+  .button-logo {
+    
+        --border-right: 6px;
+        --text-stroke-color: rgba(255,255,255,0.6);
+        --animation-color: aliceblue;
+        --fs-size: 2em;
+        letter-spacing: 3px;
+        text-decoration: none;
+        font-size: var(--fs-size);
+        font-family: "Arial";
+        top: 1.5em;
+        left: 2em;
+        position: relative;
+        text-transform: uppercase;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--text-stroke-color);
+    
+  }
+  /* this is the text, when you hover on button */
+  .hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+  }
+  /* hover */
+  .button-logo:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px var(--animation-color))
+  }
+.login-form-button{
+   
+    border-style: double;
+    background-color: blue;
+    text-decoration: none;
+    color: white;
+    margin: 5px;
+    padding: 7px;
+    
+}
+.logout-form-button {
+    border-style: double;
+    background-color: blue;
+    position: relative;
+    top: 50px;
+    left: 38%;
+    text-decoration: none;
+    color: white;
+    margin: 5px;
+    padding: 7px;
+}
 .login-form
 {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    bottom: 50px;
-    left: 30%;
-   width: 30%;
-   border-radius: 10px;
+ background-color: white;
+ align-items: center;
+ justify-content: center;
+}
+.login-form-element {
+    align-items: center;
+    /* background: border-box; */
+    border-style: groove;
+    height: 50em;
+    margin-left: 30em;
+    margin-right: 30em;
+}
+.login-form-message{
+    font-size: 100px;
+   
+}
+.login-form-messages{
+    font-size: 50px;
+    
+}
+.login-form-logged{
+    
+        position: absolute;
+        border-style: solid;
+        top: 15em;
+        padding: 10em;
+    
 }

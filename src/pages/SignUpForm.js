@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -15,35 +16,21 @@ function SignUpForm() {
     }));
   }
 
-  function handleSubmit(event) {
+  const handleSubmit = async event => {
     event.preventDefault();
-  
-    const data = {
-      username: formData.username,
-      email: formData.email,
-      password: formData.password,
-    };
-  
-    fetch("http://localhost:3001/login", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-  
+    try {
+      await axios.post('http://localhost:8080/api/users', formData);
+      alert('Inscription réussi !');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <div className="contain-signup">
+    <form className="form-signup" onSubmit={handleSubmit}>
+      <h1>Inscription</h1>
+      <label className="label-signup">
         Nom d'utilisateur :
         <input
           type="text"
@@ -52,7 +39,7 @@ function SignUpForm() {
           onChange={handleChange}
         />
       </label>
-      <label>
+      <label  className="label-signup">
         Adresse e-mail :
         <input
           type="email"
@@ -61,7 +48,7 @@ function SignUpForm() {
           onChange={handleChange}
         />
       </label>
-      <label>
+      <label  className="label-signup">
         Mot de passe :
         <input
           type="password"
@@ -70,8 +57,9 @@ function SignUpForm() {
           onChange={handleChange}
         />
       </label>
-      <button type="submit">S'inscrire</button>
+      <button type="submit" className="button-signup">S'inscrire</button>
     </form>
+    </div>
   );
 }
 

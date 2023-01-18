@@ -27,12 +27,14 @@
 .link-categories {
     margin: 5px;
     text-decoration: none;
-}
-.link-categories:hover {
+    color:#0025e2;
+
+&:hover {
     margin: 5px;
     text-decoration: none;
-    background-color: brown;
+    color: #fff;
     
+}
 }
 .title-categorie{
     font-weight: bold;
@@ -64,11 +66,7 @@
 
 
 }
-.app-contenor
-{
-    display: flex;
-    
-}
+
 .li-link{
     margin: 5px;
 }

@@ -1,13 +1,12 @@
 import React from 'react'
 import Footer from '../components/Footer'
-import SearchBar from '../components/SearchBar';
 import './index.css';
 
 export default function About() {
     return (
-        <div>
+        
            
-        <div>
+        <div className='containor-about'>
              <h1 className="about-title" >A propos</h1>
              <div className='about-content'>
              <h2 className='about-titl'>Plus de 130 quiz divisés en sept grandes catégories
@@ -22,6 +21,6 @@ export default function About() {
 </p>
             
         </div>
-        </div>
+       
     )
 }

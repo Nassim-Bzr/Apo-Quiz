@@ -1,5 +1,6 @@
 .firstFooter {
-    padding: 30px;
+    padding: 15px;
+    padding-bottom:40px;
     /* margin: 5px; */
     bottom: 0px;
     width: 100%;
@@ -13,11 +14,14 @@ margin: 10px;
 font-weight: bold;
 padding: 17px;
 text-decoration: none;
+color: #34495E;
+--bs-link-hover-color: lightslategrey;
 }
 
 .span-footer {
     bottom: 0px;
     right: 0px;
+    color: #34495E;
     margin: 12px;
     
 }
@@ -27,9 +31,11 @@ text-decoration: none;
     margin: 2px;
     padding-left: 10px; 
     padding: 10px;
+    color:#34495E;
 }
 
 .newsletter {
     display: flex;
     justify-content: flex-end;
+    color: #34495E;
 }

@@ -1,58 +1,53 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import './Quiz.css';
 
-const Quiz = () => {
+function Quiz() {
+  const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [score, setScore] = useState(0);
+  const [showResults, setShowResults] = useState(false);
 
-  const questions = [
-    {
-      question: "What is the capital of France?",
-      options: ["Paris", "London", "New York", "Berlin"],
-      answer: "Paris"
-    },
-    {
-      question: "What is the capital of Italy?",
-      options: ["Rome", "Paris", "Madrid", "Berlin"],
-      answer: "Rome"
-    },
-    // Add more questions here
-  ];
+  useEffect(() => {
+    // Charger les questions à partir d'une API ici
+    axios.get('/api/questions')
+      .then(res => setQuestions(res.data))
+      .catch(err => console.log(err));
+  }, []);
 
-  const handleAnswer = (selectedOption) => {
-    setAnswers([...answers, selectedOption]);
-
-    if (selectedOption === questions[currentQuestion].answer) {
+  function handleAnswer(answer) {
+    setAnswers(answers.concat([answer]));
+    if (answer.correct) {
       setScore(score + 1);
     }
-
-    setCurrentQuestion(currentQuestion + 1);
+    if (currentQuestion === questions.length - 1) {
+      setShowResults(true);
+    } else {
+      setCurrentQuestion(currentQuestion + 1);
+    }
   }
 
-  return (
-    <div className='contain-quiz'>
-      <h1 className='title-quiz'>Quiz</h1>
-      <div>
-
-      {currentQuestion < questions.length ? (
-        <>
-          <p>{questions[currentQuestion].question}</p>
-          <ul>
-            {questions[currentQuestion].options.map((option, index) => (
-              <li key={index}>
-                <button onClick={() => handleAnswer(option)}>
-                  {option}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        <p>Your score is {score} / {questions.length}</p>
-      )}
+  if (showResults) {
+    return (
+      <div className="quiz-container">
+        <h1>Résultats</h1>
+        <p>Score : {score} / {questions.length}</p>
+        <button className="restart-button" onClick={() => window.location.reload()}>Recommencer</button>
       </div>
-    </div>
-  );
-};
+    );
+  } else {
+    return (
+      <div className="quiz-container">
+        <h1>{questions[currentQuestion].question}</h1>
+        {questions[currentQuestion].answers.map(answer => (
+          <div key={answer.id} className="answer-container">
+            <button className="answer-button" onClick={() => handleAnswer(answer)}>{answer.text}</button>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
 
 export default Quiz;

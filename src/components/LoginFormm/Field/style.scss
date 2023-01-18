@@ -1,12 +1,5 @@
 @use 'src/styles/vars';
 
-.login-form-element
-  {
-    display: flex;
-    flex-direction: inherit;
-    justify-content: center;
-}
-
 .field {
   margin: .3em .3em .3em 0;
   position: relative;
@@ -17,7 +10,7 @@
     font-size: 1em;
     border: 1px solid #ddd;
     border-radius: .3em;
-    height: 2.5em;
+    height: 25em;
 
     &:focus {
       border-color: vars.$color;
@@ -27,7 +20,7 @@
       }
     }
   }
- 
+
   &-label {
     display: none;
     position: absolute;

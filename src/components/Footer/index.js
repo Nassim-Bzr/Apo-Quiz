@@ -9,6 +9,7 @@ export default function Footer() {
             <a href='/cgv' className='link-footer'>Conditions d’utilisations</a>
             <a href="/mentions-legales" className='link-footer'>Mentions légales </a>
             <a href='/politque-de-confidentitalite'className='link-footer' >Politique de confidentialité</a>
+            <a href='/'className='link-footer' >Accueil</a>
             <span className='newsletter'>Recevoir les nouveaux quizz chaque semaine : 
                 <input type='text' placeholder='votre@email.com' className='input-newsletter'/>
             </span>

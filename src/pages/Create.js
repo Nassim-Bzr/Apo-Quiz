@@ -2,15 +2,15 @@ import Footer from 'components/Footer'
 import React from 'react'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+import './create.css';
 export default function Create() {
 
 
     return (
-        <div className='contain-create'>
+        <div className='app-contenor'>
            
             <h1 className='about-title'>Créer votre quizz</h1>
-            <Form>
+            <Form className='form-create'>
                 <Form.Group size="lg" controlId="email">
                     <Form.Label>Nom du quizz</Form.Label>
                     <Form.Control
@@ -63,7 +63,7 @@ export default function Create() {
                         value=""
                         onChange={() => console.log("hello")}
                     />
-                <Button>Enregistrer</Button>
+                <Button>Enregistrer et passez à l'étape suivante</Button>
                 </Form.Group>
 
             </Form>

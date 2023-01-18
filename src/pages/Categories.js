@@ -1,109 +1,37 @@
-import Footer from 'components/Footer'
-import React from 'react'
-import SearchBar from '../components/SearchBar'
-import logo from '../assets/logoquizz.png'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import './categoriess.css'
-import logo_sport from '../assets/sport.jpg'
-import logo_music from '../assets/mwusic.jpg'
-import logo_jeux from '../assets/jeux.jpg'
-import logo_geo from '../assets/geo.jpg'
-import logo_hist from '../assets/hist.jpg'
+import { Link } from 'react-router-dom';
+
 
 
 
 
 export default function Categories() {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+      axios.get('http://localhost:8082/api/tag')
+        .then(res => setCategories(res.data))
+        .catch(err => console.log(err));
+    }, []);
     return (
         <>
             <h1 className='header-categories'>Categories :</h1>
             <div className='container'>
-
-                <div className='card'>
-                    <a href='/histoire' className='title-article'>Histoire
+            {categories.map(category => (
+                    <Link to={`/categories/${category.slug}`} className='title-article' >
+                <div className='card' key={category.id}>{category.name}
                         <h3> Title card </h3>
                         
                         <p>Card description</p>
-                    </a>
                 </div>
-            
+                    </Link>
+             ))}
 
             {/* Div */}
-           
-
-<div className='card'>
-    <a href='/histoire' className='title-article'>Histoire
-        <h3> Title card </h3>
-        
-        <p>Card description</p>
-    </a>
-</div>
-
-{/* Div */}
-
-
-<div className='card'>
-    <a href='/histoire' className='title-article'>Histoire
-        <h3> Title card </h3>
-        
-        <p>Card description</p>
-    </a>
-</div>
-
-{/* Div */}
-
-
-<div className='card'>
-    <a href='/histoire' className='title-article'>Histoire
-        <h3> Title card </h3>
-        
-        <p>Card description</p>
-    </a>
-</div>
-
-{/* Div */}
-
-
-<div className='card'>
-    <a href='/histoire' className='title-article'>Histoire
-        <h3> Title card </h3>
-        
-        <p>Card description</p>
-    </a>
-</div>
-
-{/* Div */}
-
-
-<div className='card'>
-    <a href='/histoire' className='title-article'>Histoire
-        <h3> Title card </h3>
-        
-        <p>Card description</p>
-    </a>
-</div>
-
-{/* Div */}
-
-
-<div className='card'>
-    <a href='/histoire' className='title-article'>Histoire
-        <h3> Title card </h3>
-        
-        <p>Card description</p>
-    </a>
-</div>
-
-{/* Div */}
-
-
-<div className='card'>
-    <a href='/histoire' className='title-article'>Histoire
-        <h3> Title card </h3>
-        
-        <p>Card description</p>
-    </a>
-</div>
-</div>
+           </div>
         </>
     )
 }

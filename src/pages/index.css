@@ -15,13 +15,14 @@ html {
 
 body {
     min-height: 100vh;
-    /* background-color: dodgerblue; */
+    background-color: #34495E;
 }
 .header-categories 
 {
     display:flex;
     justify-content:center;
     padding-top: 100px;
+    color: white;
 }
 .App {
   display: flex;
@@ -121,13 +122,13 @@ button {
     display: inline-block;
 }
 .contain-categories{
-   height: 62vh;
-    background-color: rgba(209, 216, 216, 0);
+   height: 100vh;
+    background-color: #34495E;
 }
 .div-article{
     display: flex;
     /* flex-wrap: wrap; */
-    padding-left: 10%;
+    padding-left: 10px;
     padding-top: 2%;
     padding-right: 10%;
     max-width: 50%;
@@ -137,7 +138,8 @@ button {
     height: 100%;
 }
 .main-form{
-    height: 100%;
+    height: 100vh;
+    background-color: white;
 }
 .title-contact{
     padding-top: 100px;
@@ -146,7 +148,7 @@ button {
     height:100vh
 }
 .app-contenor{
-    max-width: 70%;
+    background-color: #34495E;
     height: 100vh;
 }
 .categories-column{
@@ -163,12 +165,32 @@ button {
     padding: 2%;
    
 }
+.label-signup{
+    display: flex;
+    justify-content: center;
+}
+.button-signup{
+    
+        background-color: slategrey;
+        position: relative;
+        width: 10%;
+        left: 42%;
+    
+}
+.form-signup {
+    display: flex;
+    height: 100vh;
+    margin: 5%;
+    width: 50%;
+    background-color: white;
+    margin-left: 25%;
+}
 .div-contact{
     border: 1px solid;
     width: 50%;
     margin: auto;
     padding: 10px;
-    background-color: #fff;
+    background-color:   aliceblue;
     position: relative;
     top: 100px;
 }
@@ -176,14 +198,11 @@ button {
     font-weight: bold;
 }
 .title-article {
-    display: flex;
-    justify-content: center;
-    font-size: 2em;
-    position: absolute;
+   
     color: #000;
     text-decoration: none;
-    bottom: 70px;
-    left: 50px;
+    border: #000 1px solid;
+    padding: 35px;
 }
 .title-article:hover{
     color: rgba(0, 204, 255, 0.342)
@@ -201,12 +220,7 @@ button {
     padding: 10px;
     font-weight: bold;
 }
-.img-categories{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
+
 .img-logo{
     margin-top: 3em;
     margin-left: 5em;
@@ -237,33 +251,38 @@ h1{
     padding-top:7em;
 }
 
+.containor-about{
+    background-color: white;
+    height: 100vh;
+}
 body {
 
 
-    height:100vh;
+    height:100%;
 }
 .about-title{
     display: flex;
     justify-content: center;
     padding-bottom: 10px;
-    padding-top: 100px;
-
+    padding-top: 25px;
+   
 }
 .about-titl{
     display: flex;
-    justify-content: center;
+    
     padding: 1em;
-    background-color: rgba(2, 101, 119, 0.37);
+    background-color: gainsboro;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
+    
 
 }
 .about-text{
     display: flex;
     justify-content: center;
-    padding: 5px ;
+    padding: 15px ;
     margin: 15px;
     background-color: #fff;
     width: 50%;
@@ -272,7 +291,9 @@ body {
     border-radius: 5px;
 }
 .form-label{
-    padding-left:15px
+    padding-left:15px;
+    position:relative;
+    left:25%
 }
 .contain-create{
     text-align: center;
@@ -283,10 +304,12 @@ body {
  position: relative;
  left: 25%;
 }
-.btn-primary{
+.btn-primary {
     margin: 10px;
     position: relative;
-    
+    left: 44%;
+    padding-top: 10px;
+    margin-top: 50px;
 }
 .about-informations{
     border-style: groove;
@@ -342,7 +365,15 @@ body {
         color: red;
         font-size: 12px;
       }
-      
+      .p-signup{
+        font-size: 1.5em;
+        position: relative;
+        left: 20%;
+    }
+      .a-forgot{
+        position: relative;
+        bottom: 4.5em;
+      }
       .title {
         font-size: 25px;
         margin-bottom: 20px;

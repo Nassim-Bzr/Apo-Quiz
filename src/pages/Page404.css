@@ -1,0 +1,32 @@
+.page404-container {
+    text-align: center;
+    height: 100%;
+    padding: 7vh;
+    background-color: white;
+  }
+  
+  .h1-404 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  .logo-404{
+    width: 21%;
+  }
+  .p-404 {
+    margin: 1em auto;
+    font-size: 1.5em;
+  }
+  
+  .button-404 {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  

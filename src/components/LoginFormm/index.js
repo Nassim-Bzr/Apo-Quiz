@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import Field from './Field';
 
@@ -15,6 +16,7 @@ function LoginForm({
   handleLogout,
   isLogged,
   loggedMessage,
+  loggedMessages,
 }) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -28,9 +30,12 @@ function LoginForm({
           <p className="login-form-message">
             {loggedMessage}
           </p>
+          <p className="login-form-messages">
+            {loggedMessages}
+          </p>
           <button
             type="button"
-            className="login-form-button"
+            className="logout-form-button"
             onClick={handleLogout}
           >
             Déconnexion
@@ -40,6 +45,11 @@ function LoginForm({
       {!isLogged && (
 
         <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
+          
+
+        <p className='login-mess'>Veuillez vous connectez</p>
+
+
           <Field
             name="email"
             placeholder="Adresse Email"
@@ -57,8 +67,11 @@ function LoginForm({
             type="submit"
             className="login-form-button"
           >
-            OK
+            Connexion
           </button>
+          <p className='p-signup'>Vous n'avez pas encore crée de compte ? <a href='/signUp'>Inscrivez vous!</a></p>
+          <span className='a-forgot'><a href='/forgot-password'>Mot de passe oublié ?</a></span>
+          
         </form>
       )}
     </div>

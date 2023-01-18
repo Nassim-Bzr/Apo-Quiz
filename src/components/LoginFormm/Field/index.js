@@ -1,8 +1,9 @@
 // == Import : npm
 import PropTypes from 'prop-types';
+import React from 'react';
+import './style.scss';
 
 // == Import : local
-import './style.scss';
 
 // == Composant
 function Field({

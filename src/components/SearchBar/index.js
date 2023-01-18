@@ -5,14 +5,15 @@ import PropTypesLibrary from 'prop-types';
  
 function SearchBar({handleSearchChange , search}) {
 
-   
+// Determine whether the sentiment of text is positive
+// Use a web service
       console.log(search)
     return (
         <div className='SearchBar'>
             <a className='button-searchBar' href='/'>HOME</a>
             <a className='button-searchBar' href='/categories'>CATEGORIES</a>
             <a className='button-searchBar' href='/create-quiz'>CREER UN QUIZ</a>
-            <input className='input-search' type="text"
+            <input id='input-search' type="text"
             value={search} 
             onChange={(event)=> {
                 handleSearchChange(event.target.value)

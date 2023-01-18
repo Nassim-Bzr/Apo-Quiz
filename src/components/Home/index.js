@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchBar from '../SearchBar'
 import ListCategory from '../ListCategory'
 import Footer from '../Footer'
 

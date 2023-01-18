@@ -1,12 +1,11 @@
 import React from 'react'
 import Footer from '../components/Footer'
-import SearchBar from '../components/SearchBar'
 import './index.css'
 
 export default function Contact() {
     return (
         <>
-        <div className='contact-form'>
+        <div className='app-contenor'>
             
             <h1 className='title-contact' >Contactez nous !</h1>
             <div className='div-contact'>

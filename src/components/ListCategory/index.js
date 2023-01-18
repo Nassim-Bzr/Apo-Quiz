@@ -1,7 +1,20 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import './style.scss'
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export default function index() {
+export default function ListCategory() {
+
+    let { slug } = useParams();
+    const [categories,setCategories] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8082/api/tag')
+          .then(res => setCategories(res.data))
+          .catch(err => console.log(err));
+      }, []);
+    
     return (
         <>
         <main className='app-contenor'>
@@ -10,24 +23,13 @@ export default function index() {
             <span className='title-categories'>Catégories :</span>
             <div className='categories-column'>
             <ul >
-                <li className='li-link'>
-                <a className='link-categories' href="/musique">
-                    Musique
-                </a>
+            {categories.map(category => (
+                <li className='li-link' >
+                <Link className='link-categories' key={category.id} to={`/categories/${slug}`}>
+                    {category.name}
+                </Link>
                 </li>
-                <li className='li-link'>
-                <a className='link-categories' href="/sport">
-                    Sport
-                </a>
-                </li> <li className='li-link'>
-                <a className='link-categories' href="/histoire">
-                    Histoire
-                </a>
-                </li> <li className='li-link'>
-                <a className='link-categories' href="/geographie">
-                    Geographie
-                </a>
-                </li>
+                ))}
             </ul>
 
 
@@ -36,17 +38,7 @@ export default function index() {
         </div>
         
         </div>
-        {/* <div className='CurrentChoic'>
-            <div className='CurrentChoice'>
-            <div className='choice'>
-            
-            <button className='button-choice'> LES + POPULAIRES </button>
-            <button className='button-choice'> LES + RECENTS </button>
-            <button className='button-choice'> AU HASARD </button>
-            </div>
-            </div>
-            
-        </div> */}
+      
         </main>
         </>
     )

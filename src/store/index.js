@@ -1,21 +1,13 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
+import rootReducer from "../reducers";
 
-import reducer from '../reducers';
-import authMiddleware from '../middlewares/authMiddlewares';
-/*
-On importe le middleware qu'on vient d'écrire
-*/
-// import recipesMiddleware from '../middlewares/recipesMiddleware';
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// avec applyMiddleware on construit un ensemble de tous nos middelware qu'on va donner au store
-const middlewareEnhancer = applyMiddleware(
-  // les actions passerons dans les middleware dans l'ordre indiqué ici:
-  // recipesMiddleware,
-  authMiddleware,
+const middleware = [thunk];
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middleware))
 );
 
-const enhancers = composeEnhancers(
-  middlewareEnhancer,
-);
-const store = createStore(reducer, enhancers);
 export default store;

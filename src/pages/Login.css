@@ -1,48 +1,81 @@
-.login-container {
-    width: 400px;
-    margin: 8em auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+.login-form {
+
+    border: 1px solid;
+    width: 45%;
+    background: white;
+    padding: 2em;
+    margin: 4em;
+    position: relative;
+    left: 22%;
+}
   
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  input {
+h1{color:
+black;}
+   */
+
+   */
+  /* input {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
+  } */
   
-  .submit-button {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  .form-group {
+    display: flex;
+    justify-content: center;
+    margin: 47px;
+    flex-direction: column;
+    width: 14%;
+    position: relative;
+}
   
+.submit-button {
+  /* width: 100%; */
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+position: relative;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  /* justify-content: center; */
+}
   .submit-button:hover {
     background-color: #45a049;
   }
-  
+  h1{
+    margin: 1em;
+  }
+
+  .link-signup{
+    position: relative;
+    padding: 1em;
+  }
+  .link-forgot{
+    position: relative;
+    padding: 0.5em;
+
+  }
+  .title-login{
+    color: white;
+  }
+  .form-group{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 45%;
+    margin-left: 30%;
+}
+.login-form {
+  border: 1px solid;
+  width: 40%;
+  background: white;
+  padding: 2em;
+  border-radius: 2em;
+  margin: 4em;
+  position: relative;
+  left: 27%;
+}

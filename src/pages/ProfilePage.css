@@ -1,9 +1,13 @@
 .quiz-profile-container {
     max-width: 600px;
     margin: 0 auto;
-    height: 100%;
+
+
   }
-  
+  .ProfilePicture{
+    display: flex;
+    margin: 6em;
+  }
   .quiz-profile-header {
     display: flex;
     align-items: center;

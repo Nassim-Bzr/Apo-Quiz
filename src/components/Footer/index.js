@@ -6,7 +6,7 @@ export default function Footer() {
         <>
         <footer>
             <div className='firstFooter'> <a href='/contact' className='link-footer'>Nous contacter</a>
-            <a href='/cgv' className='link-footer'>Conditions d’utilisations</a>
+            <a href='/cgv' className='link-footer' title='Test-title'>Conditions d’utilisations</a>
             <a href="/mentions-legales" className='link-footer'>Mentions légales </a>
             <a href='/politque-de-confidentitalite'className='link-footer' >Politique de confidentialité</a>
             <a href='/'className='link-footer' >Accueil</a>

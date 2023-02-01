@@ -14,6 +14,18 @@
     padding: 7px;
     
 }
+.button-connexion{
+    display: flex;
+    right: 23em;
+    position: absolute;
+    top: 67px;
+    border-style: double;
+    background-color: #fff;
+    text-decoration: none;
+    margin: 5px;
+    padding: 7px;
+    border-radius: 20px;    
+}
 .button-profil{
     display: flex;
     right: 17em;
@@ -72,7 +84,7 @@
     width: 100%;
     filter: drop-shadow(0 0 23px var(--animation-color))
   }
-.login-form-button{
+/* .login-form-button{
    
     border-style: double;
     background-color: blue;
@@ -81,8 +93,8 @@
     margin: 5px;
     padding: 7px;
     
-}
-.logout-form-button {
+} */
+/* .logout-form-button {
     border-style: double;
     background-color: blue;
     position: relative;
@@ -102,7 +114,7 @@
 .login-form-element {
     align-items: center;
     /* background: border-box; */
-    border-style: groove;
+    /* border-style: groove;
     height: 50em;
     margin-left: 30em;
     margin-right: 30em;
@@ -122,4 +134,4 @@
         top: 15em;
         padding: 10em;
     
-}
+} */ 

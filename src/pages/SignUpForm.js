@@ -1,5 +1,7 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import axios from 'axios';
+import './SignUp.css'
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -19,7 +21,7 @@ function SignUpForm() {
   const handleSubmit = async event => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:8080/api/users', formData);
+      await axios.post('http://localhost:8082/api/login', formData);
       alert('Inscription réussi !');
     } catch (error) {
       console.error(error);
@@ -28,11 +30,12 @@ function SignUpForm() {
 
   return (
     <div className="contain-signup">
-    <form className="form-signup" onSubmit={handleSubmit}>
       <h1>Inscription</h1>
+    <form className="formsignup" onSubmit={handleSubmit}>
       <label className="label-signup">
         Nom d'utilisateur :
         <input
+        className="signup-input"
           type="text"
           name="username"
           value={formData.username}
@@ -41,7 +44,7 @@ function SignUpForm() {
       </label>
       <label  className="label-signup">
         Adresse e-mail :
-        <input
+        <input className="signup-input"
           type="email"
           name="email"
           value={formData.email}
@@ -51,6 +54,7 @@ function SignUpForm() {
       <label  className="label-signup">
         Mot de passe :
         <input
+        className="signup-input"
           type="password"
           name="password"
           value={formData.password}

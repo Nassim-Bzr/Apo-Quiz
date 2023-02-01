@@ -10,14 +10,14 @@ export default function ListCategory() {
     const [categories,setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8082/api/tag')
+        axios.get('http://localhost:8082/api/category')
           .then(res => setCategories(res.data))
           .catch(err => console.log(err));
       }, []);
     
     return (
         <>
-        <main className='app-contenor'>
+        <div className='app-contenor'>
         <div className='backgroundCategory'>
         <div className='ListCategory'>
             <span className='title-categories'>Catégories :</span>
@@ -25,7 +25,7 @@ export default function ListCategory() {
             <ul >
             {categories.map(category => (
                 <li className='li-link' >
-                <Link className='link-categories' key={category.id} to={`/categories/${slug}`}>
+                <Link className='link-categories' key={category.id} to={`/categories/${category.slug}`}>
                     {category.name}
                 </Link>
                 </li>
@@ -39,7 +39,7 @@ export default function ListCategory() {
         
         </div>
       
-        </main>
+        </div>
         </>
     )
 }

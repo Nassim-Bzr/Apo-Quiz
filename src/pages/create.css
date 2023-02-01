@@ -1,4 +1,28 @@
+
 .from-create{
     align-items: center;
     width: 30%;
 }
+.favoris-title{
+    position: relative;
+    right: 2em;
+}
+h1 {
+    position: relative;
+    text-align: center;
+  }
+  
+  h1:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 55%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background-color: white;
+  }
+  .remove-favoris:hover{
+    color: red;
+  }
+  

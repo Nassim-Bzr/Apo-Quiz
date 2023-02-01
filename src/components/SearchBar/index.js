@@ -4,7 +4,14 @@ import PropTypesLibrary from 'prop-types';
 
  
 function SearchBar({handleSearchChange , search}) {
+   
+      function handleSubmit(e) {
+        // e.preventDefault();
+        alert('Recherche en cours...')
+        //Logic to submit the form
+      }
 
+    
 // Determine whether the sentiment of text is positive
 // Use a web service
       console.log(search)
@@ -12,13 +19,16 @@ function SearchBar({handleSearchChange , search}) {
         <div className='SearchBar'>
             <a className='button-searchBar' href='/'>HOME</a>
             <a className='button-searchBar' href='/categories'>CATEGORIES</a>
-            <a className='button-searchBar' href='/create-quiz'>CREER UN QUIZ</a>
+            <a className='button-searchBar' href='/favoris'>MES FAVORIS</a>
+           <form>
             <input id='input-search' type="text"
             value={search} 
             onChange={(event)=> {
                 handleSearchChange(event.target.value)
             }}
+            onSubmit={handleSubmit}
              placeholder="Rechercher un quiz..."/> 
+            </form>
             <a className='button-searchBar' href='/contact'>NOUS CONTACTER</a>
             <a className='button-searchBar' href='/faq'>FAQ</a>
             <a className='button-searchBar' href='/about'>A PROPOS</a>

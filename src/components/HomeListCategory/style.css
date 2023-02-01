@@ -1,0 +1,19 @@
+.HomeList{
+    color: black;
+    width: 70%;
+    position: relative;
+    right: 11%;
+}
+h1{
+    color:white
+}
+.home-card{
+    height: 15em;
+    width: 50%;
+}
+.titleimg-home{
+    display: none;
+}
+.img-home{
+    display: none;
+}

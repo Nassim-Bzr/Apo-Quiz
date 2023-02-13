@@ -1,48 +1,42 @@
-import { CHANGE_INPUT_VALUE, DECONNECT_USER, SAVE_CONNECTED_USER } from '../actions/user';
-
 export const initialState = {
-  logged: false,
+  logged: true,
   email: '',
   password: '',
   pseudo: '',
-  token: null,
+  loading: false
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case CHANGE_INPUT_VALUE:
-      // changer la valeur d'un input dans le state
-      // l'input concerné c'est action.inputName (email)
-      // la nouvelle valeur c'est action.newValue (toto)
+    case 'LOGIN':
       return {
         ...state,
-        [action.inputName]: action.newValue,
+        loading: true,
       };
-
-      case SAVE_CONNECTED_USER:
-        // le user vient de se connecter (le authMiddleware a reçu une 200 OK)
-        // on sauvegarde son statut loggé et son pseudo dans le state
-        return {
-          ...state,
-          pseudo: action.pseudo,
-          logged: true,
-          token: action.token,
-        // on peut en profiter pour vider les inputs
+    case 'SAVE_USER':
+      return {
+        ...state,
+        logged: true,
+        loading: false,
         email: '',
         password: '',
+        pseudo: action.pseudo,
+       
       };
-        case DECONNECT_USER:
-          // le user vient de cliquer sur se deconnecter
-          // on enleve son statut loggé et son pseudo / token dans le state
-          return {
-            ...state,
-            pseudo: '',
-            logged: false,
-            token: null,
-          };
-    
-        default:
+    case 'CHANGE_VALUE':
+      return {
+        ...state,
+        [action.key]: action.value,
+      };
+    case 'LOGOUT':
+      return {
+        ...state,
+        logged: false,
+        pseudo: '',
+      };
+    default:
       return state;
   }
 };
+
 export default reducer;

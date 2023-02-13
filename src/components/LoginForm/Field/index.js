@@ -1,9 +1,9 @@
 // == Import : npm
 import PropTypes from 'prop-types';
 import React from 'react';
-import './style.scss';
 
 // == Import : local
+import './style.scss';
 
 // == Composant
 function Field({
@@ -15,7 +15,6 @@ function Field({
 }) {
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
-  
   };
 
   const inputId = `field-${name}`;

@@ -6,10 +6,7 @@
 }
 
 
-.ui.message{
-    display: flex;
-    justify-content: center;
-}
+
 
 .button-searchBar {
 
@@ -46,3 +43,18 @@ a.button {
     text-decoration: none;
     color: initial;
 }
+
+@media (max-width: 768px) {
+    .SearchBar {
+      flex-wrap: wrap;
+    }
+  
+    .button-searchBar {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    #input-search {
+      width: 100%;
+    }
+  }

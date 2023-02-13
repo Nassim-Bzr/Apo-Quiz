@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import './Quiz.css'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Quiz.css';
+import { ProgressBar } from "react-bootstrap";
+
 
 const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -11,6 +14,8 @@ const Quiz = () => {
   const [subject, setSubject] = useState('Capital')
   const [selectedOption, setSelectedOption] = useState();
   const [result, setResult] = useState('');
+  const [timeLeft, setTimeLeft] = useState(15); // Initialisez la limite de temps à 30 secondes
+
   const questions = [
     {
       question: "Quel est la capitale de la France?",
@@ -25,7 +30,19 @@ const Quiz = () => {
     // Add more questions here
   ];
  
-  
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      // Si la limite de temps est épuisée, passez à la question suivante
+      setTimeLeft(timeLeft - 1);
+      if (timeLeft === 0) {
+        setCurrentQuestion(currentQuestion + 1);
+        setTimeLeft(15);
+      }
+    }, 1000);
+    return () => clearTimeout(timerId);
+  }, [currentQuestion, timeLeft]);
+
+
   const handleOptionClick = (option, answer) => {
     setSelectedOption(option);
     setIsDisabled(true);
@@ -35,7 +52,7 @@ const Quiz = () => {
       setScore(score + 1);
     }
     // setCurrentQuestion(currentQuestion + 1);
-
+    // handleAnswer()
   };
 {/* <button  onClick={() => handleAnswer(option)} ></button> */}
   const handleAnswer = (selectedOption) => {
@@ -61,7 +78,7 @@ const Quiz = () => {
   };
   const correctOption= questions[currentQuestion].answer  // const [correctOption, setCorrectOption] = useState(questions[currentQuestion].answer);
   const HandleNext = () => {
-    if (currentQuestion < questions.length) {
+    if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setIsDisabled(false);
       setSelectedOption(null);
@@ -115,10 +132,16 @@ const Quiz = () => {
         <>
         <p>{score}/{questions.length}</p>
           <p className="quiz-question">{questions[currentQuestion].question}</p>
+      
+          <ProgressBar
+      now={timeLeft / 15 * 100}
+      label={`${timeLeft} secondes`}
+    />
+        <img src='https://static8.depositphotos.com/1004999/972/i/450/depositphotos_9725439-stock-photo-beautiful-spring-in-paris.jpg'></img>
           <ul className='quiz-options'>
             {questions[currentQuestion].options.map((option, index) => (
-              <li key={index}  className={`quiz-option ${selectedOption === option ? (selectedOption === correctOption ? 'correct' : 'incorrect') : ''}`}
-              onClick={() =>!isDisabled &&  handleOptionClick(option)} 
+              <li key={index}  className={`quiz-option`}
+              onClick={() =>!isDisabled &&  handleOptionClick(option) } 
            
              >
                 
@@ -127,16 +150,15 @@ const Quiz = () => {
               </li>
             ))}
           </ul>
-          <a href='/'className='leave-quiz'>Quit </a>
-
+          <Link to='/'className='leave-quiz'>Quit </Link>
           <button onClick={HandleNext} className='next-quiz'>Next </button>
         </>
       ) : (
         <div className='finaly-quiz'>
-        <p className='content-score'>Votre score est de {score} bonne réponse sur {questions.length} </p>
+    
       
        <button onClick={handleTry} className='retry-quiz'>Recommencer </button>
-       <a href='/' className='gohome-quiz'>Retour à l'accueil </a>
+       <Link to='/' className='gohome-quiz'>Retour à l'accueil </Link>
        <button onClick={handleSubmitScore}>Enregistrer le score</button>
 
 

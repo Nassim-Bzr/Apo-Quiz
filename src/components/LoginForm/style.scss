@@ -1,17 +1,29 @@
 @use 'src/styles/vars';
 
+.login-form {
+  
+  &-element {
+    display: flex;
+    align-items: center;
+  }
 
-// .login-form {
+  &-message {
+    margin: .3em 1em;
+  }
 
-//   height: 100vh;
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
+  &-logged {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 
-//   }
-//   .login-mess{
-    
-//     font-size: 65px;
-//     position: relative;
-//     left:5.5em;
-//   }
+  &-button {
+    font-size: 1em;
+    color: #fff;
+    background-color: vars.$color;
+    border-radius: .3em;
+    border: 0;
+    padding: .7em;
+    height: 2.5em;
+  }
+}

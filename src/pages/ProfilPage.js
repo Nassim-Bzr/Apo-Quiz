@@ -1,14 +1,17 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Login.css';
 import { Navigate } from 'react-router-dom';
 import './ProfilePage.css';
 import { useDropzone } from 'react-dropzone';
 
 
-function ProfilePage({ name,quizzesCreated,recentActivities }) {
 
-  const   [quizzesTaken,setQuizzesTaken] = useState(0) 
-  const [ highScore,setHighScore] = useState(55)
+
+function ProfilePage({ name }) {
+
+  const [quizzesCreated, setQuizzesCreated] = useState(0)
+  const [quizzesTaken, setQuizzesTaken] = useState(0)
+  const [highScore, setHighScore] = useState(55)
   const [scoreHistory, setScoreHistory] = useState([]);
   const [file, setFile] = useState(null);
 
@@ -18,20 +21,27 @@ function ProfilePage({ name,quizzesCreated,recentActivities }) {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-
+  const clearScoreHistory = () => {
+    setScoreHistory([]);
+    localStorage.removeItem('scoreHistory');
+  };
 
   useEffect(() => {
     const historyFromStorage = JSON.parse(localStorage.getItem('scoreHistory')) || [];
     setScoreHistory(historyFromStorage);
-     // Récupérez les scores de tous les scores de l'historique
-  const scores = historyFromStorage.map(entry => entry.score);
+    // Récupérez les scores de tous les scores de l'historique
+    const scores = historyFromStorage.map(entry => entry.score);
 
-  // Trouvez le plus grand nombre
-  const maxScore = Math.max(...scores);
+    // Trouvez le plus grand nombre
+    // Définir la valeur de maxScore en fonction de la longueur de scores
+    let maxScore = 0;
+    if (scores.length) {
+      maxScore = Math.max(...scores);
+    }
 
-  // Affectez le plus grand nombre à highScore
-  setHighScore(maxScore);
-},[]);
+    // Affectez la valeur de maxScore à highScore
+    setHighScore(maxScore);
+  }, []);
 
 
 
@@ -45,15 +55,15 @@ function ProfilePage({ name,quizzesCreated,recentActivities }) {
   // rest of the code
   return (
     <div className="quiz-profile-container">
-        <div className="ProfilePicture" {...getRootProps()}>
-      <input {...getInputProps()} />
-      {file ? <img src={URL.createObjectURL(file)} className='quiz-profile-img'/> : 'Click here to upload a profile picture'}
+      <div className="ProfilePicture" {...getRootProps()}>
+        <input {...getInputProps()} />
+        {file ? <img src={URL.createObjectURL(file)} className='quiz-profile-img' /> : 'Click here to upload a profile picture'}
 
         <div className="quiz-profile-name">
           <p className="quiz-profile-name">{name}</p>
-         
+
         </div>
-    </div>
+      </div>
       <div className="quiz-profile-stats">
         <div className="stat">
           <p className="stat-value">{scoreHistory.length}</p>
@@ -68,13 +78,15 @@ function ProfilePage({ name,quizzesCreated,recentActivities }) {
           <p className="stat-label">Meilleurs Score</p>
         </div>
       </div>
+
       <div className="quiz-profile-recent-activity">
-        <h2 className="quiz-profile-recent-activity-title">Recente Activité </h2>
+        <h2 className="quiz-profile-recent-activity-title">Recente Activité</h2>
+        <button onClick={clearScoreHistory} className='button-history'>Supprimer mon historique</button>
+
         <ul className="quiz-profile-recent-activity-list">
-        {scoreHistory.map((entry, index) => (
+          {scoreHistory.map((entry, index) => (
             <li key={index} className="quiz-profile-recent-activity-item">
-              <p>   {entry.score} le {entry.date}</p>
-             
+              <p> - {entry.score} le {entry.date}</p>
             </li>
           ))}
         </ul>

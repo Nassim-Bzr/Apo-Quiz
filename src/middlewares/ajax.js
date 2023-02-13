@@ -1,16 +1,16 @@
 import axios from 'axios';
-import { FETCH_CATEGORY, saveCategory } from '../actions/category';
+import { FETCH_QUIZZ, saveQuizz } from '../actions/quizz';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8082/api/category',
+  baseURL: 'http://localhost:8082/api',
 });
 
 const ajax = (store) => (next) => (action) => {
-  if (action.type === (FETCH_CATEGORY)) {
-    instance.get('/app/category')
+  if (action.type === FETCH_QUIZZ) {
+    instance.get('/category')
       .then((response) => {
         // en cas de réussite de la requête
-        store.dispatch(saveCategory(response.data));
+        store.dispatch(saveQuizz(response.data));
       })
       .catch((error) => {
         // en cas d’échec de la requête
@@ -28,7 +28,7 @@ const ajax = (store) => (next) => (action) => {
         },
       } = store.getState();
     */
-    instance.post('/login', {
+    instance.post('/users/login', {
       email: state.user.email,
       password: state.user.password,
     })

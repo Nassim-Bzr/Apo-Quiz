@@ -162,7 +162,7 @@ section {
 .formsignup {
     padding: 50px;
     display: flex;
-    height: 53vh;
+
     flex-direction: column;
     width: 20%;
     margin: 3%;
@@ -189,6 +189,7 @@ section {
     border: #000 1px solid;
     padding: 35px;
     border-radius: 20px;
+    background-color: white;
 }
 .title-article:hover{
     color: rgba(0, 204, 255, 0.342)

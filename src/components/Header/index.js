@@ -6,9 +6,11 @@ import SearchBar from '../SearchBar';
 import React, { useState } from 'react';
 // @ts-ignore
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import logoprofil from '../../assets/profil.png'
+// import { actionCheckLogin, actionDeconnectUser } from 'actions/user';
 
-
-function Header({isLog, setIsLog}) {
+function Header({isLogged}) {
 
   // const valueFromStore = useSelector((state) => state.isOk)
   // const dispatch = useDispatch();
@@ -16,11 +18,13 @@ function Header({isLog, setIsLog}) {
   const [search, setSearch] = useState('');
 
 
+  const dispatch = useDispatch();
 
-  function handleLogout(e){
-    e.preventDefault()
-    setIsLog(!isLog)
-  }
+  const handleLogout = () => {
+    dispatch({
+      type: 'LOGOUT',
+    });
+  };
   // @ts-ignore
   // const isLogged = useSelector((state) => state.user.logged);
   // @ts-ignore
@@ -33,37 +37,36 @@ function Header({isLog, setIsLog}) {
   // // @ts-ignore
   // const password = useSelector((state) => state.user.password);
   // @ts-ignore
-  const dispatch = useDispatch();
   return (
     <>
       <header className='Header'>
-        <a href='/'>
+        <Link to='/'>
       <button data-text="Awesome" className="button-logo">
     <span className="actual-text">&nbsp;goquiz&nbsp;</span>
     <span className="hover-text" aria-hidden="true">&nbsp;goquiz
     &nbsp;</span>
 </button>
 
-</a>
-{isLog ? (
+</Link>
+{isLogged ? (
      <>
-     <a href='/profile'>
-     <button className='button-profil'> Mon profil </button>
-     </a>
-     <a href='/'>
+     <Link to='/profile'>
+  <button className='button-profil'> Profil</button>
+     </Link>
+     <Link to='/'>
      <button className='button-connexion' onClick={handleLogout}> Deconnexion</button>
-     </a>
+     </Link>
 </>
 ):(
          
-        <a href='/Login'>
+        <Link to='/Login'>
         <button className='button-connexion'> Connexion / Inscription </button>
 
-        </a>
+        </Link>
 )};
-        {/* <a href='/signup'>
+        {/* <Link to='/signup'>
         <button className='button-login'>Inscription </button>
-        </a> */}
+        </Link> */}
        
 
       </header>

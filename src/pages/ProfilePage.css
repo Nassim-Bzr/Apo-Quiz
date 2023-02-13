@@ -1,9 +1,10 @@
 .quiz-profile-container {
-    max-width: 600px;
-    margin: 0 auto;
-
-
-  }
+  max-width: 600px;
+  background-color: white;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 15px auto;
+}
   .ProfilePicture{
     display: flex;
     margin: 6em;
@@ -14,7 +15,12 @@
     margin-bottom: 20px;
     padding: 3em;
   }
-  
+  .option.Correct {
+    background-color: green;
+  }
+  .option.Incorrect {
+    background-color: red;
+  }
   .quiz-profile-img {
     width: 100px;
     height: 100px;
@@ -47,9 +53,13 @@
   font-size: 18px;
   color: #999;
   }
-  
+  .button-history{
+    color:red;
+  font-weight: bold;  }
   .quiz-profile-recent-activity {
   margin-top: 20px;
+  height: 200px;
+  overflow-y: scroll;
   }
   
   .quiz-profile-recent-activity-title {

@@ -1,8 +1,10 @@
+// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import './categoriess.css'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
@@ -11,21 +13,18 @@ import { Link } from 'react-router-dom';
 export default function Categories() {
     const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-      axios.get('http://localhost:8082/api/category')
-        .then(res => setCategories(res.data))
-        .catch(err => console.log(err));
-    }, []);
+    const quizz = useSelector((state) => state.quizz.list);
+
     return (
         <div className='containor-categories'>
             <h1 className='header-categories'>Categories : </h1>
             <div className='container'> 
-            {categories.map(category => (
-                    <Link to={`/categories/${category.slug}`} className='titl-article' >
-                <div className='categories-card' key={category.id}>{category.name}
-                        <h3> Title card </h3>
+            {quizz.map(category => (
+                    <Link to={`/categories/${category.slug}`} className='titl-article' key={category.name}>
+                <div className='categories-card' >
+                        <p> {category.name} </p>
                         
-                        <img src={category.imageUrl}></img>
+                        <img src={category.imageUrl} className='img-categories'></img>
                 </div>
                     </Link>
              ))}

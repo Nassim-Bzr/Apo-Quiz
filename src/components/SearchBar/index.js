@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import PropTypesLibrary from 'prop-types';
+import { Link } from 'react-router-dom';
 
  
 function SearchBar({handleSearchChange , search}) {
@@ -17,9 +18,9 @@ function SearchBar({handleSearchChange , search}) {
       console.log(search)
     return (
         <div className='SearchBar'>
-            <a className='button-searchBar' href='/'>HOME</a>
-            <a className='button-searchBar' href='/categories'>CATEGORIES</a>
-            <a className='button-searchBar' href='/favoris'>MES FAVORIS</a>
+            <Link className='button-searchBar' to={'/'}>HOME</Link>
+            <Link className='button-searchBar' to='/categories'>CATEGORIES</Link>
+            <Link className='button-searchBar' to='/favoris'>MES FAVORIS</Link>
            <form>
             <input id='input-search' type="text"
             value={search} 
@@ -29,9 +30,9 @@ function SearchBar({handleSearchChange , search}) {
             onSubmit={handleSubmit}
              placeholder="Rechercher un quiz..."/> 
             </form>
-            <a className='button-searchBar' href='/contact'>NOUS CONTACTER</a>
-            <a className='button-searchBar' href='/faq'>FAQ</a>
-            <a className='button-searchBar' href='/about'>A PROPOS</a>
+            <Link className='button-searchBar' to='/contact'>NOUS CONTACTER</Link>
+            <Link className='button-searchBar' to='/faq'>FAQ</Link>
+            <Link className='button-searchBar' to='/about'>A PROPOS</Link>
             
     
         </div>

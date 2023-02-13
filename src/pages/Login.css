@@ -58,9 +58,12 @@ position: relative;
     position: relative;
     padding: 0.5em;
 
+
+  }
+  .login-container{
   }
   .title-login{
-    color: white;
+    color: black;
   }
   .form-group{
     display: flex;

@@ -1,19 +1,27 @@
-.HomeList{
+.HomeList {
     color: black;
     width: 70%;
     position: relative;
     right: 11%;
 }
-h1{
-    color:white
+
+h1 {
+    color: white
 }
-.home-card{
-    height: 15em;
-    width: 50%;
+
+.home-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.titleimg-home{
-    display: none;
-}
-.img-home{
-    display: none;
+
+.img-home {
+
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: 10em;
+    width: 10em;
+object-fit: cover;
+border-radius: 105px;
 }

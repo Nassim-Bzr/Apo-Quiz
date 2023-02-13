@@ -1,13 +1,15 @@
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import rootReducer from "../reducers";
+// @ts-nocheck
+import { createStore, applyMiddleware, compose } from 'redux';
 
-const middleware = [thunk];
+import reducer from '../reducers';
+import ajax from '../middlewares/ajax';
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(...middleware))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancers = composeEnhancers(
+  applyMiddleware(ajax),
 );
+
+const store = createStore(reducer, enhancers);
 
 export default store;

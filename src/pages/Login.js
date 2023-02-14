@@ -69,7 +69,7 @@ onChange={handleChange}
 )}
   {isLogged && (
     <div>
-      Salutation, tu est connectée ${pseudo}
+      Salutation, tu est connectée {pseudo}
     </div>
          )}
 </div>

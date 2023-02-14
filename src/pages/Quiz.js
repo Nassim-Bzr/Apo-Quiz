@@ -30,17 +30,17 @@ const Quiz = () => {
     // Add more questions here
   ];
  
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      // Si la limite de temps est épuisée, passez à la question suivante
-      setTimeLeft(timeLeft - 1);
-      if (timeLeft === 0) {
-        setCurrentQuestion(currentQuestion + 1);
-        setTimeLeft(15);
-      }
-    }, 1000);
-    return () => clearTimeout(timerId);
-  }, [currentQuestion, timeLeft]);
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     // Si la limite de temps est épuisée, passez à la question suivante
+  //     setTimeLeft(timeLeft - 1);
+  //     if (timeLeft === 0) {
+  //       setCurrentQuestion(currentQuestion + 1);
+  //       setTimeLeft(15);
+  //     }
+  //   }, 1000);
+  //   return () => clearTimeout(timerId);
+  // }, [currentQuestion, timeLeft]);
 
 
   const handleOptionClick = (option, answer) => {

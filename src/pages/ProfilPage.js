@@ -7,7 +7,7 @@ import { useDropzone } from 'react-dropzone';
 
 
 
-function ProfilePage({ name }) {
+function ProfilePage({ pseudo }) {
 
   const [quizzesCreated, setQuizzesCreated] = useState(0)
   const [quizzesTaken, setQuizzesTaken] = useState(0)
@@ -60,7 +60,7 @@ function ProfilePage({ name }) {
         {file ? <img src={URL.createObjectURL(file)} className='quiz-profile-img' /> : 'Click here to upload a profile picture'}
 
         <div className="quiz-profile-name">
-          <p className="quiz-profile-name">{name}</p>
+          <p className="quiz-profile-name">{pseudo}</p>
 
         </div>
       </div>
@@ -81,7 +81,11 @@ function ProfilePage({ name }) {
 
       <div className="quiz-profile-recent-activity">
         <h2 className="quiz-profile-recent-activity-title">Recente Activité</h2>
-        <button onClick={clearScoreHistory} className='button-history'>Supprimer mon historique</button>
+        <button className="btn-history" onClick={clearScoreHistory}>
+  <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" className="icon">
+  <path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
+</svg>
+</button>
 
         <ul className="quiz-profile-recent-activity-list">
           {scoreHistory.map((entry, index) => (

@@ -10,19 +10,9 @@ function SignUpForm() {
     email: "",
     password: ""
   });
-  const [acceptedConditions, setAcceptedConditions] = useState(false);
 
 
-  const required = value => {
-    if (!value) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This field is required!
-        </div>
-      );
-    }
-  };
-  
+
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -34,7 +24,29 @@ function SignUpForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log('coucou')
+    
+    try {
+      const response = await axios.post("http://localhost:8082/api/auth/signup", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Inscription réussie!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Quelque chose a mal tourné',
+      })
+    }
   }
 
   return (
@@ -59,19 +71,10 @@ function SignUpForm() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            validations={[required]}
+         
           />
         </label>
-        <label className="label-signup">
-          Confirmer l'adresse e-mail :
-          <input
-            className="signup-input"
-            type="email"
-            name="confirmEmail"
-            value={formData.confirmEmail}
-            onChange={handleChange}
-          />
-        </label>
+   
         <label className="label-signup">
           Mot de passe :
           <input
@@ -82,25 +85,11 @@ function SignUpForm() {
             onChange={handleChange}
           />
         </label>
-        <label className="label-signup">
-          Confirmer le mot de passe :
-          <input
-            className="signup-input"
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
-        </label>
+    
+    
 
-        <input
-          type="checkbox"
-          onChange={() => setAcceptedConditions(!acceptedConditions)}
-        /> <strong>J'accepte les conditions d'utilisation</strong>
-
-
-        <button type="submit" className="button-signup" disabled={!acceptedConditions}> </button>
-        <button type="submit" className="button-signup" disabled={!acceptedConditions}>S'inscrire</button>
+      
+        <button type="submit" className="button-signup" >S'inscrire</button>
       </form>
     </div>
   );

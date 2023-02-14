@@ -82,10 +82,11 @@ function App() {
                 <Route path='/categories/Geographie' element={<CurrentCategories
                 />} />
                 <Route path='/quiz' element={<Quiz />} />
-                <Route path='/signUp' element={<SignUp />} />
+                <Route path='/signUp' element={<SignUp
+                 />} />
                 <Route path='/Login' element={<Login isLogged={isLogged} />} />
                 <Route path="/profile" element={<ProfilePage
-                    name={pseudo}
+                    pseudo={pseudo}
                     profileImg="https://media.istockphoto.com/id/1300845620/fr/vectoriel/appartement-dic%C3%B4ne-dutilisateur-isol%C3%A9-sur-le-fond-blanc-symbole-utilisateur.jpg?s=612x612&w=0&k=20&c=BVOfS7mmvy2lnfBPghkN__k8OMsg7Nlykpgjn0YOHj0="
                 
                     

@@ -1,9 +1,12 @@
 export const initialState = {
-  logged: true,
+  logged: false,
   email: '',
   password: '',
   pseudo: '',
-  loading: false
+  favorisId: null,
+  roleId:null,
+  loading: false,
+  score:null
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -21,7 +24,9 @@ const reducer = (state = initialState, action = {}) => {
         email: '',
         password: '',
         pseudo: action.pseudo,
-       
+        favorisId: null,
+        roleId:null,
+        score:null,
       };
     case 'CHANGE_VALUE':
       return {

@@ -28,7 +28,7 @@ const ajax = (store) => (next) => (action) => {
         },
       } = store.getState();
     */
-    instance.post('/users/login', {
+    instance.post('/auth/signin', {
       email: state.user.email,
       password: state.user.password,
     })
@@ -38,7 +38,7 @@ const ajax = (store) => (next) => (action) => {
         instance.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
         store.dispatch({
           type: 'SAVE_USER',
-          pseudo: response.data.pseudo,
+          pseudo: response.data.username,
         });
       })
       .catch((error) => {

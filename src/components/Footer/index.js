@@ -5,7 +5,6 @@ export default function Footer() {
     return (
         <>
                <footer>
-                // how i can center input ? 
             <div className='firstFooter'> <Link to='/contact' className='link-footer'>Nous contacter</Link>
             <Link to='/cgv' className='link-footer' title='Test-title'>Conditions d’utilisations</Link>
             <Link to="/mentions-legales" className='link-footer'>Mentions légales </Link>

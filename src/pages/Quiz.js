@@ -14,7 +14,7 @@ const Quiz = () => {
   const [subject, setSubject] = useState('Capital')
   const [selectedOption, setSelectedOption] = useState();
   const [result, setResult] = useState('');
-  const [timeLeft, setTimeLeft] = useState(15); // Initialisez la limite de temps à 30 secondes
+  const [timeLeft, setTimeLeft] = useState(20); // Initialisez la limite de temps à 30 secondes
 
   const questions = [
     {
@@ -36,9 +36,9 @@ const Quiz = () => {
   //     setTimeLeft(timeLeft - 1);
   //     if (timeLeft === 0) {
   //       setCurrentQuestion(currentQuestion + 1);
-  //       setTimeLeft(15);
+  //       setTimeLeft(20);
   //     }
-  //   }, 1000);
+  //   }, 1300);
   //   return () => clearTimeout(timerId);
   // }, [currentQuestion, timeLeft]);
 
@@ -52,9 +52,10 @@ const Quiz = () => {
       setScore(score + 1);
     }
     // setCurrentQuestion(currentQuestion + 1);
-    // handleAnswer()
+    
+    handleAnswer()
   };
-{/* <button  onClick={() => handleAnswer(option)} ></button> */}
+{/* */}
   const handleAnswer = (selectedOption) => {
     setAnswers([...answers, selectedOption]);
 
@@ -130,14 +131,14 @@ const Quiz = () => {
 
       {currentQuestion < questions.length ? (
         <>
-        <p>{score}/{questions.length}</p>
+        <p className='question-length'>{currentQuestion}/{questions.length}</p>
           <p className="quiz-question">{questions[currentQuestion].question}</p>
       
           <ProgressBar
       now={timeLeft / 15 * 100}
       label={`${timeLeft} secondes`}
     />
-        <img src='https://static8.depositphotos.com/1004999/972/i/450/depositphotos_9725439-stock-photo-beautiful-spring-in-paris.jpg'></img>
+        <img className='img-quiz' src='https://static8.depositphotos.com/1004999/972/i/450/depositphotos_9725439-stock-photo-beautiful-spring-in-paris.jpg'></img>
           <ul className='quiz-options'>
             {questions[currentQuestion].options.map((option, index) => (
               <li key={index}  className={`quiz-option`}

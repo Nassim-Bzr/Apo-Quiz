@@ -32,11 +32,12 @@ const handleChange = (evt) => {
 return (
   
   <div className="login-container">
-    
+
   {!isLogged && (
-<form onSubmit={handleSubmit} className="login-form">
+    <>
+  <h1 >Connexion</h1>
+    <form onSubmit={handleSubmit} className="login-form">
 <div className="form-group">
-<h1 className='title-login'>Connexion</h1>
 <label htmlFor="email">Email</label>
 <input
 type="email"
@@ -64,12 +65,14 @@ onChange={handleChange}
 <p>Vous avez oublié votre mot de passe ? </p>
 </Link>
 <button type="submit" className="submit-button" onSubmit={handleSubmit} >Se connecter</button>
-
 </form>
+</>
 )}
   {isLogged && (
-    <div>
-      Salutation, tu est connectée {pseudo}
+    <div className='div-login'>
+      <p className='msg-login'>
+      Salut, tu est maintenant connectée {pseudo}.
+      </p>
     </div>
          )}
 </div>

@@ -29,6 +29,10 @@ import Login from 'pages/Login'
 import Quiz from 'pages/Quiz'
 import ProfilePage from 'pages/ProfilPage'
 import { fetchQuizz } from 'actions/quizz';
+import LegalsMention from 'pages/LegalsMention';
+import ConditionsUser from 'pages/TermsOfUse';
+import TermsOfUse from 'pages/TermsOfUse';
+import Classement from 'pages/Classement';
 
 
 function App() {
@@ -73,6 +77,10 @@ function App() {
                 
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/mentions-legales" element={<LegalsMention />} />
+                <Route path="/cgv" element={<TermsOfUse />} />
+                <Route path="/classement" element={<Classement />} />
+
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/categories" element={<Categories />} />

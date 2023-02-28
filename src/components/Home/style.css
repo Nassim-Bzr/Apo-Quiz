@@ -1,8 +1,8 @@
 .main-home{
 display: flex;
-
+height: 100vh;
 justify-content: space-between;
-height: 70vh;
+
 }
 h1{
     color: #fff;

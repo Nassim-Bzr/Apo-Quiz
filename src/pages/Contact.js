@@ -16,8 +16,20 @@ Nous faire une remarque sur notre site ? Nous suggérer une fonctionnalité ? No
 
 Vous pouvez remplir le formulaire ce-dessous et nous reviendront vers vous dans les meilleurs délais :
             </p>
+            <form className='contact-form'>
+<label htmlFor='name'>Nom :</label>
+<input type='text' id='name' name='name' />
+<label htmlFor='email'>Email :</label>
+                    <input type='email' id='email' name='email' />
+
+                    <label htmlFor='message'>Message :</label>
+                    <textarea id='message' name='message'></textarea>
+
+                    <button type='submit'>Envoyer</button>
+                </form>
+
             </div>
-            
+
         </div>
         </>
     )

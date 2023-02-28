@@ -1,10 +1,41 @@
-.signup-input{
-    
+.signup-input {
+
         width: 100%;
         padding: 12px;
         margin: 8px;
         /* box-sizing: border-box; */
         border: 1px solid black;
         border-radius: 4px;
-    
+
+}
+.text-accord{
+        padding: 15px;
+}
+.contain-signup {
+        height: 100vh;
+}
+
+.title-avantage {
+        color: black;
+        position: relative;
+        bottom: 30px;
+}
+
+.div-avantage {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        margin: 3%;
+        background-color: #FBE192;
+        margin-left: 70%;
+        position: relative;
+        bottom: 40em;
+
+}
+
+.li-avantage {
+        list-style-type: disc;
+        padding: 15px;
+        text-decoration: solid;
 }

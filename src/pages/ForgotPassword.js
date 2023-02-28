@@ -23,7 +23,9 @@ class PasswordResetForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div className='div-forgot'>
+        <h1>Réinitialisation de votre mot de passe</h1>
+      <form className='form-resetpassword' onSubmit={this.handleSubmit}>
         {this.state.success && <p>Un lien de réinitialisation de mot de passe a été envoyé à votre adresse e-mail.</p>}
         {this.state.error && <p>Une erreur s'est produite. Veuillez réessayer.</p>}
         <input
@@ -31,10 +33,12 @@ class PasswordResetForm extends Component {
           value={this.state.email}
           onChange={this.handleChange}
           placeholder="Adresse e-mail"
+          className='input-forgot'
           required
         />
-        <button type="submit">Envoyer le lien de réinitialisation de mot de passe</button>
+        <button className='button-forgot' type="submit">Envoyer le lien de réinitialisation de mot de passe</button>
       </form>
+      </div>
     );
   }
 }

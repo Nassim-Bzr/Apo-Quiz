@@ -10,6 +10,8 @@ export default function Footer() {
             <Link to="/mentions-legales" className='link-footer'>Mentions légales </Link>
             <Link to='/politque-de-confidentitalite'className='link-footer' >Politique de confidentialité</Link>
             <Link to='/'className='link-footer' >Accueil</Link>
+            <Link to='/classement'className='link-footer' >Classement</Link>
+
             <span className='newsletter'>Recevoir les nouveaux quizz chaque semaine : 
                 <input type='text' placeholder='votre@email.com' className='input-newsletter'/>
             </span>

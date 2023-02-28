@@ -16,12 +16,12 @@ h1 {
     content: "";
     position: absolute;
     bottom: -10px;
-    left: 55%;
+    left: 50%;
     transform: translateX(-50%);
-    width: 50%;
+    width: 39%;
     height: 1px;
     background-color: white;
-  }
+}
   .remove-favoris:hover{
     color: red;
   }

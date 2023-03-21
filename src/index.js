@@ -10,6 +10,7 @@ const rootReactElement = (
   <Provider store={store}>
     <BrowserRouter>
     <App />
+    
   </BrowserRouter>
   </Provider>
 );

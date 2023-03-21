@@ -14,6 +14,7 @@
     margin: 20px;
     background-color: white;
     left: 22.5%;
+    border-radius: 12px;
 }
 
 .ter .mention-text {
@@ -48,7 +49,8 @@
     height: 100vh;
 }
 .title-faq{
-    text-align-last: center;
+    /* text-align-last: center; */
+    padding: 16px;
 }
 .mention-subtitle{
     /* text-align: center; */
@@ -226,9 +228,10 @@ section {
 
 .div-article {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
     /* margin-left: 12em; */
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
 
 .div-forgot {
@@ -398,7 +401,7 @@ h1 {
 }
 
 .form {
-    padding-top: 7em;
+    padding-top: 1.3em;
 }
 
 .containor-about {
@@ -548,7 +551,7 @@ button {
 }
 
 .link-quizz {
-    /* width: 28%; */
+    width: 28%;
     padding: 2em;
     flex-basis: 25.33%;
     text-decoration: none;

@@ -23,12 +23,15 @@
 
 .finaly-quiz .gohome-quiz {
   border: solid 1px;
-  padding: 10px;
+  padding: 8px;
   background-color: green;
   color: white;
-  display: flex;
-  left: 45%;
-  margin: 2em;
+  /* display: flex; */
+  width: 17%;
+  /* margin-right: 60px; */
+  /* justify-content: center; */
+  border-radius: 16px;
+  /* margin: 2em; */
   font-size: 25px;
   text-decoration: none;
 }
@@ -69,8 +72,10 @@
 
   border: 1px solid white;
   padding: 3em;
-  background-color: cornflowerblue;
+  background-color: #f7f7f7ed;
   border-radius: 16px;
+  background-image: url("../../public/ques1.png");
+
 }
 
 h1 {
@@ -135,10 +140,21 @@ h1 {
   left: 20%;
   padding: 10px;
 }
-
+.quiz-option.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.quiz-option.correct-answer {
+  background-color: green;
+  color: white;
+}
+.quiz-option.wrong-answer {
+  background-color: red;
+  color: white;
+}
 .question-length {
   border: solid 1px black;
-  width: 3%;
+  width: 50px;
   border-radius: 80px;
   padding: 10px;
   background-color: white;

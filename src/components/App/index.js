@@ -33,6 +33,7 @@ import LegalsMention from 'pages/LegalsMention';
 import ConditionsUser from 'pages/TermsOfUse';
 import TermsOfUse from 'pages/TermsOfUse';
 import Classement from 'pages/Classement';
+import CreateQuiz from 'pages/CreateQuiz';
 
 
 function App() {
@@ -43,7 +44,8 @@ function App() {
     const password = useSelector((state) => state.user.password);
     const isLogged = useSelector((state) => state.user.logged);
     const pseudo = useSelector((state) => state.user.pseudo);
-  
+    const quizz = useSelector((state) => state.quizz.list);
+
     const loading = useSelector((state) => state.quizz.loading);
     useEffect(() => {
         dispatch(fetchQuizz());
@@ -76,10 +78,14 @@ function App() {
 
                 
             <Routes>
+
+
+                            
                 <Route path="/" element={<Home />} />
                 <Route path="/mentions-legales" element={<LegalsMention />} />
                 <Route path="/cgv" element={<TermsOfUse />} />
                 <Route path="/classement" element={<Classement />} />
+                <Route path="/create" element={<CreateQuiz />} />
 
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
@@ -87,9 +93,11 @@ function App() {
                 <Route path="/favoris" element={<Favoris isLogged={isLogged} />} />
                 <Route path='/faq' element={<Faq />} />
                 <Route path='/politque-de-confidentitalite' element={<PoliConfi />} />
-                <Route path='/categories/Geographie' element={<CurrentCategories
+                <Route path='/categories/:id' element={<CurrentCategories 
+                slug={quizz.slug}
+                category={"ok"}
                 />} />
-                <Route path='/quiz' element={<Quiz />} />
+                <Route path='/quiz/:id' element={<Quiz />} />
                 <Route path='/signUp' element={<SignUp
                  />} />
                 <Route path='/Login' element={<Login isLogged={isLogged} />} />

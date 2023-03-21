@@ -2,6 +2,7 @@ import React from 'react';
 import './style.scss';
 import PropTypesLibrary from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Form, Input, Segment } from 'semantic-ui-react';
 
 
 function SearchBar({ handleSearchChange, search }) {
@@ -22,17 +23,23 @@ function SearchBar({ handleSearchChange, search }) {
         <i className="material-icons">home</i>
       </Link>
       <Link className='button-searchBar' to='/categories'>CATEGORIES</Link>
-      <Link className='button-searchBar' to='/favoris'>MES FAVORIS</Link>
-      <form>
-        <input id='input-search' type="text"
+      <Link className='button-searchBar' to='/classement'> CLASSEMENT</Link>
+      <Form>
+        <Input 
+          aria-label="Termes à rechercher"
+
           value={search}
+          icon="search"
+          iconPosition="left"
+          fluid
           onChange={(event) => {
             handleSearchChange(event.target.value)
           }}
           onSubmit={handleSubmit}
-          placeholder="Rechercher un quiz..." />
-      </form>
-      <Link className='button-searchBar' to='/classement'> CLASSEMENT</Link>
+          placeholder="Votre recherche"
+          />
+      </Form>
+      <Link className='button-searchBar' to='/create'>CREER UN QUIZZ</Link>
       <Link className='button-searchBar' to='/faq'>FAQ</Link>
       <Link className='button-searchBar' to='/about'>A PROPOS</Link>
 

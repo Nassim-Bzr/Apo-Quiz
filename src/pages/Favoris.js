@@ -15,7 +15,7 @@ export default function Create({isLogged}) {
             <div className='div-article'>
            <article className='article'>
     <p className='title-article'>Capitales</p>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             </Link>
                   <img src={img} className='img-categories'  />
         <button className="btn-history">
@@ -25,7 +25,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
             <img src={img} className='img-categories'  />
@@ -36,7 +36,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -47,7 +47,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -58,7 +58,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -69,7 +69,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -80,7 +80,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -91,7 +91,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -102,7 +102,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -113,7 +113,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -124,7 +124,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -135,7 +135,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -146,7 +146,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -157,7 +157,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -168,7 +168,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -179,7 +179,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />
@@ -190,7 +190,7 @@ export default function Create({isLogged}) {
 </button>
 
             </article><article className='article'>
-             <Link className='title-article' to='/quiz'>
+             <Link className='title-article' to='/quiz/:id'>
             <p className='title-article'>Capitales</p>
             </Link>
                   <img src={img} className='img-categories'  />

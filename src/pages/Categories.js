@@ -16,19 +16,20 @@ export default function Categories() {
     return (
         <div className='containor-categories'>
             <h1 className='header-categories'>Categories : </h1>
-            <div className='container'> 
-            {quizz.map(category => (
-                    <Link to={`/categories/${category.slug}`} className='titl-article' key={category.name}>
-                <div className='categories-card' >
-                        <p className='category-name'> {category.name} </p>
-                        
-                        <img src={category.imageUrl} className='img-categories'></img>
-                </div>
+            <div className='container'>
+                {quizz.map(quiz => (
+                    <Link to={`/categories/${quiz.slug}`} className='titl-article' key={quiz.name}>
+                     <div className='img-categories category-image-container' style={{ backgroundImage: `url(${quiz.imageUrl})` }}>
+
+                            <p className='category-name'> {quiz.name} </p>
+
+
+                        </div>
                     </Link>
-             ))}
-            
-            {/* Div */}
-           </div>
+                ))}
+
+                {/* Div */}
+            </div>
         </div>
     )
 }

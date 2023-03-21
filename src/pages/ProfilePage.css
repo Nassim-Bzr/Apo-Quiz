@@ -129,8 +129,8 @@
 
 .quiz-profile-stats {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: space-around;
+  margin-bottom: 16px;
 }
 
 .stat {
@@ -140,7 +140,7 @@
 .stat-value {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .stat-label {

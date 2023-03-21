@@ -107,7 +107,7 @@ function ProfilePage({ pseudo }) {
           </div>
           <div className="stat">
             <p className="stat-value">{highScore}</p>
-            <p className="stat-label">Meilleurs Score</p>
+            <p className="stat-label">Score</p>
           </div>
         </div>
 

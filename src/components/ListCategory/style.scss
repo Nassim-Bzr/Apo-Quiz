@@ -19,10 +19,12 @@
 
 }
 
-.title-categories{
+.title-categories {
     font-weight: bold;
     margin: 10px;
     margin-top: 5px;
+    position: relative;
+    right: 30px;
 }
 .categories-column{
     display:flex;

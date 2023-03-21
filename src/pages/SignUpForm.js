@@ -3,6 +3,8 @@ import axios from 'axios';
 import './SignUp.css';
 import Swal from 'sweetalert2';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -11,6 +13,7 @@ function SignUpForm() {
     password: ""
   });
 
+  const navigate = useNavigate();
 
 
 
@@ -33,12 +36,15 @@ function SignUpForm() {
       });
       console.log(response);
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
         title: 'Inscription réussie!',
         showConfirmButton: false,
         timer: 1500
       })
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -71,6 +77,7 @@ function SignUpForm() {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            autoComplete="false"
 
           />
         </label>

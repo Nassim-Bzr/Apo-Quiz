@@ -28,24 +28,17 @@ export default function HomeList() {
       <h1> {titleContent} </h1>
       <div className='div-choice'>
         <button>
-          <Link  className={`choice-home ${selectedButton === 'populaires' ? 'selected' : ''}`} onClick={() => handleOptionClick('populaires')}> LES + POPULAIRES</Link>
+          <Link  className={`choice-home ${selectedButton === 'populaires' ? 'selected' : ''}`} onClick={() => handleOptionClick('populaires')} to={''}> LES + POPULAIRES</Link>
         </button>
         <button>
-          <Link  onClick={() => handleOptionClick('recents')} className={`choice-home ${selectedButton === 'recents' ? 'selected' : ''}`}> LES + RECENTS</Link>
+          <Link  onClick={() => handleOptionClick('recents')} className={`choice-home ${selectedButton === 'recents' ? 'selected' : ''}`} to={''}> LES + RECENTS</Link>
         </button>
         <button >
-          <Link  className={`choice-home ${selectedButton === 'hasard' ? 'selected' : ''}`} onClick={() => handleOptionClick('hasard')}> AU HASARD</Link>
+          <Link  className={`choice-home ${selectedButton === 'hasard' ? 'selected' : ''}`} onClick={() => handleOptionClick('hasard')} to={''}> AU HASARD</Link>
         </button>
       </div>
       <div className='container'>
-        {quizz.map(category => (
-          <Link to={`/categories/${category.slug}`} key={category.id} className='title-article' >
-            <div className='home-card' >
-              <h3 className='titleimg-home'> {category.name}</h3>
-              <img src={category.imageUrl} className='img-home'></img>
-            </div>
-          </Link>
-        ))}
+      
       </div>
     </div>
   )

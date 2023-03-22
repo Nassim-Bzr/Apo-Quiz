@@ -11,17 +11,17 @@ import { useSelector } from 'react-redux';
 
 export default function Categories() {
 
-    const quizz = useSelector((state) => state.quizz.list);
+    const category = useSelector((state) => state.category.list);
 
     return (
         <div className='containor-categories'>
             <h1 className='header-categories'>Categories : </h1>
             <div className='container'>
-                {quizz.map(quiz => (
-                    <Link to={`/categories/${quiz.slug}`} className='titl-article' key={quiz.name}>
-                     <div className='img-categories category-image-container' style={{ backgroundImage: `url(${quiz.imageUrl})` }}>
+                {category.map(cat => (
+                    <Link to={`/categories/${cat.slug}`} className='titl-article' key={cat.name}>
+                     <div className='img-categories category-image-container' style={{ backgroundImage: `url(${cat.imageUrl})` }}>
 
-                            <p className='category-name'> {quiz.name} </p>
+                            <p className='category-name'> {cat.name} </p>
 
 
                         </div>

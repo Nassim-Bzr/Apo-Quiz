@@ -1,13 +1,27 @@
 import axios from 'axios';
+import { FETCH_CATEGORY, saveCategory } from '../actions/category';
 import { FETCH_QUIZZ, saveQuizz } from '../actions/quizz';
+
 
 const instance = axios.create({
   baseURL: 'http://localhost:8082/api',
 });
 
 const ajax = (store) => (next) => (action) => {
-  if (action.type === FETCH_QUIZZ) {
+  if (action.type === FETCH_CATEGORY) {
     instance.get('/category')
+      .then((response) => {
+        // en cas de réussite de la requête
+        store.dispatch(saveCategory(response.data));
+      })
+      .catch((error) => {
+        // en cas d’échec de la requête
+        console.log(error);
+        alert('Erreur de chargement, veuillez réessayer');
+      });
+  }
+ else if (action.type === FETCH_QUIZZ) {
+    instance.get('/quizz')
       .then((response) => {
         // en cas de réussite de la requête
         store.dispatch(saveQuizz(response.data));

@@ -1,39 +1,43 @@
 // @ts-nocheck
-import React, { useState } from 'react'
-
-import axios from "axios";
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import Header from '../Header'
-import Contact from '../../pages/Contact.js'
-import About from '../../pages/About'
-import Categories from '../../pages/Categories'
-import Favoris from '../../pages/Favoris'
-import Faq from '../../pages/Faq'
-import SignUp from '../../pages/SignUpForm'
-import PoliConfi from '../../pages/Poli_confi'
-import CurrentCategories from '../../pages/CurrentCategories'
-import ForgotPassword from '../../pages/ForgotPassword'
-import Page404 from '../../pages/Page404'
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Loading from '../App/Loading';
-
-
 import './style.scss';
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Home from '../Home';
-import './style.scss'
-import Footer from 'components/Footer'
-import Login from 'pages/Login'
-import Quiz from 'pages/Quiz'
-import ProfilePage from 'pages/ProfilPage'
+
+import { fetchCategory } from 'actions/category';
 import { fetchQuizz } from 'actions/quizz';
+
+
+import Footer from 'components/Footer';
+import Header from '../Header';
+import Home from '../Home';
+
+import Contact from '../../pages/Contact.js';
+import About from '../../pages/About';
+import Categories from '../../pages/Categories';
+import Favoris from '../../pages/Favoris';
+import Faq from '../../pages/Faq';
+import SignUp from '../../pages/SignUpForm';
+import PoliConfi from '../../pages/Poli_confi';
+import CurrentCategories from '../../pages/CurrentCategories';
+import ForgotPassword from '../../pages/ForgotPassword';
+import Login from 'pages/Login';
+import Quiz from 'pages/Quiz';
+import ProfilePage from 'pages/ProfilPage';
 import LegalsMention from 'pages/LegalsMention';
 import ConditionsUser from 'pages/TermsOfUse';
 import TermsOfUse from 'pages/TermsOfUse';
 import Classement from 'pages/Classement';
 import CreateQuiz from 'pages/CreateQuiz';
+import Page404 from '../../pages/Page404';
+import Loading from '../App/Loading';
+
+
+
+
 
 
 function App() {
@@ -46,14 +50,21 @@ function App() {
     const pseudo = useSelector((state) => state.user.pseudo);
     const quizz = useSelector((state) => state.quizz.list);
 
-    const loading = useSelector((state) => state.quizz.loading);
+    const loading = useSelector((state) => state.category);
     useEffect(() => {
-        dispatch(fetchQuizz());
-        console.log('fetchQuiz')
+        dispatch(fetchCategory());
+        console.log('fetchCategory')
       }, []);
-      if (loading) {
-        return <Loading />;
-      }
+
+      useEffect(() => {
+        dispatch(fetchQuizz());
+        console.log('fetchQuizz')
+      }, []);
+
+      console.log(quizz)
+    //   if (loading) {
+    //     return <Loading />;
+    //   }
     // useEffect(() => {
     //     const action = actionFetchQuizz(); // action => { type: 'FETCH_RECIPE' }
     //     dispatch(action);
@@ -95,7 +106,7 @@ function App() {
                 <Route path='/politque-de-confidentitalite' element={<PoliConfi />} />
                 <Route path='/categories/:id' element={<CurrentCategories 
                 slug={quizz.slug}
-                category={"ok"}
+                quizz={quizz}
                 />} />
                 <Route path='/quiz/:id' element={<Quiz />} />
                 <Route path='/signUp' element={<SignUp

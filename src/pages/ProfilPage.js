@@ -28,7 +28,7 @@ function ProfilePage({ pseudo }) {
   };
 
   const handleSubmit = e => {
-    // e.preventDefault(); // Empêche la page de se recharger
+    e.preventDefault(); // Empêche la page de se recharger
     
     // Mettre à jour le pseudo dans la base de données
     fetch('http://localhost:8082/api/users/1', {

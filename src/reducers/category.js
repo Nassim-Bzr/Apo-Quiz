@@ -1,4 +1,4 @@
-import { SAVE_QUIZZ } from '../actions/quizz';
+import { SAVE_CATEGORY } from '../actions/category';
 
 export const initialState = {
   list: [],
@@ -7,10 +7,10 @@ export const initialState = {
 
 function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SAVE_QUIZZ:
+    case SAVE_CATEGORY:
       return {
         ...state,
-        list: action.quizz,
+        list: action.category,
         loading: false,
       };
     default:

@@ -11,7 +11,7 @@ export default function ListCategory() {
 
 
 
-    const quizz = useSelector((state) => state.quizz.list);
+    const category = useSelector((state) => state.category.list);
 
 
     
@@ -23,10 +23,10 @@ export default function ListCategory() {
             <span className='title-categories'>Catégories :</span>
             <div className='categories-column'>
             <ul >
-            {quizz.map(quizz => (
-                <li className='li-link'  key={quizz.id}  >
-                <Link className='link-categories'to={`/categories/${quizz.slug}`}>
-                    {quizz.name}
+            {category.map(category => (
+                <li className='li-link'  key={category.id}  >
+                <Link className='link-categories'to={`/categories/${category.slug}`}>
+                    {category.name}
                 </Link>
                 </li>
                 ))}

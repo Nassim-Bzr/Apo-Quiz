@@ -17,6 +17,10 @@ const Quiz = () => {
   const [timer, setTimer] = useState(null);
   const [progressBarPaused, setProgressBarPaused] = useState(false);
   const [questions, setQuestions] = useState([]);
+  const [currentCategorieTitle, setCurrentCategorieTitle] = useState('');
+
+
+
   useEffect(() => {
     const fetchQuestions = async () => {
       const response = await axios.get(`http://localhost:8082/api/question/?quizzId=${id}`);
@@ -25,13 +29,24 @@ const Quiz = () => {
 
     fetchQuestions();
   }, [id]);
+
+  useEffect(() => {
+    const fetchCategorie = async () => {
+      const response = await axios.get(`http://localhost:8082/api/category/${id}`);
+      setCurrentCategorieTitle(response.data.title);
+    };
+
+    fetchCategorie();
+  }, [id]);
   const handleAnswerOptionClick = (selectedOption) => {
     // Check if an option has already been selected
     if (selectedOption !== '' && selectedOption !== selectedOption) {
       return;
     }
 
-    if (selectedOption === questions[currentQuestion].answer) {
+    const currentQuestionObj = questions[currentQuestion];
+
+    if (selectedOption.id === currentQuestionObj.answer_id) {
       setSelectedOption(selectedOption);
       setShowCorrectAnswer(true);
       setScore((prevScore) => prevScore + 1);
@@ -44,6 +59,14 @@ const Quiz = () => {
     setProgressBarPaused(true);
   };
 
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  
   const nextQuestion = () => {
     setSelectedOption('');
     setShowCorrectAnswer(false);
@@ -58,7 +81,7 @@ const Quiz = () => {
     }
 
   };
-console.log(questions[currentQuestion])
+  console.log(questions[currentQuestion])
 
   useEffect(() => {
     if (currentQuestion < questions.length && timeLeft > 0) {
@@ -69,7 +92,7 @@ console.log(questions[currentQuestion])
 
   return (
     <div className='quiz-container'>
-      <h1>Quiz : {id} </h1>
+      <h1>Quiz : {currentCategorieTitle} </h1>
       <p>Score : {score}/{questions.length}</p>
       <div className='current-quiz'>
         {currentQuestion < questions.length ? (
@@ -89,7 +112,7 @@ console.log(questions[currentQuestion])
               alt='Quiz question'
             />
             <ul className='quiz-options'>
-            {questions[currentQuestion].answers.map((answer, index) => (
+              {questions[currentQuestion].answers.map((answer, index) => (
                 <button
                   key={index}
                   className={`quiz-option ${selectedOption === answer
@@ -106,10 +129,10 @@ console.log(questions[currentQuestion])
               ))}
             </ul>
             {selectedOption && (
-             <p className='quiz-anecdote'>{questions[currentQuestion].anecdote}</p> 
+              <p className='quiz-anecdote'>{questions[currentQuestion].anecdote}</p>
             )}
             <Link to='/' className='leave-quiz'>
-              
+
               Quit
             </Link>
             {selectedOption && (

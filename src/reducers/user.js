@@ -6,7 +6,8 @@ export const initialState = {
   favorisId: null,
   roleId:null,
   loading: false,
-  score:null
+  score:1,
+  profilImgUrl:''
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -26,7 +27,8 @@ const reducer = (state = initialState, action = {}) => {
         pseudo: action.pseudo,
         favorisId: null,
         roleId:null,
-        score:null,
+        score:action.score,
+        profilImgUrl:''
       };
     case 'CHANGE_VALUE':
       return {

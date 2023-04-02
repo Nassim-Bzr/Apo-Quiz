@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './Quiz.css';
 import { ProgressBar } from "react-bootstrap";
+import axios from 'axios';
 
 
 const Quiz = () => {
@@ -15,24 +16,15 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(null);
   const [progressBarPaused, setProgressBarPaused] = useState(false);
-  const questions = [
-    {
-      question: "Quel est la capitale de la France?",
-      options: ["Paris", " Londre", " New York", "Berlin"],
-      answer: "Paris"
-    },
-    {
-      question: "Quel est la capitale de l'Italie?",
-      options: ["Rome", "Londre", "Madrid", "Berlin"],
-      answer: "Rome"
-    },{
-      question: "Quel est la capitale de l'Italiee?",
-      options: ["Romee", "Londree", "Madridee", "Berline"],
-      answer: "Romee"
-    }
-    // Add more questions here
-  ];
+  const [questions, setQuestions] = useState([]);
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const response = await axios.get(`http://localhost:8082/api/question/?quizzId=${id}`);
+      setQuestions(response.data);
+    };
 
+    fetchQuestions();
+  }, [id]);
   const handleAnswerOptionClick = (selectedOption) => {
     // Check if an option has already been selected
     if (selectedOption !== '' && selectedOption !== selectedOption) {
@@ -66,7 +58,7 @@ const Quiz = () => {
     }
 
   };
-
+console.log(questions[currentQuestion])
 
   useEffect(() => {
     if (currentQuestion < questions.length && timeLeft > 0) {
@@ -97,23 +89,27 @@ const Quiz = () => {
               alt='Quiz question'
             />
             <ul className='quiz-options'>
-              {questions[currentQuestion].options.map((option, index) => (
+            {questions[currentQuestion].answers.map((answer, index) => (
                 <button
                   key={index}
-                  className={`quiz-option ${selectedOption === option
+                  className={`quiz-option ${selectedOption === answer
                     ? showCorrectAnswer
                       ? 'correct-answer'
                       : 'wrong-answer'
                     : ''
                     }`}
-                  onClick={() => handleAnswerOptionClick(option)}
+                  onClick={() => handleAnswerOptionClick(answer)}
                   disabled={selectedOption}
                 >
-                  {option}
+                  {answer.text}
                 </button>
               ))}
             </ul>
+            {selectedOption && (
+             <p className='quiz-anecdote'>{questions[currentQuestion].anecdote}</p> 
+            )}
             <Link to='/' className='leave-quiz'>
+              
               Quit
             </Link>
             {selectedOption && (

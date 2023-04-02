@@ -40,7 +40,7 @@ function SearchBar({ handleSearchChange, search }) {
           />
       </Form>
       <Link className='button-searchBar' to='/create'>CREER UN QUIZZ</Link>
-      <Link className='button-searchBar' to='/faq'>FAQ</Link>
+      <Link className='button-searchBar' to='/favoris'>FAVORIS</Link>
       <Link className='button-searchBar' to='/about'>A PROPOS</Link>
 
 

@@ -1,27 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './classement.css';
 
 export default function Classement() {
-  const classement = [
-    {
-      rang: '#1',
-      nom: 'John Doe',
-      image: 'https://img.freepik.com/vecteurs-libre/homme-mafieux-mysterieux-fumant-cigarette_52683-34828.jpg?size=626&ext=jpg',
-      points: 100
-    },
-    {
-      rang: '#2',
-      nom: 'Jane Smith',
-      image: 'https://img.freepik.com/vecteurs-libre/homme-mafieux-mysterieux-fumant-cigarette_52683-34828.jpg?size=626&ext=jpg',
-      points: 80
-    },
-    {
-      rang: '#3',
-      nom: 'Bob Johnson',
-      image: 'https://img.freepik.com/vecteurs-libre/homme-mafieux-mysterieux-fumant-cigarette_52683-34828.jpg?size=626&ext=jpg',
-      points: 60
+  const [classement, setClassement] = useState([]);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const response = await axios.get('http://localhost:8082/api/users');
+      const sortedUsers = response.data.sort((a, b) => b.score - a.score);
+      setClassement(sortedUsers);
     }
-  ];
+    fetchUsers();
+  }, []);
 
   return (
     <div className='container-classement'>
@@ -37,14 +28,14 @@ export default function Classement() {
             </tr>
           </thead>
           <tbody>
-            {classement.map((joueur) => (
-              <tr key={joueur.rang}>
-                <td>{joueur.rang}</td>
-                <td>{joueur.nom}</td>
+            {classement.map((joueur, index) => (
+              <tr key={joueur.id}>
+                <td>#{index + 1}</td>
+                <td>{joueur.username}</td>
                 <td>
-                  <img className='img-classement' src={joueur.image} alt={joueur.nom} />
+                  <img className='img-classement' src={joueur.profilImgUrl} alt={joueur.username} />
                 </td>
-                <td>{joueur.points}</td>
+                <td>{joueur.score}</td>
               </tr>
             ))}
           </tbody>

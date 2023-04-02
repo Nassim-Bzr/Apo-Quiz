@@ -14,6 +14,7 @@ function ProfilePage({ pseudo }) {
   const [file, setFile] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false); // Ajout de l'état pour la confirmation
   const isLogged = useSelector((state) => state.user.logged);
+  const score = useSelector((state) => state.user.score);
 
 
   const onDrop = acceptedFiles => {
@@ -106,7 +107,7 @@ function ProfilePage({ pseudo }) {
             <p className="stat-label">Quizz Crée</p>
           </div>
           <div className="stat">
-            <p className="stat-value">{highScore}</p>
+            <p className="stat-value">{score}</p>
             <p className="stat-label">Score</p>
           </div>
         </div>

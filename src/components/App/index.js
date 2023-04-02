@@ -61,7 +61,6 @@ function App() {
         console.log('fetchQuizz')
       }, []);
 
-      console.log(quizz)
     //   if (loading) {
     //     return <Loading />;
     //   }
@@ -82,9 +81,8 @@ function App() {
     return (
         <div className="app">
            
-            
-                
-                    <Header isLogged={isLogged}  />
+           
+            <Header isLogged={isLogged}  />
 
 
                 
@@ -108,7 +106,7 @@ function App() {
                 slug={quizz.slug}
                 quizz={quizz}
                 />} />
-                <Route path='/quiz/:id' element={<Quiz />} />
+                <Route path='/quiz/:category/:id' element={<Quiz />} />
                 <Route path='/signUp' element={<SignUp
                  />} />
                 <Route path='/Login' element={<Login isLogged={isLogged} />} />

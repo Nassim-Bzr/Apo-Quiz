@@ -20,14 +20,13 @@ const ajax = (store) => (next) => (action) => {
         alert('Erreur de chargement, veuillez réessayer');
       });
   }
- else if (action.type === FETCH_QUIZZ) {
-    instance.get('/quizz')
+  else if (action.type === FETCH_QUIZZ) {
+    const categoryId = action.payload;
+    instance.get(`/quizz?categoryId=${categoryId}`)
       .then((response) => {
-        // en cas de réussite de la requête
         store.dispatch(saveQuizz(response.data));
       })
       .catch((error) => {
-        // en cas d’échec de la requête
         console.log(error);
         alert('Erreur de chargement, veuillez réessayer');
       });
@@ -53,6 +52,7 @@ const ajax = (store) => (next) => (action) => {
         store.dispatch({
           type: 'SAVE_USER',
           pseudo: response.data.username,
+          score:response.data.score
         });
       })
       .catch((error) => {
@@ -84,7 +84,19 @@ const ajax = (store) => (next) => (action) => {
     instance.defaults.headers.common.Authorization = undefined;
   }
 
+  else if (action.type === 'UPDATE_SCORE') {
+    const state = store.getState();
+    instance.put('/user', { score: state.user.score }) // envoi de la requête PUT pour mettre à jour le score
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   next(action);
 };
+
 
 export default ajax;

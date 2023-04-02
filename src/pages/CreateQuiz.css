@@ -44,9 +44,17 @@
 h1 {
     position: relative;
     text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    color:#efefef;
+    text-shadow:1px 1px #919191,
+    1px 2px #919191,
+    1px 3px #919191,
+    
+    1px 3px 1px #919191;
   }
   
-  h1:after {
+  h1:afte,r {
     content: "";
     position: absolute;
     bottom: -10px;

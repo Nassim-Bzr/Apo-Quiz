@@ -228,8 +228,8 @@ section {
 
 .div-article {
     display: flex;
-    /* flex-wrap: wrap; */
-    flex-direction: column;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
     /* margin-left: 12em; */
     /* justify-content: space-evenly; */
 }

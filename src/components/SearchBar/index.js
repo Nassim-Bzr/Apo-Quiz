@@ -1,33 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.scss';
 import PropTypesLibrary from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Form, Input, Segment } from 'semantic-ui-react';
 
-
 function SearchBar({ handleSearchChange, search }) {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   function handleSubmit(e) {
-    // e.preventDefault();
     alert('Recherche en cours...')
-    //Logic to submit the form
   }
 
+  function toggleMenu() {
+    setMenuOpen(!menuOpen);
+  }
 
-  // Determine whether the sentiment of text is positive
-  // Use a web service
-  console.log(search)
   return (
     <div className='SearchBar'>
-      <Link className='button-searchBar' to={'/'}>
-        <i className="material-icons">home</i>
-      </Link>
-      <Link className='button-searchBar' to='/categories'>CATEGORIES</Link>
-      <Link className='button-searchBar' to='/classement'> CLASSEMENT</Link>
+      <button className='menu-button' onClick={toggleMenu}>
+        <i className='material-icons'>menu</i>
+      </button>
+      {menuOpen && (
+        <div className='menu'>
+          <Link className='button-searchBar' to={'/'}>
+            <i className="material-icons">home</i>
+          </Link>
+          <Link className='menu-link' to='/categories'>CATEGORIES</Link>
+          <Link className='menu-link' to='/classement'> CLASSEMENT</Link>
+          <Link className='menu-link' to='/create'>CREER UN QUIZZ</Link>
+          <Link className='menu-link' to='/favoris'>FAVORIS</Link>
+          <Link className='menu-link' to='/about'>A PROPOS</Link>
+        </div>
+      )}
       <Form>
-        <Input 
+        <Input
           aria-label="Termes à rechercher"
-
           value={search}
           icon="search"
           iconPosition="left"
@@ -37,13 +44,8 @@ function SearchBar({ handleSearchChange, search }) {
           }}
           onSubmit={handleSubmit}
           placeholder="Votre recherche"
-          />
+        />
       </Form>
-      <Link className='button-searchBar' to='/create'>CREER UN QUIZZ</Link>
-      <Link className='button-searchBar' to='/favoris'>FAVORIS</Link>
-      <Link className='button-searchBar' to='/about'>A PROPOS</Link>
-
-
     </div>
   )
 }
@@ -53,4 +55,4 @@ SearchBar.propTypes = {
   handleSearchChange: PropTypesLibrary.func.isRequired,
 };
 
-export default SearchBar;
+export default SearchBar; 

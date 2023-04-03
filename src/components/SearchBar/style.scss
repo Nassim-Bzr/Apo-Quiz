@@ -14,6 +14,48 @@
   margin-right: 5px;
 }
 
+.SearchBar {
+  display: flex;
+  border-bottom: solid 1px #979e97;
+  justify-content: space-between;
+  background-color: floralwhite;
+  position: relative;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: floralwhite;
+  z-index: 1;
+}
+
+.menu-link {
+  display: block;
+  padding: 10px;
+  color: #34495E;
+  text-decoration: none;
+  border-style: double;
+}
+
+.button-searchBar {
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 10px;
+  color: #34495E;
+  --bs-link-hover-color: #34495E;
+  margin: 5px;
+  text-decoration: none;}
 .button-searchBar {
 
     
@@ -50,17 +92,105 @@ a.button {
     color: initial;
 }
 
-@media (max-width: 768px) {
-    .SearchBar {
-      flex-wrap: wrap;
-    }
-  
-    .button-searchBar {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  
-    #input-search {
-      width: 100%;
-    }
+@media (max-width: 767px) {
+  .SearchBar {
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
   }
+  
+  .SearchBar input {
+    display: none;
+  }
+  
+  .SearchBar .button-searchBar {
+    display: block;
+  }
+  
+  .SearchBar .button-searchBar:first-of-type {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+  
+  .SearchBar .button-searchBar:last-of-type {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  
+  .SearchBar .button-searchBar:not(:first-of-type):not(:last-of-type) {
+    display: none;
+  }
+  
+  .SearchBar .button-searchBar.active {
+    display: block;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+}
+/* Styles for the search bar input */
+#input-search {
+  width: 20em;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: block;
+  height: 38px;
+  margin: 15px;
+  text-align: center;
+}
+
+/* Styles for the search bar links */
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+  color: initial;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .SearchBar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .menu-button {
+    margin-right: 10px;
+  }
+
+  .button-searchBar {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #input-search {
+    width: 100%;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: floralwhite;
+    z-index: 1;
+  }
+
+  .menu.show {
+    display: block;
+  }
+
+  .menu-link {
+    display: block;
+    padding: 10px;
+    color: #34495E;
+    text-decoration: none;
+    border-style: double;
+  }
+}

@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect, useState  } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './index.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchQuizz } from 'actions/quizz';
 import axios from 'axios';
+import { addFavorite } from '../actions/favoris';
 
 export default function CurrentCategories() {
 
@@ -12,9 +13,10 @@ export default function CurrentCategories() {
 
   const [quizzList, setQuizzList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [favoriteQuizzes, setFavoriteQuizzes] = useState([]);
+  const [isAlreadyFavorited, setIsAlreadyFavorited] = useState(false);
+  const favoriteQuizzes = useSelector((state) => state.favorites.favorites);
   const isLogged = useSelector((state) => state.user.logged);
-
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => {
     const fetchQuizz = async () => {
@@ -28,43 +30,52 @@ export default function CurrentCategories() {
     };
     fetchQuizz();
   }, [id]);
+
+  const addToFavorites = (quiz) => {
+    const alreadyFavorited = favoriteQuizzes.some(favoriteQuiz => favoriteQuiz.id === quiz.id);
+    if (alreadyFavorited) {
+      setIsAlreadyFavorited(true);
+      setTimeout(() => {
+        setIsAlreadyFavorited(false);
+      }, 2000); // Hide message after 3 seconds
+      return;
+    }
+    dispatch(addFavorite(quiz));
+    setShowConfirmation(true);
+    setTimeout(() => {
+      setShowConfirmation(false);
+    }, 2000); // Hide message after 3 seconds
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
-  console.log(favoriteQuizzes)
-  // const quizz = useSelector((state) => findQuiz(state.quizz.list , id));
-  // const quizz = useSelector((state) => state.quizz.list);
-
-  // const quizz = useSelector((state) =>
-  //   state.quizz.list.filter((quiz) =>
-  //     quiz.category.some((cat) => cat.id === id)
-  //   )
-
-  // );
-// console.log(quizz)
   return (
     <Fragment>
       <div className='contain-categories'>
-              <h1 className='header-categories'>  {id}</h1>
+        <h1 className='header-categories'>  {id}</h1>
+        {isAlreadyFavorited && (
+          <p>Vous avez déjà ajouté ce quiz à vos favoris</p>
+        )}
+        {showConfirmation && (
+          <p>Le quiz a été ajouté à vos favoris</p>
+        )}
         <div className='div-article'>
-          
-        {quizzList.map(quizz => (
-                     <div className='img-categories quizz-image-container' >
-                    <Link to={`/quiz/${id}/${quizz.id}`} className='titl-article' key={quizz.title}>
+          {quizzList.map(quizz => (
+            <div className='img-categories quizz-image-container' key={quizz.id}>
+              <Link to={`/quiz/${id}/${quizz.id}`} className='titl-article'>
 
-                            <p className='quizzname'> {quizz.title} </p>
+                <p className='quizzname'> {quizz.title} </p>
 
-                    </Link>
-                    {isLogged && (
-  <button onClick={() => setFavoriteQuizzes([...favoriteQuizzes, quizz])}>Add Favoris ❤️</button>
-)}                        </div>
-                ))}
-         
-       
-      
+              </Link>
+              {isLogged && (
+                <button onClick={() => addToFavorites(quizz)}>Add Favoris ❤️</button>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </Fragment>
-  )
+  );
 }

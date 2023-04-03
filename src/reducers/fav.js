@@ -1,23 +1,27 @@
 const initialState = {
-    list: [],
-  };
-  
-  function reducer(state = initialState, action = {}) {
-    switch (action.type) {
-      case 'LOGOUT':
+  favorites: []
+};
+
+function reducer(state = initialState, action = {}) {
+  switch (action.type) {
+    case 'LOGOUT':
+      return {
+        favorites: []
+      };
+    case 'ADD_FAVORITE':
+      const updatedFavorites = [...state.favorites, action.quiz];
+      return {
+        ...state,
+        favorites: updatedFavorites
+      };
+      case 'REMOVE_FAVORITE':
         return {
           ...state,
-          list: [],
+          favorites: state.favorites.filter((quiz) => quiz.id !== action.payload),
         };
-      case 'SAVE_FAV':
-        return {
-          ...state,
-          list: action.quizz,
-        };
-      default:
-        return state;
-    }
+    default:
+      return state;
   }
-  
-  export default reducer;
-  
+}
+
+export default reducer;

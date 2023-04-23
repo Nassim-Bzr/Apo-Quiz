@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Login.css';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import './ProfilePage.css';
 import { useDropzone } from 'react-dropzone';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function ProfilePage({ pseudo }) {
   const [newPseudo, setNewPseudo] = useState(pseudo); // State pour stocker le nouveau pseudo
@@ -15,7 +15,14 @@ function ProfilePage({ pseudo }) {
   const [isUpdated, setIsUpdated] = useState(false); // Ajout de l'état pour la confirmation
   const isLogged = useSelector((state) => state.user.logged);
   const score = useSelector((state) => state.user.score);
+  const ProfilImg = useSelector((state) => state.user.profilImgUrl)
+const dispatch = useDispatch();
 
+const handleLogout = () => {
+  dispatch({
+    type: 'LOGOUT',
+  });
+};
 
   const onDrop = acceptedFiles => {
     setFile(acceptedFiles[0]);
@@ -48,22 +55,22 @@ function ProfilePage({ pseudo }) {
     setIsUpdated(true)
   };
 
-  useEffect(() => {
-    const historyFromStorage = JSON.parse(localStorage.getItem('scoreHistory')) || [];
-    setScoreHistory(historyFromStorage);
-    // Récupérez les scores de tous les scores de l'historique
-    const scores = historyFromStorage.map(entry => entry.score);
+  // useEffect(() => {
+  //   const historyFromStorage = JSON.parse(localStorage.getItem('scoreHistory')) || [];
+  //   setScoreHistory(historyFromStorage);
+  //   // Récupérez les scores de tous les scores de l'historique
+  //   const scores = historyFromStorage.map(entry => entry.score);
 
-    // Trouvez le plus grand nombre
-    // Définir la valeur de maxScore en fonction de la longueur de scores
-    let maxScore = 0;
-    if (scores.length) {
-      maxScore = Math.max(...scores);
-    }
+  //   // Trouvez le plus grand nombre
+  //   // Définir la valeur de maxScore en fonction de la longueur de scores
+  //   let maxScore = 0;
+  //   if (scores.length) {
+  //     maxScore = Math.max(...scores);
+  //   }
 
-    // Affectez la valeur de maxScore à highScore
-    setHighScore(maxScore);
-  }, []);
+  //   // Affectez la valeur de maxScore à highScore
+  //   setHighScore(maxScore);
+  // }, []);
 
   useEffect(() => {
     let timeout;
@@ -79,6 +86,8 @@ function ProfilePage({ pseudo }) {
   if (!isLogged) {
     return <Navigate to="/error" replace />;
   }
+
+
   // rest of the code
   return (
     <div>
@@ -111,7 +120,9 @@ function ProfilePage({ pseudo }) {
             <p className="stat-label">Score</p>
           </div>
         </div>
-
+        <Link to='/'>
+     <button className='button-connexion' onClick={handleLogout}> Deconnexion</button>
+     </Link>
       <div className="quiz-profile-recent-activity">
         <h2 className="quiz-profile-recent-activity-title">Recente Activité</h2>
         <button className="btn-history" onClick={clearScoreHistory}>

@@ -40,3 +40,54 @@ color: #34495E;
     justify-content: flex-end;
     color: white;
 }
+
+
+
+@media screen and (max-width: 768px) {
+    .firstFooter {
+      flex-direction: column;
+      padding: 15px;
+      padding-bottom: 22em;
+    }
+    .footer{
+        width: 107%;
+    }
+    .link-footer {
+      margin: 1em;
+      padding: 10px 0;
+      display: block;
+
+    }
+    
+    .newsletter {
+      display: block;
+      margin: 10px 0;
+    }
+    
+    .input-newsletter {
+        position: relative;
+        bottom: 5px;
+        right: 31px;
+        margin: 2em;
+    }
+    
+    .text-footer {
+      position: static;
+      padding: 10px 0;
+    }
+  }
+  @media screen and (max-width: 1080px) {
+ .firstFooter{
+    width: 100%;
+    height: 100%;
+    padding: 0.5em;
+    
+ }
+ .text-footer{
+    padding: 3em;
+ }
+ .link-footer{
+    padding: 0em;
+    // margin:1em;
+ }
+    }

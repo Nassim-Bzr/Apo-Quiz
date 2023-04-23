@@ -44,4 +44,9 @@
     overflow: hidden;
     border: 1px solid #ddd;
   }
-  
+  @media screen and (max-width:780px) {
+    .div-classement {
+        width: 96%;
+        margin: 8px;
+    }
+}

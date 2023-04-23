@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './index.css';
 class PasswordResetForm extends Component {
   state = {
     email: '',
@@ -24,7 +24,7 @@ class PasswordResetForm extends Component {
   render() {
     return (
       <div className='div-forgot'>
-        <h1>Réinitialisation de votre mot de passe</h1>
+        <h1 className='forgot-title'>Réinitialisation de votre mot de passe</h1>
       <form className='form-resetpassword' onSubmit={this.handleSubmit}>
         {this.state.success && <p>Un lien de réinitialisation de mot de passe a été envoyé à votre adresse e-mail.</p>}
         {this.state.error && <p>Une erreur s'est produite. Veuillez réessayer.</p>}

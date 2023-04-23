@@ -18,10 +18,10 @@ export default function HomeList() {
     setSelectedButton(newOption)
   };
 
-  // contenu du titre en fonction de l'option choisie
-  const titleContent = option === 'populaires' ? 'Quizz les + populaires' :
-    option === 'recents' ? 'Quizz les + récents' :
-      option === 'hasard' ? 'Quizz au hasard' : '';
+  // // contenu du titre en fonction de l'option choisie
+  // const titleContent = option === 'populaires' ? 'Quizz les + populaires' :
+  //   option === 'recents' ? 'Quizz les + récents' :
+  //     option === 'hasard' ? 'Quizz au hasard' : '';
 
   useEffect(() => {
     const fetchQuizz = async () => {
@@ -52,23 +52,8 @@ export default function HomeList() {
 
   return (
     <div className='HomeList'>
-      <h1> {titleContent} </h1>
-      <div className='div-choice'>
-        <button>
-          <Link className={`choice-home ${selectedButton === 'populaires' ? 'selected' : ''}`} onClick={() => handleOptionClick('populaires')} to={''}> LES + POPULAIRES</Link>
-        </button>
-        <button>
-          <Link onClick={() => handleOptionClick('recents')} className={`choice-home ${selectedButton === 'recents' ? 'selected' : ''}`} to={''}> LES + RECENTS</Link>
-        </button>
-        <button >
-          <Link className={`choice-home ${selectedButton === 'hasard' ? 'selected' : ''}`} onClick={() => handleOptionClick('hasard')} to={''}> AU HASARD</Link>
-        </button>
-      </div>
-      <div className='container'>
-        {quizz.map(quiz => (
-          <p className='category-name'> {quiz.title} </p>
-        ))}
-      </div>
+      <h1 className='title-home'> QUIZZ LES + RECENTS</h1>
+  
     </div>
   )
 }

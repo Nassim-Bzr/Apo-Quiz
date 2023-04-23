@@ -120,7 +120,19 @@
 }
 
 
-
+.button-connexion{
+  /* display: flex; */
+  right: 40%;
+  position: absolute;
+  bottom: 3px;
+  border-style: double;
+  color: white;
+  background-color: rgb(202, 14, 14);
+  text-decoration: none;
+  margin: 5px;
+  padding: 7px;
+  border-radius: 20px;    
+}
 .quiz-profile-name {
   font-size: 36px;
   margin-top: 14%;
@@ -180,4 +192,44 @@
 .quiz-profile-recent-activity-item p {
   font-size: 18px;
   margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+ .login-form{
+  margin-top: 0;
+  width: 95%;
+  font-size: 10px;
+  margin: 6px;
+  position: relative;
+  left: 0;
+ }
+.input-change{
+  width: 100%;
+}
+ .quiz-profile-container{
+  margin:10px;
+
+ }
+.btn-history{
+/* position: absolute; */
+  left: 30%;
+  bottom: 17%;
+}
+.button-connexion{
+  /* display: flex; */
+  right: 40%;
+  position:relative;
+  bottom: 3px;
+  border-style: double;
+  color: white;
+  background-color: rgb(202, 14, 14);
+  text-decoration: none;
+  margin: 5px;
+  padding: 7px;
+  border-radius: 20px;    
+}
+ .submit-button{
+  position: relative;
+  left: 33%;
+ }
 }

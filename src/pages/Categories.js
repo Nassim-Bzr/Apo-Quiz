@@ -8,10 +8,9 @@ import { useSelector } from 'react-redux';
 
 
 
-
 export default function Categories() {
-
     const category = useSelector((state) => state.category.list);
+    const user = useSelector((state) => state.user);
 
     return (
         <div className='containor-categories'>
@@ -19,16 +18,16 @@ export default function Categories() {
             <div className='container'>
                 {category.map(cat => (
                     <Link to={`/categories/${cat.slug}`} className='titl-article' key={cat.name}>
-                     <div className='img-categories category-image-container' style={{ backgroundImage: `url(${cat.imageUrl})` }}>
-
+                        <div className='img-categories category-image-container' style={{ backgroundImage: `url(${cat.imageUrl})` }}>
                             <p className='category-name'> {cat.name} </p>
-
-
                         </div>
                     </Link>
                 ))}
-
-                {/* Div */}
+                {user && user.roleId === 2 && (
+                    <Link to={`/admin`} className='admin-link'>
+                        Admin
+                    </Link>
+                )}
             </div>
         </div>
     )

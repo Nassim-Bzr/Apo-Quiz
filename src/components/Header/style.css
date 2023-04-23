@@ -14,18 +14,8 @@
     padding: 7px;
     
 }
-.button-connexion{
-    display: flex;
-    right: 23em;
-    position: absolute;
-    top: 67px;
-    border-style: double;
-    background-color: #fff;
-    text-decoration: none;
-    margin: 5px;
-    padding: 7px;
-    border-radius: 20px;    
-}
+
+
 .button-profil{
     display: flex;
     right: 17em;
@@ -38,6 +28,13 @@
     padding: 7px;
     border-radius: 16px;
     
+}
+.logoprof{
+  width: 40px;
+  height: 40px;
+  top: 35%;
+  position: relative;
+  left: 80%;
 }
 /* === removing default button style ===*/
 .button-logo {
@@ -85,54 +82,44 @@
     width: 100%;
     filter: drop-shadow(0 0 23px var(--animation-color))
   }
-/* .login-form-button{
-   
-    border-style: double;
-    background-color: blue;
-    text-decoration: none;
-    color: white;
-    margin: 5px;
-    padding: 7px;
-    
-} */
-/* .logout-form-button {
-    border-style: double;
-    background-color: blue;
-    position: relative;
-    top: 50px;
-    left: 38%;
-    text-decoration: none;
-    color: white;
-    margin: 5px;
-    padding: 7px;
-}
-.login-form
-{
- background-color: white;
- align-items: center;
- justify-content: center;
-}
-.login-form-element {
-    align-items: center;
-    /* background: border-box; */
-    /* border-style: groove;
-    height: 50em;
-    margin-left: 30em;
-    margin-right: 30em;
-}
-.login-form-message{
-    font-size: 100px;
-   
-}
-.login-form-messages{
-    font-size: 50px;
-    
-}
-.login-form-logged{
-    
-        position: absolute;
-        border-style: solid;
-        top: 15em;
-        padding: 10em;
-    
-} */ 
+
+  @media screen and (max-width: 768px) {
+    .button-connexion{
+      position: relative;
+      left: 50%;
+      top: 10%;
+      font-size: 10px;
+      text-decoration: none;
+    }
+    .logoprof{
+   position: relative;
+   left: 22%;
+   width: 35px;
+   height: 35px;
+    }
+    .button-logo{
+        position: relative;
+        left:6%;
+        top:3.7em;
+        font-size: 16px;
+
+      }
+      .button-profil{
+        /* position: relative; */
+        left: 25%;
+        top:5%;
+    font-size: 10px;      }
+  }
+
+
+  @media screen and (max-width: 1080px) {
+    .button-logo{
+      margin-left: 35%;
+
+    }
+    .logoprof{
+     left: 30%;
+     height: 48px;
+     width: 48px;
+    }
+    }

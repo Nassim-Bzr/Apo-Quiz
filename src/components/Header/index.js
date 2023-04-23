@@ -1,11 +1,9 @@
 import './style.css';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from '../SearchBar';
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import logoprof from '../../assets/user.png';
 function Header() {
 
   // const valueFromStore = useSelector((state) => state.isOk)
@@ -18,11 +16,11 @@ function Header() {
 
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch({
-      type: 'LOGOUT',
-    });
-  };
+  // const handleLogout = () => {
+  //   dispatch({
+  //     type: 'LOGOUT',
+  //   });
+  // };
   // @ts-ignore
   // @ts-ignore
   // const pseudo = useSelector((state) => state.user.pseudo);
@@ -48,24 +46,17 @@ function Header() {
 {isLogged ? (
      <>
      <Link to='/profile'>
-  <button className='button-profil'> Profil</button>
+     <img className='logoprof' src={logoprof} alt="logo" />
      </Link>
-     <Link to='/'>
-     <button className='button-connexion' onClick={handleLogout}> Deconnexion</button>
-     </Link>
+ 
 </>
 ):(
          
         <Link to='/Login'>
-        <button className='button-connexion'> Connexion / Inscription </button>
-
+     <img className='logoprof' src={logoprof} alt="logo" />
         </Link>
 )};
-        {/* <Link to='/signup'>
-        <button className='button-login'>Inscription </button>
-        </Link> */}
        
-
       </header>
         <SearchBar search={search} handleSearchChange={setSearch} />
 

@@ -8,11 +8,13 @@
         border-radius: 4px;
 
 }
-.text-accord{
+
+.text-accord {
         padding: 15px;
 }
+
 .contain-signup {
-        height: 100vh;
+        height: 110vh;
 }
 
 .title-avantage {
@@ -39,3 +41,45 @@
         padding: 15px;
         text-decoration: solid;
 }
+
+
+@media screen and (max-width: 768px) {
+        .contain-signup {
+                font-size: 10px;
+                width: 100%;
+                position: relative;
+                /* right: 20%; */
+        }
+
+        .formsignup {
+                font-size: 10px;
+                width: 90%;
+                position: relative;
+                right: 34%;
+                border-radius: 16px;
+
+        }
+
+        .div-avantage {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                display: none;
+        }
+}
+
+@media screen and (max-width: 1080px) {
+        .contain-signup {}
+
+        .formsignup {
+                width: 48%;
+                margin-left: 12%;
+        }
+
+        .div-avantage {
+                width: 35%;
+                margin-left: 63%;
+                top: -38em;
+                font-size: 15px;
+            }
+        }

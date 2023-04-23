@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './classement.css';
+import { useSelector } from 'react-redux';
 
 export default function Classement() {
   const [classement, setClassement] = useState([]);
-
+  const ProfilImg = useSelector((state) => state.user.profilImgUrl)
+  const score = useSelector((state) => state.user.score)
   useEffect(() => {
     async function fetchUsers() {
       const response = await axios.get('http://localhost:8082/api/users');
@@ -23,7 +25,7 @@ export default function Classement() {
             <tr>
               <th>Rang</th>
               <th>Nom</th>
-              <th>Image de profil</th>
+              {/* <th>Image de profil</th> */}
               <th>Points</th>
             </tr>
           </thead>
@@ -32,10 +34,10 @@ export default function Classement() {
               <tr key={joueur.id}>
                 <td>#{index + 1}</td>
                 <td>{joueur.username}</td>
-                <td>
+                {/* <td>
                   <img className='img-classement' src={joueur.profilImgUrl} alt={joueur.username} />
-                </td>
-                <td>{joueur.score}</td>
+                </td> */}
+                <td>{score}</td>
               </tr>
             ))}
           </tbody>

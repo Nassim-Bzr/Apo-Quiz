@@ -56,10 +56,10 @@ export default function CurrentCategories() {
       <div className='contain-categories'>
         <h1 className='header-categories'>  {id}</h1>
         {isAlreadyFavorited && (
-          <p>Vous avez déjà ajouté ce quiz à vos favoris</p>
+          <p className='text-alreadyfavoris'>Vous avez déjà ajouté ce quiz à vos favoris</p>
         )}
         {showConfirmation && (
-          <p>Le quiz a été ajouté à vos favoris</p>
+          <p className='text-addfavoris'>Le quiz a été ajouté à vos favoris</p>
         )}
         <div className='div-article'>
           {quizzList.map(quizz => (
@@ -70,7 +70,7 @@ export default function CurrentCategories() {
 
               </Link>
               {isLogged && (
-                <button onClick={() => addToFavorites(quizz)}>Add Favoris ❤️</button>
+                <button onClick={() => addToFavorites(quizz)} className='add-favoris'>Add Favoris ❤️</button>
               )}
             </div>
           ))}

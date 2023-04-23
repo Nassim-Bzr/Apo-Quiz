@@ -3,13 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 import './Quiz.css';
 import { ProgressBar } from "react-bootstrap";
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 
 const Quiz = () => {
   const { id } = useParams();
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [subject, setSubject] = useState('Capital');
   const [timeLeft, setTimeLeft] = useState(20);
   const [selectedOption, setSelectedOption] = useState();
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
@@ -18,8 +18,9 @@ const Quiz = () => {
   const [progressBarPaused, setProgressBarPaused] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [currentCategorieTitle, setCurrentCategorieTitle] = useState('');
-
-
+  const ScoreUser = useSelector((state) => state.user.score);
+  console.log(ScoreUser)
+  
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -59,14 +60,8 @@ const Quiz = () => {
     setProgressBarPaused(true);
   };
 
-  const shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-  
+ 
+
   const nextQuestion = () => {
     setSelectedOption('');
     setShowCorrectAnswer(false);
@@ -81,7 +76,6 @@ const Quiz = () => {
     }
 
   };
-  console.log(questions[currentQuestion])
 
   useEffect(() => {
     if (currentQuestion < questions.length && timeLeft > 0) {
@@ -92,8 +86,8 @@ const Quiz = () => {
 
   return (
     <div className='quiz-container'>
-      <h1>Quiz : {currentCategorieTitle} </h1>
-      <p>Score : {score}/{questions.length}</p>
+      <h1 className='title-quiz'>Quiz : {currentCategorieTitle} </h1>
+      <p className='current-score'>Score : {score}/{questions.length}</p>
       <div className='current-quiz'>
         {currentQuestion < questions.length ? (
           <>
@@ -129,7 +123,9 @@ const Quiz = () => {
               ))}
             </ul>
             {selectedOption && (
-              <p className='quiz-anecdote'>{questions[currentQuestion].anecdote}</p>
+              <div className='quiz-anecdote-dialog'>
+                <p className='quiz-anecdote'>{questions[currentQuestion].anecdote}</p>
+              </div>
             )}
             <Link to='/' className='leave-quiz'>
 
@@ -143,7 +139,7 @@ const Quiz = () => {
           </>
         ) : (
           <div className='finaly-quiz'>
-            <p style={{ color: 'black' }}>Bien joué le quizz est terminé, tu as accès à ton score sur ton profil !</p>
+            <p style={{ color: 'black' }}>Bien joué le quizz est terminé, si tu es connectée tu as accès à ton score sur ton profil !</p>
             <Link to='/' className='gohome-quiz'>
               Retour à l'accueil
             </Link>

@@ -976,10 +976,5 @@ INSERT INTO "questions" ("id", "quizz_id", "question",  "anecdote", "wiki", "ans
 
 
 
-INSERT INTO "user_favoris" ( "userId","quizz_id") VALUES
-( 1, 1);
-
-
-
 
 

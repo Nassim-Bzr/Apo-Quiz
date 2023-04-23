@@ -1,6 +1,6 @@
 import React from 'react'
 import './create.css';
-import img from '../assets/geo.jpg'
+import img from '../assets/quizzo.jpg'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFavorite } from '../actions/favoris';
@@ -23,9 +23,9 @@ export default function Favoris({ isLogged }) {
                   <p className='title-article'>{quiz.title}</p>
                   <p className='category-article'>{quiz.description}</p>
                   <Link className='title-article' to={`/quiz/${quiz.category.id}/${quiz.id}`}>
-                    <img src={img} className='img-categories'  />
+                    <img src={img} className='img-favoris'  />
                   </Link>
-                <button onClick={() => dispatch(removeFavorite(quiz.id))}>Remove Favoris</button>
+                <button onClick={() => dispatch(removeFavorite(quiz.id))} className='remove-favoris'>Supprimer</button>
 
                   <button className="btn-history">
                     <svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" className="icon">
@@ -33,10 +33,10 @@ export default function Favoris({ isLogged }) {
                   </button>
                 </article>
               ))
-            ) : (
-              <p>Aucun quiz favori pour le moment</p>
-            )}
-          </div>
+              ) : (
+                <p className='text-nowfavoris'>Aucun quiz en favori </p>
+                )}
+                </div>
         </>
       ) : (
         <h1>Vous devez vous connecter</h1>

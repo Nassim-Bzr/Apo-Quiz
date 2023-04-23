@@ -3,11 +3,12 @@ export const initialState = {
   email: '',
   password: '',
   pseudo: '',
-  favorisId: null,
-  roleId:null,
+  roleId: null,
   loading: false,
-  score:1,
-  profilImgUrl:''
+  score: 0,
+  profilImgUrl: '',
+  userId: null // Ajout du champ userId
+
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -26,9 +27,14 @@ const reducer = (state = initialState, action = {}) => {
         password: '',
         pseudo: action.pseudo,
         favorisId: null,
-        roleId:null,
-        score:action.score,
-        profilImgUrl:''
+        roleId: null,
+        score: 0,
+        profilImgUrl: ''
+      };
+    case 'QUIZZ_COMPLETED':
+      return {
+        ...state,
+        score: state.score + action.score
       };
     case 'CHANGE_VALUE':
       return {
@@ -40,6 +46,8 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         logged: false,
         pseudo: '',
+        userId: null // Reset du champ userId à la déconnexion
+
       };
     default:
       return state;

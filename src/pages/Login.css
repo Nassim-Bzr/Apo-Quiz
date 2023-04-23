@@ -35,15 +35,6 @@ h1 {
     black;
 }
 
-*/ */
-/* input {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  } */
 
 .form-group {
   display: flex;
@@ -86,7 +77,9 @@ h1 {
 
 }
 
-.login-container {}
+.login-container {
+  height: 83vh;
+}
 
 .title-login {
   color: black;
@@ -110,3 +103,22 @@ h1 {
   position: relative;
   left: 27%;
 }
+
+
+
+@media screen and (max-width: 768px) {
+.div-login {
+position: absolute;
+top: 25%;
+left: 0%;
+transform: translateX(-50%);
+/* width: 50%; */
+
+}
+.msg-login{
+  /* margin: 0; */
+font-size: 20px;
+margin-left: 17em;
+}
+}
+

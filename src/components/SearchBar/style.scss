@@ -1,139 +1,37 @@
 .SearchBar {
-    display: flex;
-    border-bottom: solid 1px #979e97;
-    justify-content: space-evenly;
-    background-color: floralwhite;
+  display: flex;
+  border-bottom: solid 1px #979e97;
+  justify-content: space-evenly;
+  background-color: floralwhite;
 }
 
 .home-icon {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-color: black;
-  border-radius: 50%;
-  margin-right: 5px;
-}
-
-.SearchBar {
-  display: flex;
-  border-bottom: solid 1px #979e97;
-  justify-content: space-between;
-  background-color: floralwhite;
-  position: relative;
-}
-
-.menu-button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-}
-
-.menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: floralwhite;
-  z-index: 1;
-}
-
-.menu-link {
-  display: block;
-  padding: 10px;
-  color: #34495E;
-  text-decoration: none;
-  border-style: double;
+display: inline-block;
+width: 16px;
+height: 16px;
+background-color: black;
+border-radius: 50%;
+margin-right: 5px;
 }
 
 .button-searchBar {
+
+  
   font-weight: bold;
   border-radius: 25px;
   padding: 10px;
   color: #34495E;
-  --bs-link-hover-color: #34495E;
+  --bs-link-hover-color:#34495E;
   margin: 5px;
-  text-decoration: none;}
-.button-searchBar {
-
-    
-    font-weight: bold;
-    border-radius: 25px;
-    padding: 10px;
-    color: #34495E;
-    --bs-link-hover-color:#34495E;
-    margin: 5px;
-    text-decoration: none;
-    border-style: double;
-    
-    &:hover{
-        background-color: #34495E;
-        color: white;
-    }
+  text-decoration: none;
+  border-style: double;
+  
+  &:hover{
+      background-color: #34495E;
+      color: white;
+  }
 }
 
-#input-search {
-    width: 20em;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: block;
-    height: 38px;
-    margin: 15px;
-    text-align: center;
-
-}
-a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-
-    text-decoration: none;
-    color: initial;
-}
-
-@media (max-width: 767px) {
-  .SearchBar {
-    justify-content: space-between;
-    padding: 10px;
-    position: relative;
-  }
-  
-  .SearchBar input {
-    display: none;
-  }
-  
-  .SearchBar .button-searchBar {
-    display: block;
-  }
-  
-  .SearchBar .button-searchBar:first-of-type {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-  }
-  
-  .SearchBar .button-searchBar:last-of-type {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-  }
-  
-  .SearchBar .button-searchBar:not(:first-of-type):not(:last-of-type) {
-    display: none;
-  }
-  
-  .SearchBar .button-searchBar.active {
-    display: block;
-    position: absolute;
-    top: 50px;
-    width: 100%;
-    text-align: center;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  }
-}
-/* Styles for the search bar input */
 #input-search {
   width: 20em;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -141,56 +39,154 @@ a.button {
   height: 38px;
   margin: 15px;
   text-align: center;
-}
 
-/* Styles for the search bar links */
+}
 a.button {
   -webkit-appearance: button;
   -moz-appearance: button;
   appearance: button;
+
   text-decoration: none;
   color: initial;
 }
 
-/* Media query for mobile devices */
-@media (max-width: 768px) {
+
+
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 176px;
+}
+
+.bm-burger-bars {
+  background: #ffffff;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: #bdc3c7;
+}
+
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+.bm-morph-shape {
+  fill: #34da25;
+}
+
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+.bm-item {
+  display: inline-block;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-size: 20px;
+  outline: none;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.bm-item:hover {
+  color: #b8b7ad;
+}
+
+@media screen and  (max-width: 768px) {
   .SearchBar {
-    flex-wrap: wrap;
-    justify-content: space-between;
+    position: relative;
   }
+ .bm-menu-wrap {
+  
+    position: fixed;
+    left: 0px;
+    z-index: 1100;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease 0s;
+}
 
-  .menu-button {
-    margin-right: 10px;
+ .bm-burger-button{
+  position: absolute;
+top:-100px;
+
+ }
+
+
+ //
+//  <Link className='button-searchBar' to={'/'}>
+//  <i className="material-icons">home</i>
+// </Link>
+  .burger-menu {
+ 
+    position: fixed;
+    left: 0px;
+    z-index: 1100;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease 0s;
   }
-
+  .input-search{
+    width: 0%;
+   
+  
+  }
   .button-searchBar {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  #input-search {
-    width: 100%;
-  }
-
-  .menu {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: floralwhite;
-    z-index: 1;
-  }
-
-  .menu.show {
-    display: block;
-  }
-
-  .menu-link {
-    display: block;
-    padding: 10px;
-    color: #34495E;
-    text-decoration: none;
-    border-style: double;
   }
 }
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .SearchBar {
+  position: relative;
+  }
+  .bm-menu-wrap {
+  position: fixed;
+  left: 0px;
+  z-index: 1100;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease 0s;
+  }
+  .bm-burger-button {
+    position: absolute;
+    width: 4%;
+    height: 37px;
+    left: 117px;
+    top: -6em;
+}
+.bm-overlay{
+  display: none;
+}
+  .burger-menu {
+  position: fixed;
+  left: 0px;
+  z-index: 1100;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease 0s;
+  }
+  .input-search{
+  width: 0%;
+  }
+  .button-searchBar {
+  display: none;
+  }
+  }
+//   @media screen and (max-width: 1080px) {
+// //  .SearchBar {display: none;
+//     }
+//   }
+
+  

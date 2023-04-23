@@ -1,14 +1,18 @@
 .create-quiz {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 16px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+}
+
   
-  .create-quiz label {
-    margin-bottom: 8px;
-  }
-  
+.create-quiz label {
+  margin-bottom: 8px;
+}
+
   .create-quiz input[type="text"] {
     padding: 8px;
     border: 1px solid #ccc;
@@ -32,6 +36,8 @@
     background-color: #ccc;
     margin-left: 8px;
   }
+  
+ 
 
 .from-create{
     align-items: center;
@@ -40,6 +46,7 @@
 .favoris-title{
     position: relative;
     right: 2em;
+    left: -2%;
 }
 h1 {
     position: relative;

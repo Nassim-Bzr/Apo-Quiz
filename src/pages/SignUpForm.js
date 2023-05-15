@@ -4,6 +4,8 @@ import './SignUp.css';
 import Swal from 'sweetalert2';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
 function SignUpForm() {
@@ -14,6 +16,8 @@ function SignUpForm() {
   });
 
   const navigate = useNavigate();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [formError, setFormError] = useState(false); // State variable for form error
 
 
 
@@ -28,6 +32,10 @@ function SignUpForm() {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    if (formData.username === "" || formData.email === "" || formData.password === "") {
+      setFormError(true); // Update formError if any field is empty
+      return; // Stop form submission
+    }
     try {
       const response = await axios.post("http://localhost:8082/api/auth/signup", formData, {
         headers: {
@@ -59,12 +67,16 @@ function SignUpForm() {
     <div className="contain-signup">
       <h1>Inscription</h1>
       <form className="formsignup" onSubmit={handleSubmit}>
+      {formError && (
+          <p className="error-message">Veuillez remplir tous les champs obligatoires.</p>
+        )}
         <label className="label-signup">
           Nom d'utilisateur :
           <input
             className="signup-input"
             type="text"
             name="username"
+
             value={formData.username}
             onChange={handleChange}
           />
@@ -78,25 +90,33 @@ function SignUpForm() {
             value={formData.email}
             onChange={handleChange}
             autoComplete="false"
+            required // Champ obligatoire
+
 
           />
         </label>
-
         <label className="label-signup">
           Mot de passe :
           <input
             className="signup-input"
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             name="password"
             value={formData.password}
             onChange={handleChange}
+            required // Champ obligatoire
+
           />
+          <button type="button" onClick={() => setPasswordVisible(!passwordVisible)}>
+            {passwordVisible ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+            {passwordVisible ? ' Masquer' : ' Afficher'}
+          </button>
         </label>
 
 
-      <strong className="text-accord">En créant un compte, je suis d'accord avec la <Link to='/poli-confi'>Politique de confidentialité</Link>.</strong>
+        <strong className="text-accord">En créant un compte, je suis d'accord avec la <Link to='/poli-confi'>Politique de confidentialité</Link>.</strong>
 
         <button type="submit" className="button-signup" >S'inscrire</button>
+     
       </form>
 
       <div className="div-avantage" >
@@ -104,30 +124,30 @@ function SignUpForm() {
         <h1 className="title-avantage"> Avantages</h1>
 
         <ul>
-        <li className="li-avantage">
+          <li className="li-avantage">
             Vos quizz sont tous rattachés dans votre compte membre.
-            </li>
-            <li className="li-avantage">
+          </li>
+          <li className="li-avantage">
             Vous pourrez suivre les autres membres afin d'être averti de leurs nouveaux quizz.
-            </li>
-            <li className="li-avantage">
+          </li>
+          <li className="li-avantage">
             Vous pourrez laisser des commentaires (et voir ceux des autres membres) sur l'ensemble des quizz.
-            </li>
-            <li className="li-avantage">
+          </li>
+          <li className="li-avantage">
             Votre rang dans les classements est mémorisé.
-            </li>
-            <li className="li-avantage">
+          </li>
+          <li className="li-avantage">
             Vous jouez en live avec votre pseudo.
-            </li>
-            <li className="li-avantage">
+          </li>
+          <li className="li-avantage">
             Une messagerie vous permet de communiquer avec les autres membres.
-            </li>
-            <li className="li-avantage">
+          </li>
+          <li className="li-avantage">
             Et beaucoup d'autres choses !
-            </li>
+          </li>
         </ul>
       </div>
-                                                                                                                                                                                                                          
+
     </div>
 
   );

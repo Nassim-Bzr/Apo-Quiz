@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './index.css';
+// const nodemailer = require('nodemailer');
+
+
 class PasswordResetForm extends Component {
   state = {
     email: '',
@@ -7,6 +10,8 @@ class PasswordResetForm extends Component {
     error: false
   }
 
+
+  
   handleChange = (event) => {
     this.setState({
       email: event.target.value

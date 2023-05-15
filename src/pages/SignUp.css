@@ -22,6 +22,11 @@
         position: relative;
         bottom: 30px;
 }
+.error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 8px;
+      }
 
 .div-avantage {
         padding: 30px;
@@ -33,6 +38,7 @@
         margin-left: 70%;
         position: relative;
         bottom: 40em;
+        border-radius: 16px;
 
 }
 
@@ -55,7 +61,7 @@
                 font-size: 10px;
                 width: 90%;
                 position: relative;
-                right: 34%;
+                /* right: 34%; */
                 border-radius: 16px;
 
         }
@@ -73,7 +79,7 @@
 
         .formsignup {
                 width: 48%;
-                margin-left: 12%;
+                margin: auto;
         }
 
         .div-avantage {
@@ -81,5 +87,5 @@
                 margin-left: 63%;
                 top: -38em;
                 font-size: 15px;
-            }
         }
+}

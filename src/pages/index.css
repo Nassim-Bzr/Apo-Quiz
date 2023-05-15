@@ -309,7 +309,7 @@ section {
 .formsignup {
     padding: 50px;
     display: flex;
-
+    border-radius: 16px;
     flex-direction: column;
     width: 20%;
     margin: 3%;
@@ -464,26 +464,24 @@ body {
 
 .about-titl {
     display: flex;
-
     padding: 1em;
     background-color: gainsboro;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    margin: 6px;
     border-radius: 5px;
-
-
 }
 
 .about-text {
     display: flex;
     justify-content: center;
     padding: 15px;
-    margin: 15px;
+    margin: 6px;
     background-color: #fff;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
     border-radius: 5px;
 }
 

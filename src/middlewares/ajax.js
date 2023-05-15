@@ -52,7 +52,8 @@ const ajax = (store) => (next) => (action) => {
         store.dispatch({
           type: 'SAVE_USER',
           pseudo: response.data.username,
-          score:response.data.score
+          score:response.data.score,
+          userId: response.data.id // Ajoutez cette ligne, en supposant que la réponse contient un champ id.
         });
       })
       .catch((error) => {

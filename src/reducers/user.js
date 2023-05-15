@@ -1,3 +1,5 @@
+import { UPDATE_PSEUDO } from '../actions/user';
+
 export const initialState = {
   logged: false,
   email: '',
@@ -18,6 +20,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         loading: true,
       };
+      case UPDATE_PSEUDO:
+        return {
+          ...state,
+          pseudo: action.pseudo,
+        };
     case 'SAVE_USER':
       return {
         ...state,
@@ -26,11 +33,13 @@ const reducer = (state = initialState, action = {}) => {
         email: '',
         password: '',
         pseudo: action.pseudo,
+        userId: action.userId,
         favorisId: null,
         roleId: null,
         score: 0,
         profilImgUrl: ''
       };
+      
     case 'QUIZZ_COMPLETED':
       return {
         ...state,

@@ -9,7 +9,7 @@ function Header() {
   // const valueFromStore = useSelector((state) => state.isOk)
   // const dispatch = useDispatch();
   // const {toggleModals} = useContext(UserContext);
-  const [search, setSearch] = useState('');
+  // const [search, setSearch] = useState('');
   const [dropdownValue, setDropdownValue] = useState(''); // initial value is empty string
   const isLogged = useSelector((state) => state.user.logged);
 
@@ -58,7 +58,7 @@ function Header() {
 )};
        
       </header>
-        <SearchBar search={search} handleSearchChange={setSearch} />
+        <SearchBar  />
 
     </>
   )

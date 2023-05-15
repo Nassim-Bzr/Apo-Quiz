@@ -33,7 +33,8 @@ import TermsOfUse from 'pages/TermsOfUse';
 import Classement from 'pages/Classement';
 import CreateQuiz from 'pages/CreateQuiz';
 import Page404 from '../../pages/Page404';
-import Loading from '../App/Loading';
+import ResetPassword from 'pages/ResetPassword';
+import SearchResults from 'components/SearchResults';
 
 
 
@@ -95,6 +96,8 @@ function App() {
                 <Route path="/cgv" element={<TermsOfUse />} />
                 <Route path="/classement" element={<Classement />} />
                 <Route path="/create" element={<CreateQuiz />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/search-results" element={<SearchResults />} />
 
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />

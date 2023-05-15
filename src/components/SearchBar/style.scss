@@ -189,4 +189,9 @@ top:-100px;
 //     }
 //   }
 
-  
+@media screen and (max-width: 1080px) {
+  .button-searchBar {
+     padding: 5px;
+     font-size: 12px;
+  }
+}

@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import './style.scss';
 import PropTypesLibrary from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // Importez useLocation et useNavigate
 import { Form, Input, Segment } from 'semantic-ui-react';
 import { slide as Menu } from 'react-burger-menu'
 
-function SearchBar({ handleSearchChange, search }) {
+function SearchBar() {
   
   const [isTablet, setIsTablet] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  const location = useLocation(); // Utilisez useLocation
+  const navigate = useNavigate(); // Utilisez useNavigate
 
   function handleSubmit(e) {
-    // e.preventDefault();
-    alert('Recherche en cours...')
-    //Logic to submit the form
+    e.preventDefault();
+    console.log('search')
+    navigate('/search-results'); // Remplacez ceci par l'URL de votre page de résultats de recherche
   }
+  async function fetchQuizzes(query) {
+    const response = await fetch(`http://localhost:8082/api/quizz?search=${query}`);
+    const data = await response.json();
+    setSearchResults(data); // Mettez à jour l'état ici
 
+    // return data;
+  }
   function handleResize() {
     const windowWidth = window.innerWidth;
     setIsMobile(windowWidth <= 768);
@@ -35,19 +46,27 @@ function SearchBar({ handleSearchChange, search }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    setIsMenuOpen(false); // Fermez le menu lorsque le chemin d'accès change
+  }, [location]);
+
   
+  function handleSearchChange(value) {
+    setSearch(value);
+    fetchQuizzes(value);
+  }
   return (
     <div className='SearchBar'>
       {isMobile || isTablet ?
-        <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} className='menu-burger'>
-          <Link className='button-searchBar' to={'/'} onClick={() => setIsMenuOpen(false)}>
+        <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false )} className='menu-burger'>
+          <Link className='button-searchBar' to={'/'} onClick={() => setIsMenuOpen(true)}>
             <i className="material-icons">home</i>
           </Link>
-          <Link to='/categories' onClick={() => handleCloseMenu}>CATEGORIES</Link>
-          <Link to='/classement' onClick={() => setIsMenuOpen(false)}> CLASSEMENT</Link>
-          <Link to='/create' onClick={() => setIsMenuOpen(false)}>CREER UN QUIZZ</Link>
-          <Link to='/favoris' onClick={() => setIsMenuOpen(false)}>FAVORIS</Link>
-          <Link to='/about' onClick={() => setIsMenuOpen(false)}>A PROPOS</Link>
+          <Link to='/categories'  onClick={() => setIsMenuOpen(true)}>CATEGORIES</Link>
+          <Link to='/classement' onClick={() => setIsMenuOpen(true)}> CLASSEMENT</Link>
+          <Link to='/create' onClick={() => setIsMenuOpen(true)}>CREER UN QUIZZ</Link>
+          <Link to='/favoris' onClick={() => setIsMenuOpen(true)}>FAVORIS</Link>
+          <Link to='/about' onClick={() => setIsMenuOpen(true)}>A PROPOS</Link>
         </Menu>
         :
         <>

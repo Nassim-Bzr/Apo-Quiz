@@ -4,6 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import './ProfilePage.css';
 import { useDropzone } from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
+import { actionUpdatePseudo } from '../actions/user'; // Importez l'action
 
 function ProfilePage({ pseudo }) {
   const [newPseudo, setNewPseudo] = useState(pseudo); // State pour stocker le nouveau pseudo
@@ -16,6 +17,11 @@ function ProfilePage({ pseudo }) {
   const isLogged = useSelector((state) => state.user.logged);
   const score = useSelector((state) => state.user.score);
   const ProfilImg = useSelector((state) => state.user.profilImgUrl)
+  const userID = useSelector((state) => state.user.userId);
+ 
+  console.log(userID)
+  console.log("lahwak")
+
 const dispatch = useDispatch();
 
 const handleLogout = () => {
@@ -36,10 +42,9 @@ const handleLogout = () => {
   };
 
   const handleSubmit = e => {
-    e.preventDefault(); // Empêche la page de se recharger
+    e.preventDefault();
     
-    // Mettre à jour le pseudo dans la base de données
-    fetch('http://localhost:8082/api/users/1', {
+    fetch(`http://localhost:8082/api/users/${userID}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -47,14 +52,14 @@ const handleLogout = () => {
       body: JSON.stringify({ username: newPseudo })
     })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data);
+      dispatch(actionUpdatePseudo(newPseudo)); // Dispatchez l'action
+    })
     .catch(error => console.error(error));
     
-    // Mettre à jour le pseudo affiché dans l'interface
-    setNewPseudo(newPseudo);
-    setIsUpdated(true)
+    setIsUpdated(true);
   };
-
   // useEffect(() => {
   //   const historyFromStorage = JSON.parse(localStorage.getItem('scoreHistory')) || [];
   //   setScoreHistory(historyFromStorage);

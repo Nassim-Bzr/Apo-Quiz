@@ -1,6 +1,6 @@
 import React from 'react'
 import './create.css';
-import img from '../assets/quizzo.jpg'
+import img from '../assets/quizfav.png'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFavorite } from '../actions/favoris';

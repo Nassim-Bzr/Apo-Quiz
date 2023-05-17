@@ -1,0 +1,2 @@
+INSERT INTO "categories" ("id", "name" ,"slug","imageUrl") VALUES
+(1, 'Cinema' , 'Cinema' ,'https://media.istockphoto.com/id/1322463784/fr/vectoriel/cin%C3%A9ma-%C3%A9cran-blanc-au-cin%C3%A9ma-illustration-vectorielle.jpg?s=612x612&w=0&k=20&c=ncQHwUHoYw8LjlRQx_LXGJ-5T5O0i0PbsZrOYVzN3yU=')

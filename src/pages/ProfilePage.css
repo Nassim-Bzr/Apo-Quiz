@@ -15,7 +15,7 @@
 .button-change {
   /* font-size: 14px; */
   margin-left: 10px;
-  /* margin-top: 10px; */
+  margin-top: 10px;
   border: 1px solid black;
   padding: 4px;
   font-size: 14px;
@@ -124,7 +124,7 @@
   /* display: flex; */
   right: 40%;
   position: absolute;
-  bottom: 3px;
+  bottom: 29em;
   border-style: double;
   color: white;
   background-color: rgb(202, 14, 14);

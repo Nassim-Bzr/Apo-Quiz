@@ -3,6 +3,7 @@ export const CHECK_LOGIN = 'CHECK_LOGIN';
 export const SAVE_CONNECTED_USER = 'SAVE_CONNECTED_USER';
 export const DECONNECT_USER = 'DECONNECT_USER';
 export const UPDATE_PSEUDO = 'UPDATE_PSEUDO';
+export const UPDATE_SCORE = 'UPDATE_SCORE';
 
 /**
  * action dispatchée sur le onChange d'un input du form de connexion
@@ -22,6 +23,10 @@ export const actionCheckLogin = () => ({
   type: CHECK_LOGIN,
 });
 
+export const actionUpdateScore = (score) => ({
+  type: UPDATE_SCORE,
+  score,
+});
 
 export const actionUpdatePseudo = (pseudo) => ({
     type: UPDATE_PSEUDO,

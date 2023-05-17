@@ -20,7 +20,9 @@
 .add-favoris:hover {
     color: green;
 }
-
+.img-favoris{
+    width: 100%;
+}
 .ter .mention-text {
     padding: 16px;
     margin: 10px;
@@ -334,7 +336,7 @@ section {
 }
 
 .title-article {
-    color: #ff9191;
+    color: #34495e;
     text-decoration: none;
     border: #adadad 1px sandybrown;
     padding: 0px;

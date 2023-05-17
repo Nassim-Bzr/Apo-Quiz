@@ -1,0 +1,47 @@
+.admin-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .admin-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .quiz-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .input-adminquestion{
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+  }
+  .question-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .input-adminanswer{
+    margin:10px
+  }
+  .admin-page{
+    margin: 10px auto;
+  }
+  .answer-item {
+    margin-bottom: 10px;
+  }
+  
+  .success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  

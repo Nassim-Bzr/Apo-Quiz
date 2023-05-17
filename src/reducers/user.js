@@ -9,8 +9,8 @@ export const initialState = {
   loading: false,
   score: 0,
   profilImgUrl: '',
-  userId: null // Ajout du champ userId
-
+  userId: null,
+  roles: [] // Ajoutez de champ avec une valeur initiale vide
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -25,20 +25,28 @@ const reducer = (state = initialState, action = {}) => {
           ...state,
           pseudo: action.pseudo,
         };
-    case 'SAVE_USER':
-      return {
-        ...state,
-        logged: true,
-        loading: false,
-        email: '',
-        password: '',
-        pseudo: action.pseudo,
-        userId: action.userId,
-        favorisId: null,
-        roleId: null,
-        score: 0,
-        profilImgUrl: ''
-      };
+        case 'SAVE_USER':
+          return {
+            ...state,
+            logged: true,
+            loading: false,
+            email: '',
+            password: '',
+            pseudo: action.pseudo,
+            userId: action.userId,
+            favorisId: null,
+            roles: 'admin', // Ajoutez cette ligne pour extraire les rôles de l'action
+            score: 0,
+            profilImgUrl: ''
+          };
+        
+          case 'UPDATE_SCORE':
+            return {
+              ...state,
+              score: action.score,
+            };
+          // ...
+       
       
     case 'QUIZZ_COMPLETED':
       return {

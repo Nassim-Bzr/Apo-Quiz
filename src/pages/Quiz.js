@@ -4,6 +4,9 @@ import './Quiz.css';
 import { ProgressBar } from "react-bootstrap";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { actionUpdateScore } from '../actions/user';
+import { useDispatch } from 'react-redux';
+
 
 
 const Quiz = () => {
@@ -21,6 +24,8 @@ const Quiz = () => {
   const ScoreUser = useSelector((state) => state.user.score);
   console.log(ScoreUser)
   
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -77,12 +82,18 @@ const Quiz = () => {
 
   };
 
+  const handleSaveChanges = async () => {
+    // ...
+    dispatch(actionUpdateScore(score)); // Dispatch l'action pour mettre à jour le score
+  };
+
   useEffect(() => {
-    if (currentQuestion < questions.length && timeLeft > 0) {
-      setTimer(setInterval(() => setTimeLeft(timeLeft - 1), 1000));
+    if (currentQuestion === questions.length) {
+      handleSaveChanges(); // Enregistrer automatiquement le score lorsque toutes les questions ont été répondues
     }
-    return () => clearInterval(timer);
-  }, [currentQuestion, questions.length, timeLeft]);
+  }, [currentQuestion, questions.length]);
+
+
 
   return (
     <div className='quiz-container'>
@@ -102,7 +113,7 @@ const Quiz = () => {
             />
             <img
               className='img-quiz'
-              src='https://static8.depositphotos.com/1004999/972/i/450/depositphotos_9725439-stock-photo-beautiful-spring-in-paris.jpg'
+              src='https://www.interieur.gouv.fr/var/miomcti/storage/images/www.interieur.gouv.fr/version-fre/actualites/l-actu-du-ministere/bac-2019-les-resultats-de-notre-quizz/941648-1-fre-FR/Bac-2019-les-resultats-de-notre-quizz.png'
               alt='Quiz question'
             />
             <ul className='quiz-options'>

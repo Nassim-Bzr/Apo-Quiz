@@ -35,6 +35,7 @@ import CreateQuiz from 'pages/CreateQuiz';
 import Page404 from '../../pages/Page404';
 import ResetPassword from 'pages/ResetPassword';
 import SearchResults from 'components/SearchResults';
+import AdminPage from 'pages/AdminPage';
 
 
 
@@ -92,6 +93,8 @@ function App() {
 
                             
                 <Route path="/" element={<Home />} />
+                <Route path="/admin" element={<AdminPage />} />
+
                 <Route path="/mentions-legales" element={<LegalsMention />} />
                 <Route path="/cgv" element={<TermsOfUse />} />
                 <Route path="/classement" element={<Classement />} />

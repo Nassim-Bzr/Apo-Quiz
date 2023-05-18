@@ -36,6 +36,7 @@ import Page404 from '../../pages/Page404';
 import ResetPassword from 'pages/ResetPassword';
 import SearchResults from 'components/SearchResults';
 import AdminPage from 'pages/AdminPage';
+import SearchedPage from 'components/SearchedPage';
 
 
 
@@ -94,6 +95,7 @@ function App() {
                             
                 <Route path="/" element={<Home />} />
                 <Route path="/admin" element={<AdminPage />} />
+                <Route path="/search-results" element={<SearchedPage />} />
 
                 <Route path="/mentions-legales" element={<LegalsMention />} />
                 <Route path="/cgv" element={<TermsOfUse />} />

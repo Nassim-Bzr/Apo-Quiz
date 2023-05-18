@@ -34,16 +34,28 @@ export default function AdminPage() {
     }
   };
 
+  const handleSaveAnswer = async (questionId, answerId) => {
+    const updatedQuestion = editedQuestions.find((question) => question.id === questionId);
+    if (updatedQuestion) {
+      const updatedAnswer = updatedQuestion.answers.find((answer) => answer.id === answerId);
+      if (updatedAnswer) {
+        try {
+          await axios.put(`http://localhost:8082/api/answer/${answerId}`, updatedAnswer);
+          setIsSaved(true); // Définir l'état isSaved sur true après avoir sauvegardé avec succès
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
+  };
+
   const handleEditQuestion = (questionId, updatedQuestion) => {
-    // Mettre à jour la question dans la liste des questions modifiées
     const updatedQuestions = editedQuestions.map((question) =>
       question.id === questionId ? updatedQuestion : question
     );
     setEditedQuestions(updatedQuestions);
   };
-
   const handleEditAnswer = (questionId, answerId, updatedAnswer) => {
-    // Mettre à jour la réponse dans la question correspondante dans la liste des questions modifiées
     const updatedQuestions = editedQuestions.map((question) => {
       if (question.id === questionId) {
         const updatedAnswers = question.answers.map((answer) =>
@@ -55,6 +67,19 @@ export default function AdminPage() {
     });
     setEditedQuestions(updatedQuestions);
   };
+
+  const handleSaveQuestion = async (questionId) => {
+    const updatedQuestion = editedQuestions.find((question) => question.id === questionId);
+    if (updatedQuestion) {
+      try {
+        await axios.put(`http://localhost:8082/api/question/${questionId}`, updatedQuestion);
+        setIsSaved(true); // Définir l'état isSaved sur true après avoir sauvegardé avec succès
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
 
   const handleSaveChanges = async () => {
     try {
@@ -90,12 +115,13 @@ export default function AdminPage() {
                       handleEditQuestion(question.id, { ...question, question: e.target.value })
                     }
                   />
+                  <button onClick={() => handleSaveQuestion(question.id)}>Enregistrer</button>
                   {question.answers.map((answer) => (
                     <div key={answer.id} className="answer-item">
                       <label>
-                        Réponse : 
+                        Réponse :
                         <input
-                        className='input-adminanswer'
+                          className='input-adminanswer'
                           type="text"
                           value={answer.text}
                           onChange={(e) =>
@@ -107,6 +133,7 @@ export default function AdminPage() {
                           }
                         />
                       </label>
+                      <button onClick={() => handleSaveAnswer(question.id, answer.id)}>Enregistrer</button>
                     </div>
                   ))}
                 </div>

@@ -10,8 +10,9 @@ function Header() {
   // const dispatch = useDispatch();
   // const {toggleModals} = useContext(UserContext);
   // const [search, setSearch] = useState('');
-  const [dropdownValue, setDropdownValue] = useState(''); // initial value is empty string
+  // const [dropdownValue, setDropdownValue] = useState(''); // initial value is empty string
   const isLogged = useSelector((state) => state.user.logged);
+  const [searchResults, setSearchResults] = useState([]);
 
 
   const dispatch = useDispatch();
@@ -58,7 +59,8 @@ function Header() {
 )};
        
       </header>
-        <SearchBar  />
+      <SearchBar setSearchResults={setSearchResults} />
+
 
     </>
   )

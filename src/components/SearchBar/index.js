@@ -5,28 +5,29 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'; // Importez u
 import { Form, Input, Segment } from 'semantic-ui-react';
 import { slide as Menu } from 'react-burger-menu'
 
-function SearchBar() {
+function SearchBar({ setSearchResults }) {
   
   const [isTablet, setIsTablet] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [search, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [tempResults, setTempResults] = useState([]);
+
+  // const [searchResults, setSearchResults] = useState([]);
 
   const location = useLocation(); // Utilisez useLocation
   const navigate = useNavigate(); // Utilisez useNavigate
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('search')
-    navigate('/search-results'); // Remplacez ceci par l'URL de votre page de résultats de recherche
+    setSearchResults(tempResults); // Envoyez les résultats de la recherche à l'état parent
+    navigate('/search-results', { state: { searchResults: tempResults } }); // Naviguez vers la page de résultats
+    console.log('click')
   }
   async function fetchQuizzes(query) {
-    const response = await fetch(`http://localhost:8082/api/quizz?search=${query}`);
+    const response = await fetch(`http://localhost:8082/api/quizz/search?title=${query}`);
     const data = await response.json();
-    setSearchResults(data); // Mettez à jour l'état ici
-
-    // return data;
+    setTempResults(data); // Mettez à jour l'état temporaire ici
   }
   function handleResize() {
     const windowWidth = window.innerWidth;
@@ -50,11 +51,20 @@ function SearchBar() {
     setIsMenuOpen(false); // Fermez le menu lorsque le chemin d'accès change
   }, [location]);
 
-  
+  let searchDebounce = null;  // Définir une variable pour le délai
+
   function handleSearchChange(value) {
     setSearch(value);
-    fetchQuizzes(value);
+  
+    if (searchDebounce) {
+      clearTimeout(searchDebounce);
+    }
+  
+    searchDebounce = setTimeout(() => {
+      fetchQuizzes(value);
+    }, 500);  // Ajouter un délai de 500ms
   }
+  
   return (
     <div className='SearchBar'>
       {isMobile || isTablet ?
@@ -75,7 +85,7 @@ function SearchBar() {
           </Link>
           <Link className='button-searchBar' to='/categories'>CATEGORIES</Link>
           <Link className='button-searchBar' to='/classement'> CLASSEMENT</Link>
-          <Form>
+          <Form    onSubmit={handleSubmit}>
             <Input
               aria-label="Termes à rechercher"
               value={search}
@@ -85,7 +95,7 @@ function SearchBar() {
               onChange={(event) => {
                 handleSearchChange(event.target.value)
               }}
-              onSubmit={handleSubmit}
+           
               placeholder="Votre recherche"
             />
           </Form>

@@ -23,8 +23,6 @@ function ProfilePage({ pseudo }) {
   const userID = useSelector((state) => state.user.userId);
   const [newEmail, setNewEmail] = useState(''); // State pour stocker le nouvel email
 
-  console.log(userID)
-  console.log("lahwak")
 
   const dispatch = useDispatch();
 

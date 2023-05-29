@@ -4,14 +4,16 @@ import PropTypesLibrary from 'prop-types';
 import { Link, useLocation, useNavigate } from 'react-router-dom'; // Importez useLocation et useNavigate
 import { Form, Input, Segment } from 'semantic-ui-react';
 import { slide as Menu } from 'react-burger-menu'
+import { useSelector } from 'react-redux';
 
 function SearchBar({ setSearchResults, searchResults }) {
-  
+
   const [isTablet, setIsTablet] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [tempResults, setTempResults] = useState([]);
+  const isAdmin = useSelector((state) => state.user.roles === 'admin');
 
   // const [searchResults, setSearchResults] = useState([]);
 
@@ -56,24 +58,24 @@ function SearchBar({ setSearchResults, searchResults }) {
 
   function handleSearchChange(value) {
     setSearch(value);
-  
+
     if (searchDebounce) {
       clearTimeout(searchDebounce);
     }
-  
+
     searchDebounce = setTimeout(() => {
       fetchQuizzes(value);
     }, 500);  // Ajouter un délai de 500ms
   }
-  
+
   return (
     <div className='SearchBar'>
       {isMobile || isTablet ?
-        <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false )} className='menu-burger'>
+        <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} className='menu-burger'>
           <Link className='button-searchBar' to={'/'} onClick={() => setIsMenuOpen(true)}>
             <i className="material-icons">home</i>
           </Link>
-          <Link to='/categories'  onClick={() => setIsMenuOpen(true)}>CATEGORIES</Link>
+          <Link to='/categories' onClick={() => setIsMenuOpen(true)}>CATEGORIES</Link>
           <Link to='/classement' onClick={() => setIsMenuOpen(true)}> CLASSEMENT</Link>
           <Link to='/create' onClick={() => setIsMenuOpen(true)}>CREER UN QUIZZ</Link>
           <Link to='/favoris' onClick={() => setIsMenuOpen(true)}>FAVORIS</Link>
@@ -84,9 +86,10 @@ function SearchBar({ setSearchResults, searchResults }) {
           <Link className='button-searchBar' to={'/'}>
             <i className="material-icons">home</i>
           </Link>
+
           <Link className='button-searchBar' to='/categories'>CATEGORIES</Link>
           <Link className='button-searchBar' to='/classement'> CLASSEMENT</Link>
-          <Form    onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Input
               aria-label="Termes à rechercher"
               value={search}
@@ -96,13 +99,18 @@ function SearchBar({ setSearchResults, searchResults }) {
               onChange={(event) => {
                 handleSearchChange(event.target.value)
               }}
-           
+
               placeholder="Votre recherche"
             />
           </Form>
+          {isAdmin && (
+
+            <Link className='button-searchBar' to='/admin'>ADMIN</Link>
+          )}
           <Link className='button-searchBar' to='/create'>CREER UN QUIZZ</Link>
           <Link className='button-searchBar' to='/favoris'>FAVORIS</Link>
           <Link className='button-searchBar' to='/about'>A PROPOS</Link>
+
         </>
       }
     </div>

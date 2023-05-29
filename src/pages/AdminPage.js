@@ -1,13 +1,16 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import './AdminPage.css'; // Import du fichier CSS pour la page admin
+import Swal from 'sweetalert2';
 
 export default function AdminPage() {
   const [quizzes, setQuizzes] = useState([]);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [editedQuestions, setEditedQuestions] = useState([]);
-  const isAdmin = true; // Vérifiez si l'utilisateur est un administrateur (utilisez votre logique d'authentification)
+  const isAdmin = useSelector((state) => state.user.roles === 'admin');
   const [isSaved, setIsSaved] = useState(false);
+  const editRef = useRef(null); // nouvelle référence
 
   useEffect(() => {
     // Récupérez les données des quizz depuis votre backend (utilisez des hooks ou des méthodes de classe appropriés)
@@ -29,6 +32,11 @@ export default function AdminPage() {
       const response = await axios.get(`http://localhost:8082/api/question/?quizzId=${quizId}`);
       setSelectedQuiz(quizId);
       setEditedQuestions(response.data);
+    
+      if (editRef.current) {
+        editRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+
     } catch (error) {
       console.error(error);
     }
@@ -41,7 +49,12 @@ export default function AdminPage() {
       if (updatedAnswer) {
         try {
           await axios.put(`http://localhost:8082/api/answer/${answerId}`, updatedAnswer);
-          setIsSaved(true); // Définir l'état isSaved sur true après avoir sauvegardé avec succès
+          setIsSaved(true); 
+          Swal.fire(
+            'Succès',
+            'La réponse a été modifié avec succès',
+            'success'
+          ); // Définir l'état isSaved sur true après avoir sauvegardé avec succès
         } catch (error) {
           console.error(error);
         }
@@ -73,7 +86,12 @@ export default function AdminPage() {
     if (updatedQuestion) {
       try {
         await axios.put(`http://localhost:8082/api/question/${questionId}`, updatedQuestion);
-        setIsSaved(true); // Définir l'état isSaved sur true après avoir sauvegardé avec succès
+        setIsSaved(true);
+        Swal.fire(
+          'Succès',
+          'La question a été modifié avec succès',
+          'success'
+        ); // Définir l'état isSaved sur true après avoir sauvegardé avec succès
       } catch (error) {
         console.error(error);
       }
@@ -81,18 +99,18 @@ export default function AdminPage() {
   };
 
 
-  const handleSaveChanges = async () => {
-    try {
-      await axios.put(`http://localhost:8082/api/quizz/${selectedQuiz}`, { questions: editedQuestions });
-      setIsSaved(true); // Définir l'état isSaved sur true après avoir sauvegardé avec succès
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleSaveChanges = async () => {
+  //   try {
+  //     await axios.put(`http://localhost:8082/api/quizz/${selectedQuiz}`, { questions: editedQuestions });
+  //     setIsSaved(true); // Définir l'état isSaved sur true après avoir sauvegardé avec succès
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <div className="admin-page">
-      {isAdmin && (
+      {isAdmin ? (
         <div>
           <h1 className="admin-heading">Liste des quizz disponibles</h1>
           {quizzes.map((quiz) => (
@@ -102,7 +120,7 @@ export default function AdminPage() {
             </div>
           ))}
           {selectedQuiz && (
-            <div>
+            <div ref={editRef}>
               <h2>Modification du quizz</h2>
               {editedQuestions.map((question) => (
                 <div key={question.id} className="question-item">
@@ -115,7 +133,7 @@ export default function AdminPage() {
                       handleEditQuestion(question.id, { ...question, question: e.target.value })
                     }
                   />
-                  <button onClick={() => handleSaveQuestion(question.id)}>Enregistrer</button>
+                  <button className='button-registre' onClick={() => handleSaveQuestion(question.id)}>Enregistrer</button>
                   {question.answers.map((answer) => (
                     <div key={answer.id} className="answer-item">
                       <label>
@@ -133,17 +151,22 @@ export default function AdminPage() {
                           }
                         />
                       </label>
-                      <button onClick={() => handleSaveAnswer(question.id, answer.id)}>Enregistrer</button>
+                      <button className='button-answer' onClick={() => handleSaveAnswer(question.id, answer.id)}>Enregistrer</button>
                     </div>
                   ))}
                 </div>
               ))}
-              {isSaved && <p className="success-message">Modifications sauvegardées avec succès !</p>}
-              <button onClick={handleSaveChanges}>Sauvegarder les modifications</button>
             </div>
           )}
         </div>
+      ) : (
+        <div>
+          <h1>Accès refusé</h1>
+          <p>Vous n'avez pas les autorisations nécessaires pour accéder à cette page.</p>
+        </div>
       )}
+
+
     </div>
   );
 }

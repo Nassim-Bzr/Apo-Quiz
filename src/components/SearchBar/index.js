@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'; // Importez u
 import { Form, Input, Segment } from 'semantic-ui-react';
 import { slide as Menu } from 'react-burger-menu'
 
-function SearchBar({ setSearchResults }) {
+function SearchBar({ setSearchResults, searchResults }) {
   
   const [isTablet, setIsTablet] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -21,7 +21,7 @@ function SearchBar({ setSearchResults }) {
   function handleSubmit(e) {
     e.preventDefault();
     setSearchResults(tempResults); // Envoyez les résultats de la recherche à l'état parent
-    navigate('/search-results', { state: { searchResults: tempResults } }); // Naviguez vers la page de résultats
+    navigate('/search-results', { state: { searchResults: tempResults } });
     console.log('click')
   }
   async function fetchQuizzes(query) {
@@ -29,6 +29,7 @@ function SearchBar({ setSearchResults }) {
     const data = await response.json();
     setTempResults(data); // Mettez à jour l'état temporaire ici
   }
+
   function handleResize() {
     const windowWidth = window.innerWidth;
     setIsMobile(windowWidth <= 768);

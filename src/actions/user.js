@@ -4,6 +4,8 @@ export const SAVE_CONNECTED_USER = 'SAVE_CONNECTED_USER';
 export const DECONNECT_USER = 'DECONNECT_USER';
 export const UPDATE_PSEUDO = 'UPDATE_PSEUDO';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const UPDATE_EMAIL = 'UPDATE_EMAIL';
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 
 /**
  * action dispatchée sur le onChange d'un input du form de connexion
@@ -15,6 +17,19 @@ export const actionChangeInputValue = (newValue, inputName) => ({
   newValue: newValue,
   inputName: inputName,
 });
+
+export const updatePassword = (currentPassword, newPassword) => ({
+  type: UPDATE_PASSWORD,
+  currentPassword,
+  newPassword,
+});
+
+
+export const actionUpdateEmail = (email) => ({
+  type: UPDATE_EMAIL,
+  email,
+});
+
 /**
  * action dispatchée sur le submit du LoginForm qui a pour but d'etre intercepté par
  * un middleware pour qu'il lance la requette api vers le endpoint /login
@@ -23,8 +38,9 @@ export const actionCheckLogin = () => ({
   type: CHECK_LOGIN,
 });
 
-export const actionUpdateScore = (score) => ({
+export const actionUpdateScore = (userId, score) => ({
   type: UPDATE_SCORE,
+  userId,
   score,
 });
 

@@ -1,7 +1,15 @@
-import axios from 'axios';
-import { FETCH_CATEGORY, saveCategory } from '../actions/category';
-import { FETCH_QUIZZ, saveQuizz } from '../actions/quizz';
+import { UPDATE_EMAIL } from 'actions/user';
+import { UPDATE_PASSWORD } from 'actions/user';
 
+import axios from 'axios';
+import {
+  FETCH_CATEGORY,
+  saveCategory
+} from '../actions/category';
+import {
+  FETCH_QUIZZ,
+  saveQuizz
+} from '../actions/quizz';
 
 const instance = axios.create({
   baseURL: 'http://localhost:8082/api',
@@ -9,20 +17,71 @@ const instance = axios.create({
 
 const ajax = (store) => (next) => (action) => {
   if (action.type === FETCH_CATEGORY) {
-    instance.get('/category')
+    instance
+      .get('/category')
       .then((response) => {
         // en cas de réussite de la requête
         store.dispatch(saveCategory(response.data));
       })
       .catch((error) => {
-        // en cas d’échec de la requête
+        // en cas d'échec de la requête
         console.log(error);
         alert('Erreur de chargement, veuillez réessayer');
       });
+
+
+  } 
+
+  
+  else if (action.type === UPDATE_PASSWORD) {
+    const state = store.getState();
+    instance
+      .put(`/users/${state.user.userId}`, {
+        currentPassword: state.user.currentPassword, 
+        password: action.password
+      })
+      .then((response) => {
+        const updatedUser = response.data;
+        store.dispatch({
+          type: 'SAVE_USER',
+          email: updatedUser.email,
+          pseudo: updatedUser.username,
+          password : updatedUser.password,
+          score: updatedUser.score,
+          userId: updatedUser.id
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
+
+  else if (action.type === UPDATE_EMAIL) {
+    const state = store.getState();
+    instance
+      .put(`/users/${state.user.userId}`, {
+        email: action.email
+      })
+      .then((response) => {
+        const updatedUser = response.data;
+        store.dispatch({
+          type: 'SAVE_USER',
+          email: updatedUser.email,
+          pseudo: updatedUser.username,
+          score: updatedUser.score,
+          userId: updatedUser.id
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  
+  
   else if (action.type === FETCH_QUIZZ) {
     const categoryId = action.payload;
-    instance.get(`/quizz?categoryId=${categoryId}`)
+    instance
+      .get(`/quizz?categoryId=${categoryId}`)
       .then((response) => {
         store.dispatch(saveQuizz(response.data));
       })
@@ -30,44 +89,32 @@ const ajax = (store) => (next) => (action) => {
         console.log(error);
         alert('Erreur de chargement, veuillez réessayer');
       });
-  }
-  else if (action.type === 'LOGIN') {
+  } else if (action.type === 'LOGIN') {
     const state = store.getState();
-    /* // il est possible de faire du destructuring sur plusieurs niveaux
-      const {
-        user: {
-          email,
-          password,
-        },
-      } = store.getState();
-    */
-    instance.post('/auth/signin', {
-      email: state.user.email,
-      password: state.user.password,
-    })
+    instance
+      .post('/auth/signin', {
+        email: state.user.email,
+        password: state.user.password,
+      })
       .then((response) => {
-        // on altère notre config par défaut pour ajouter le token en entete
-        // ainsi toutes les requetes qui partiront après le login auront cette entete ...
+        // on altère notre config par défaut pour ajouter le token en entête
+        // ainsi toutes les requêtes qui partiront après le login auront cette entête ...
         instance.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
         store.dispatch({
           type: 'SAVE_USER',
           pseudo: response.data.username,
-          score:response.data.score,
+          score: response.data.score,
           userId: response.data.id // Ajoutez cette ligne, en supposant que la réponse contient un champ id.
         });
       })
       .catch((error) => {
         console.log(error);
         alert('Erreur');
-        // todo
-        // il faudrait déclencher un state d'erreur
-        // pour adapter l'ui dans les composant en cas d'erreur
-        // il faudrait afficher un message d'erreur et passer loading à false
       });
-  }
-  else if (action.type === 'FETCH_FAV') {
-    // ... par exemple cette requete si elle a lieu après login aura bien le token en entete
-    instance.get('/favorites')
+  } else if (action.type === 'FETCH_FAV') {
+    // ... par exemple cette requête si elle a lieu après le login aura bien le token en entête
+    instance
+      .get('/favorites')
       .then((response) => {
         store.dispatch({
           type: 'SAVE_FAV',
@@ -75,29 +122,46 @@ const ajax = (store) => (next) => (action) => {
         });
       })
       .catch((error) => {
-        // en cas d’échec de la requête
+        // en cas d'échec de la requête
         console.log(error);
         alert('Erreur de chargement, veuillez réessayer');
       });
   }
+  
   else if (action.type === 'LOGOUT') {
     // j'oublie mon token au logout
     instance.defaults.headers.common.Authorization = undefined;
-  }
+  } 
 
+  
   else if (action.type === 'UPDATE_SCORE') {
     const state = store.getState();
-    instance.put('/user', { score: state.user.score }) // envoi de la requête PUT pour mettre à jour le score
+    instance
+      .put(`/users/${state.user.userId}`, {
+        score: state.user.score
+      })
       .then((response) => {
-        console.log(response.data);
+        const updatedUser = response.data;
+        store.dispatch({
+          type: 'SAVE_USER',
+          pseudo: updatedUser.username,
+          score: updatedUser.score,
+          userId: updatedUser.id
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   }
+ 
 
   next(action);
+
+
+  
 };
+
+
 
 
 export default ajax;

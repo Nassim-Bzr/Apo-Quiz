@@ -117,9 +117,12 @@
       margin-left: 35%;
 
     }
-    .logoprof{
-     left: 30%;
-     height: 48px;
-     width: 48px;
-    }
-    }
+  }
+ 
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .link-login{
+        position: relative;
+left: 15%;
+      }}
+      

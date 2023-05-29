@@ -1,11 +1,7 @@
 // @ts-nocheck
-import React, { useState, useEffect } from 'react';
-
 import './categoriess.css'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
-
 
 
 export default function Categories() {
@@ -23,11 +19,7 @@ export default function Categories() {
                         </div>
                     </Link>
                 ))}
-                {user && user.roleId === 2 && (
-                    <Link to={`/admin`} className='admin-link'>
-                        Admin
-                    </Link>
-                )}
+                
             </div>
         </div>
     )

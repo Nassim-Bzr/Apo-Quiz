@@ -6,33 +6,12 @@ import { Link } from 'react-router-dom';
 import logoprof from '../../assets/user.png';
 function Header() {
 
-  // const valueFromStore = useSelector((state) => state.isOk)
-  // const dispatch = useDispatch();
-  // const {toggleModals} = useContext(UserContext);
-  // const [search, setSearch] = useState('');
-  // const [dropdownValue, setDropdownValue] = useState(''); // initial value is empty string
   const isLogged = useSelector((state) => state.user.logged);
   const [searchResults, setSearchResults] = useState([]);
 
 
-  const dispatch = useDispatch();
-
-  // const handleLogout = () => {
-  //   dispatch({
-  //     type: 'LOGOUT',
-  //   });
-  // };
-  // @ts-ignore
-  // @ts-ignore
-  // const pseudo = useSelector((state) => state.user.pseudo);
 
 
-  // const dispatch = useDispatch();
-  // @ts-ignore
-  // const email = useSelector((state) => state.user.email);
-  // // @ts-ignore
-  // const password = useSelector((state) => state.user.password);
-  // @ts-ignore
   return (
     <>
       <header className='Header'>
@@ -53,13 +32,13 @@ function Header() {
 </>
 ):(
          
-        <Link to='/Login'>
+        <Link className='link-login' to='/Login'>
      <img className='logoprof' src={logoprof} alt="logo" />
         </Link>
 )};
        
       </header>
-      <SearchBar setSearchResults={setSearchResults} />
+      <SearchBar setSearchResults={setSearchResults} searchResults={searchResults} />
 
 
     </>

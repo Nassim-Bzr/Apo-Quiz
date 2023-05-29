@@ -2,10 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './index.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchQuizz } from 'actions/quizz';
 import axios from 'axios';
 import { addFavorite } from '../actions/favoris';
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'

@@ -5,6 +5,12 @@ import './ProfilePage.css';
 import { useDropzone } from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionUpdatePseudo } from '../actions/user'; // Importez l'action
+import { actionUpdateEmail } from '../actions/user';
+import { updatePassword } from '../actions/user'; // Importez l'action
+import Swal from 'sweetalert2';
+
+
+
 
 function ProfilePage({ pseudo }) {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -12,8 +18,6 @@ function ProfilePage({ pseudo }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [newPseudo, setNewPseudo] = useState(pseudo); // State pour stocker le nouveau pseudo
   const [quizzesCreated, setQuizzesCreated] = useState(0);
-  const [quizzesTaken, setQuizzesTaken] = useState(0);
-  const [highScore, setHighScore] = useState(55);
   const [scoreHistory, setScoreHistory] = useState([]);
   const [file, setFile] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false); // Ajout de l'état pour la confirmation
@@ -46,57 +50,53 @@ function ProfilePage({ pseudo }) {
 
   const handleSubmitEmail = e => {
     e.preventDefault();
+    dispatch(actionUpdateEmail(newEmail));
+    Swal.fire(
+      'Succès',
+      'Votre email a été modifié avec succès',
+      'success'
+    );
+    setIsUpdated(true);
+  };
 
+
+  const handleSubmitPassword = e => {
+    e.preventDefault();
+  
     fetch(`http://localhost:8082/api/users/${userID}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: newEmail })
+      body: JSON.stringify({ currentPassword: currentPassword, password: newPassword })
     })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erreur lors de la modification du mot de passe');
+        }
+        return response.json();
+      })
       .then(data => {
         console.log(data);
-        // Vous pouvez également mettre à jour l'email dans le state de Redux si vous le stockez
+        dispatch(updatePassword(newPassword));
+        Swal.fire(
+          'Succès',
+          'Votre mot de passe a été modifié avec succès',
+          'success'
+        );
+        setIsUpdated(true);
       })
-      .catch(error => console.error(error));
-
-    setIsUpdated(true);
+      .catch(error => {
+        console.error(error);
+        Swal.fire(
+          'Erreur',
+          'Il y a eu une erreur lors de la modification de votre mot de passe',
+          'error'
+        );
+      });
   };
+  
 
-  const handleSubmitPassword = e => {
-    e.preventDefault();
-    
-    if (newPassword !== confirmPassword) {
-      alert('Le nouveau mot de passe et la confirmation ne correspondent pas');
-      return;
-    }
-    
-    fetch(`http://localhost:8082/api/users/${userID}`, { // notez l'URL différente
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ 
-        currentPassword: currentPassword, 
-        password: newPassword 
-      })
-    })
-    .then(response => {
-      if (response.ok) {
-        alert('Mot de passe changé avec succès');
-        setCurrentPassword('');
-        setNewPassword('');
-        setConfirmPassword('');
-      } else {
-        alert('Échec du changement de mot de passe');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-    })
-  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -111,38 +111,28 @@ function ProfilePage({ pseudo }) {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        dispatch(actionUpdatePseudo(newPseudo)); // Dispatchez l'action
+        dispatch(actionUpdatePseudo(newPseudo));
+        Swal.fire(
+          'Succès',
+          'Votre pseudo a été modifié avec succès',
+          'success'
+        ); // Dispatchez l'action
       })
       .catch(error => console.error(error));
 
     setIsUpdated(true);
   };
+
+
   // useEffect(() => {
-  //   const historyFromStorage = JSON.parse(localStorage.getItem('scoreHistory')) || [];
-  //   setScoreHistory(historyFromStorage);
-  //   // Récupérez les scores de tous les scores de l'historique
-  //   const scores = historyFromStorage.map(entry => entry.score);
-
-  //   // Trouvez le plus grand nombre
-  //   // Définir la valeur de maxScore en fonction de la longueur de scores
-  //   let maxScore = 0;
-  //   if (scores.length) {
-  //     maxScore = Math.max(...scores);
+  //   let timeout;
+  //   if (isUpdated) {
+  //     timeout = setTimeout(() => {
+  //       setIsUpdated(false);
+  //     }, 3000); // afficher la confirmation pendant 3 secondes
   //   }
-
-  //   // Affectez la valeur de maxScore à highScore
-  //   setHighScore(maxScore);
-  // }, []);
-
-  useEffect(() => {
-    let timeout;
-    if (isUpdated) {
-      timeout = setTimeout(() => {
-        setIsUpdated(false);
-      }, 3000); // afficher la confirmation pendant 3 secondes
-    }
-    return () => clearTimeout(timeout);
-  }, [isUpdated]);
+  //   return () => clearTimeout(timeout);
+  // }, [isUpdated]);
 
 
   if (!isLogged) {

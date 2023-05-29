@@ -348,12 +348,50 @@ h1 {
   }
 }
 
-@media screen and (max-width: 1080px) {
-.quiz-container{
-  width: 100%;
-  margin-left: 7.5em;
-}.quiz-anecdote-dialog{
-  position: relative;
 
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+  .quiz-anecdote{
+    position: relative;
+    font-size: 2em;
+  
+  }
+  .current-quiz{
+    width: 100%;
+    /* margin-left: 7.5em; */
+    position: relative;
+    /* left: 13%; */
+    margin: 10px;
+    
+  }
+  .title-quiz{
+    margin: 10px;
+    
+  }
+.question-length{
+  position: relative;
+  left: 9%
 }
+  .current-score{
+    margin: 8px;
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 812px) {
+  .current-quiz {
+    margin: 0;
+    width:  90%;
+    position: relative;
+    left:3%
+  }
+  .title-quiz{
+    margin:0
+  }
+  .current-score{
+    margin: 10px;
+  }
+  .question-length{
+    position: relative;
+    left:5%
+  }
 }

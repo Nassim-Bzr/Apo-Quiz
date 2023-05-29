@@ -77,11 +77,9 @@ const ajax = (store) => (next) => (action) => {
       });
   }
   
-  
   else if (action.type === FETCH_QUIZZ) {
     const categoryId = action.payload;
-    instance
-      .get(`/quizz?categoryId=${categoryId}`)
+    instance.get(`/quizz?categoryId=${categoryId}`)
       .then((response) => {
         store.dispatch(saveQuizz(response.data));
       })
@@ -89,7 +87,8 @@ const ajax = (store) => (next) => (action) => {
         console.log(error);
         alert('Erreur de chargement, veuillez réessayer');
       });
-  } else if (action.type === 'LOGIN') {
+  }
+  else if (action.type === 'LOGIN') {
     const state = store.getState();
     instance
       .post('/auth/signin', {

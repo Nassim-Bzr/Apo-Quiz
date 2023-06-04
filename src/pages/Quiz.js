@@ -64,6 +64,12 @@ const Quiz = () => {
     setTimeLeft(20);
   };
 
+  const updateScore = () => {
+    if (score > user.score) {
+        dispatch(actionUpdateScore(user.id, score));
+    }
+};
+
   const handleScoreUpdate = () => {
     if (score > user.score) {
       dispatch(actionUpdateScore(user.id, score));
@@ -137,6 +143,9 @@ const Quiz = () => {
             <Link to='/' className='gohome-quiz'>
               Retour à l'accueil
             </Link>
+            <button onClick={updateScore}>Mettre à jour le score</button>
+``
+
           </div>
         )}
       </div>

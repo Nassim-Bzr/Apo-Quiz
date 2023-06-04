@@ -8,6 +8,7 @@ import { actionUpdatePseudo } from '../actions/user'; // Importez l'action
 import { actionUpdateEmail } from '../actions/user';
 import { updatePassword } from '../actions/user'; // Importez l'action
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
 
@@ -22,7 +23,7 @@ function ProfilePage({ pseudo }) {
   const [file, setFile] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false); // Ajout de l'état pour la confirmation
   const isLogged = useSelector((state) => state.user.logged);
-  const score = useSelector((state) => state.user.score);
+  const [score, setScore] = useState(0)
   const ProfilImg = useSelector((state) => state.user.profilImgUrl)
   const userID = useSelector((state) => state.user.userId);
   const [newEmail, setNewEmail] = useState(''); // State pour stocker le nouvel email
@@ -134,6 +135,16 @@ function ProfilePage({ pseudo }) {
   //   return () => clearTimeout(timeout);
   // }, [isUpdated]);
 
+
+  useEffect(() => {
+    async function fetchUser() {
+      const response = await axios.get(`http://localhost:8082/api/users/${userID}`);
+      console.log('Response:', response);  // log entire response
+      console.log('Response data:', response.data);  // log just the data part
+      setScore(response.data.score);
+    }
+    fetchUser();
+  }, [userID]);
 
   if (!isLogged) {
     return <Navigate to="/error" replace />;

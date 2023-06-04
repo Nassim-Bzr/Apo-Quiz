@@ -1,6 +1,6 @@
 .main-home{
 display: flex;
-height: 100vh;
+/* height: 100vh; */
 justify-content: space-between;
 
 }

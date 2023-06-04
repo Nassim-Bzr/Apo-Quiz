@@ -40,10 +40,11 @@ export const actionCheckLogin = () => ({
 
 export const actionUpdateScore = (userId, score) => ({
   type: UPDATE_SCORE,
-  userId,
-  score,
+  payload: {
+    userId,
+    score,
+  },
 });
-
 export const actionUpdatePseudo = (pseudo) => ({
     type: UPDATE_PSEUDO,
     pseudo,

@@ -16,22 +16,20 @@ export default function HomeList() {
   // state pour stocker l'option choisie
   const [option, setOption] = useState('populaires');
 
-  // fonction pour mettre à jour l'option choisie
-  const handleOptionClick = (newOption) => {
-    setOption(newOption);
-    setSelectedButton(newOption)
-  };
+
 
   // // contenu du titre en fonction de l'option choisie
   // const titleContent = option === 'populaires' ? 'Quizz les + populaires' :
   //   option === 'recents' ? 'Quizz les + récents' :
   //     option === 'hasard' ? 'Quizz au hasard' : '';
 
+
   useEffect(() => {
     const fetchQuizz = async () => {
       try {
         const response = await axios.get(`http://localhost:8082/api/quizz`);
-        setQuizzList(response.data);
+        let shuffledQuizzList = response.data.sort(() => Math.random() - 0.5);
+        setQuizzList(shuffledQuizzList.slice(0, 6));
         setLoading(false);
         console.log(response)
       } catch (error) {
@@ -41,17 +39,21 @@ export default function HomeList() {
     fetchQuizz();
   }, [id]);
 
+
   return (
     <div className='HomeList'>
-      <h1 className='title-home'> QUIZZ LES + RECENTS</h1>
+      <h1 className='title-home'> QUIZZ AU HASARD</h1>
       <div>
         {
-          quizz.map(q => (
-            <div key={q.id}>
+          quizzList.map(q => (
+            // <img src={img} className='img-favoris'  />
+            <Link className='title-article' to={`/quiz/${q.category.id}/${q.id}`}>
+            <div className='quizz' key={q.id}>
               <h2>{q.title}</h2>
               <p>{q.description}</p>
               {/* Vous pouvez également ajouter d'autres informations que vous souhaitez afficher ici */}
             </div>
+                  </Link>
           ))
         }
       </div>

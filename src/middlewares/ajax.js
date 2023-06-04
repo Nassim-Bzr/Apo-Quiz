@@ -1,4 +1,4 @@
-import { UPDATE_EMAIL } from 'actions/user';
+import { UPDATE_EMAIL, UPDATE_SCORE } from 'actions/user';
 import { UPDATE_PASSWORD } from 'actions/user';
 
 import axios from 'axios';
@@ -12,7 +12,7 @@ import {
 } from '../actions/quizz';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8082/api',
+  baseURL: 'https://go-quiz-serv.vercel.app/api',
 });
 
 const ajax = (store) => (next) => (action) => {
@@ -77,9 +77,11 @@ const ajax = (store) => (next) => (action) => {
       });
   }
   
+  
   else if (action.type === FETCH_QUIZZ) {
     const categoryId = action.payload;
-    instance.get(`/quizz?categoryId=${categoryId}`)
+    instance
+      .get(`/quizz?categoryId=${categoryId}`)
       .then((response) => {
         store.dispatch(saveQuizz(response.data));
       })
@@ -87,8 +89,7 @@ const ajax = (store) => (next) => (action) => {
         console.log(error);
         alert('Erreur de chargement, veuillez réessayer');
       });
-  }
-  else if (action.type === 'LOGIN') {
+  } else if (action.type === 'LOGIN') {
     const state = store.getState();
     instance
       .post('/auth/signin', {
@@ -131,13 +132,29 @@ const ajax = (store) => (next) => (action) => {
     // j'oublie mon token au logout
     instance.defaults.headers.common.Authorization = undefined;
   } 
-
-  
-  else if (action.type === 'UPDATE_SCORE') {
+  else if (action.type === 'ADD_FAVORITE') {
     const state = store.getState();
+    const userId = state.user.userId;
+    const quizzId = action.quizzId;
+  
+    instance
+      .post(`/favoris/${userId}/favorites`, { quizzId })
+      .then((response) => {
+        // Gérer la réussite de l'ajout aux favoris
+        console.log('Quizz added to favorites successfully');
+      })
+      .catch((error) => {
+        // Gérer l'erreur lors de l'ajout aux favoris
+        console.log(error);
+      });
+  }
+  
+  else if (action.type === UPDATE_SCORE) {
+    const state = store.getState();
+    const newScore = state.user.score + action.score;
     instance
       .put(`/users/${state.user.userId}`, {
-        score: state.user.score
+        score: newScore
       })
       .then((response) => {
         const updatedUser = response.data;
@@ -152,7 +169,6 @@ const ajax = (store) => (next) => (action) => {
         console.log(error);
       });
   }
- 
 
   next(action);
 

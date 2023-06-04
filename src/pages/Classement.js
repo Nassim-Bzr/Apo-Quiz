@@ -37,7 +37,7 @@ export default function Classement() {
                 {/* <td>
                   <img className='img-classement' src={joueur.profilImgUrl} alt={joueur.username} />
                 </td> */}
-                <td>{score}</td>
+                <td>{joueur.score}</td>
               </tr>
             ))}
           </tbody>

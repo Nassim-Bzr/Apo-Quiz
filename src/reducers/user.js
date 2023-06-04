@@ -11,8 +11,7 @@ export const initialState = {
   loading: false,
   score: 0,
   profilImgUrl: '',
-  userId: null,
-  roles: [] // Ajoutez de champ avec une valeur initiale vide
+  userId: null,// Ajoutez de champ avec une valeur initiale vide
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -43,7 +42,7 @@ const reducer = (state = initialState, action = {}) => {
         userId: action.userId,
         favorisId: null,
         roles: 'admin', // Ajoutez cette ligne pour extraire les rôles de l'action
-        score: 0,
+        score: action.score,
         profilImgUrl: ''
       };
 

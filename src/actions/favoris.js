@@ -15,3 +15,22 @@ export const removeFavorite = (id) => {
       payload: id,
     };
   };
+
+//   import axios from 'axios';
+
+// export const addFavorite = (userId, quizzId) => {
+//   return dispatch => {
+//     axios.post(`/api/favoris/${userId}/favorites`, { quizzId })
+//       .then(response => {
+//         // Gérer la réussite de l'ajout aux favoris
+//         dispatch({
+//           type: 'ADD_FAVORITE',
+//           quizzId: quizzId
+//         });
+//       })
+//       .catch(error => {
+//         // Gérer l'erreur lors de l'ajout aux favoris
+//         console.log(error);
+//       });
+//   };
+// };

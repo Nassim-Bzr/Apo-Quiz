@@ -1,54 +1,50 @@
-
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function Faq() {
+function FAQ() {
+    const faqItems = [
+        {
+            question: "Comment puis-je créer un compte ?",
+            answer: "Vous pouvez créer un compte en cliquant sur le bouton 'Créer un compte' sur la page d'accueil, puis en remplissant le formulaire d'inscription avec vos informations personnelles."
+        },
+        {
+            question: "J'ai oublié mon mot de passe. Que dois-je faire ?",
+            answer: "Si vous avez oublié votre mot de passe, cliquez sur le lien 'Mot de passe oublié ?' sur la page de connexion. Vous recevrez un email avec les instructions pour réinitialiser votre mot de passe."
+        },
+        {
+            question: "Comment puis-je modifier mon profil ?",
+            answer: "Une fois connecté, vous pouvez accéder à votre profil en cliquant sur votre nom d'utilisateur dans le menu. Là, vous trouverez des options pour modifier vos informations personnelles."
+        },
+        {
+            question: "Est-ce que mes informations personnelles sont sécurisées ?",
+            answer: "Oui, nous prenons très au sérieux la sécurité de vos données. Toutes les informations personnelles sont cryptées et stockées de manière sécurisée conformément aux normes de l'industrie."
+        },
+        {
+            question: "Comment puis-je contacter le support client ?",
+            answer: "Vous pouvez contacter notre équipe de support en envoyant un email à support@votresite.com ou en utilisant le formulaire de contact disponible sur notre site."
+        }
+    ];
+
     return (
-      <div className='main-form'>
-        <div className='faq-form'>
-            
-            <h1 className='contact-title'>Vous avez des questions ?</h1>
-            <div className='div-contact'>
-            <p className ='contact-text' >
-                Si votre question concerne l'utilisation de <a className='GoQuiz' href='/'>GoQuiz</a>, vérifiez tout d'abord que la réponse ne se trouve pas ci-dessous, ou dans l'aide et sur le forum fonctionnement du site.
-                
-            </p>
-            <ul>
-        <li>
-          <h2 className='title-faq'>Comment fonctionne ce quiz ?</h2>
-          <p>Le quiz consiste en un ensemble de questions à choix multiple. Vous devez sélectionner la réponse que vous pensez être correcte pour chaque question et cliquer sur le bouton "Soumettre" pour voir si vous avez répondu correctement.</p>
-        </li>
-        <li>
-          <h2 className='title-faq'>Y a-t-il un temps limite pour répondre à chaque question ?</h2>
-          <p>Non, il n'y a pas de temps limite pour répondre à chaque question. Vous pouvez prendre le temps de réfléchir à chaque réponse avant de la soumettre.</p>
-        </li>
-        <li>
-          <h2 className='title-faq'>Comment puis-je savoir si ma réponse est correcte ?</h2>
-          <p>Après avoir soumis votre réponse à une question, vous verrez un message indiquant si vous avez répondu correctement ou non. Si vous avez répondu correctement, vous verrez un message de félicitations et si vous avez répondu incorrectement, vous verrez un message vous indiquant la bonne réponse.</p>
-        </li>
-        <li>
-          <h2 className='title-faq'>Puis-je recommencer le quiz ?</h2>
-          <p>Oui, vous pouvez recommencer le quiz autant de fois que vous le souhaitez. Il suffit de cliquer sur le bouton "Recommencer" à la fin du quiz pour recommencer depuis le début.</p>
-        </li>
-        <li>
-          <h2 className='title-faq'>Comment fonctionne ce quiz ?</h2>
-          <p>Le quiz consiste en un ensemble de questions à choix multiple. Vous devez sélectionner la réponse que vous pensez être correcte pour chaque question et cliquer sur le bouton "Soumettre" pour voir si vous avez répondu correctement.</p>
-        </li>
-        <li>
-          <h2 className='title-faq'>Y a-t-il un temps limite pour répondre à chaque question ?</h2>
-          <p>Non, il n'y a pas de temps limite pour répondre à chaque question. Vous pouvez prendre le temps de réfléchir à chaque réponse avant de la soumettre.</p>
-        </li>
-        <li>
-          <h2 className='title-faq'>Comment puis-je savoir si ma réponse est correcte ?</h2>
-          <p>Après avoir soumis votre réponse à une question, vous verrez un message indiquant si vous avez répondu correctement ou non. Si vous avez répondu correctement, vous verrez un message de félicitations et si vous avez répondu incorrectement, vous verrez un message vous indiquant la bonne réponse.</p>
-        </li>
-        <li>
-          <h2 className='title-faq'>Puis-je recommencer le quiz ?</h2>
-          <p>Oui, vous pouvez recommencer le quiz autant de fois que vous le souhaitez. Il suffit de cliquer sur le bouton "Recommencer" à la fin du quiz pour recommencer depuis le début.</p>
-        </li>
-      </ul>
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
+            <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-2xl">
+                <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Foire Aux Questions</h1>
+                <div className="space-y-6">
+                    {faqItems.map((item, index) => (
+                        <div key={index} className="border-b border-gray-200 pb-4">
+                            <h2 className="text-xl font-semibold text-gray-700 mb-2">{item.question}</h2>
+                            <p className="text-gray-600">{item.answer}</p>
+                        </div>
+                    ))}
+                </div>
+                <div className="mt-8 text-center">
+                    <Link to="/" className="text-blue-600 hover:underline">
+                        Retour à l'accueil
+                    </Link>
+                </div>
             </div>
-           
         </div>
-        </div>
-    )
+    );
 }
+
+export default FAQ;

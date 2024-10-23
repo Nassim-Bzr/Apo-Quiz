@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './style.scss';
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import '../../index.css';
 
 import { fetchCategory } from 'actions/category';
 import { fetchQuizz } from 'actions/quizz';

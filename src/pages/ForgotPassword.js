@@ -1,51 +1,57 @@
-import React, { Component } from 'react';
-import './index.css';
-// const nodemailer = require('nodemailer');
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
+function ForgotPassword() {
+  const email = useSelector((state) => state.user.email);
+  const dispatch = useDispatch();
 
-class PasswordResetForm extends Component {
-  state = {
-    email: '',
-    success: false,
-    error: false
-  }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    // Logique pour réinitialiser le mot de passe
+    console.log('Réinitialisation du mot de passe pour:', email);
+  };
 
-
-  
-  handleChange = (event) => {
-    this.setState({
-      email: event.target.value
+  const handleChange = (evt) => {
+    dispatch({
+      type: 'CHANGE_VALUE',
+      value: evt.target.value,
+      key: evt.target.id,
     });
-  }
+  };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Envoyer une demande de réinitialisation de mot de passe à l'adresse e-mail de l'utilisateur ici
-    // Si la demande réussie, mettez à jour l'état en utilisant this.setState({ success: true })
-    // Si la demande échoue, mettez à jour l'état en utilisant this.setState({ error: true })
-  }
-
-  render() {
-    return (
-      <div className='div-forgot'>
-        <h1 className='forgot-title'>Réinitialisation de votre mot de passe</h1>
-      <form className='form-resetpassword' onSubmit={this.handleSubmit}>
-        {this.state.success && <p>Un lien de réinitialisation de mot de passe a été envoyé à votre adresse e-mail.</p>}
-        {this.state.error && <p>Une erreur s'est produite. Veuillez réessayer.</p>}
-        <input
-          type="email"
-          value={this.state.email}
-          onChange={this.handleChange}
-          placeholder="Adresse e-mail"
-          className='input-forgot'
-          required
-        />
-        <button className='button-forgot' type="submit">Envoyer le lien de réinitialisation de mot de passe</button>
-      </form>
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
+      <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Réinitialiser le mot de passe</h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Entrez votre email"
+              value={email}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                         focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Envoyer le lien de réinitialisation
+          </button>
+        </form>
+        <div className="mt-4 text-center">
+          <Link to="/login" className="text-sm text-blue-600 hover:underline">
+            Retour à la page de connexion
+          </Link>
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default PasswordResetForm;
+export default ForgotPassword;

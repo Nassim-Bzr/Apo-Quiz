@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './Login.css';
 import { Link, Navigate } from 'react-router-dom';
 import './ProfilePage.css';
 import { useDropzone } from 'react-dropzone';

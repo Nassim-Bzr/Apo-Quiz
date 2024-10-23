@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-function SignUpForm() {
+function Signup() {
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
   const pseudo = useSelector((state) => state.user.pseudo);
@@ -28,7 +28,7 @@ function SignUpForm() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
       <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Créer un compte</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Inscription</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="pseudo" className="block text-sm font-medium text-gray-700">Pseudo</label>
@@ -40,7 +40,6 @@ function SignUpForm() {
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                          focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-              required
             />
           </div>
           <div>
@@ -53,7 +52,6 @@ function SignUpForm() {
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                          focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-              required
             />
           </div>
           <div>
@@ -66,7 +64,6 @@ function SignUpForm() {
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                          focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-              required
             />
           </div>
           <button
@@ -86,4 +83,4 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+export default Signup;

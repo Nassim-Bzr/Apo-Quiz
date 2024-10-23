@@ -1,61 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './style.scss';
-import { Link, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-export default function HomeList() {
+// Données factices pour les quiz
+const fakeQuizzes = [
+  {
+    id: 1,
+    title: "Culture Générale",
+    description: "Testez vos connaissances sur divers sujets passionnants !",
+    category: { id: 1 }
+  },
+  {
+    id: 2,
+    title: "Histoire du Monde",
+    description: "Voyagez à travers les époques et découvrez les grands événements historiques.",
+    category: { id: 2 }
+  },
+  {
+    id: 3,
+    title: "Sciences et Nature",
+    description: "Explorez les merveilles de la science et de la nature dans ce quiz captivant.",
+    category: { id: 3 }
+  },
+  {
+    id: 4,
+    title: "Cinéma et Séries TV",
+    description: "Mettez à l'épreuve vos connaissances sur le monde du cinéma et des séries télévisées.",
+    category: { id: 4 }
+  },
+  {
+    id: 5,
+    title: "Géographie Mondiale",
+    description: "Parcourez le globe et découvrez les pays, les capitales et les merveilles naturelles.",
+    category: { id: 5 }
+  },
+  {
+    id: 6,
+    title: "Sport et Olympisme",
+    description: "Plongez dans l'univers du sport et des Jeux Olympiques avec ce quiz stimulant.",
+    category: { id: 6 }
+  }
+];
 
+export default function HomeListCategory() {
   const [quizzList, setQuizzList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { id } = useParams();
-
-  const [quizz, setQuizz] = useState([]);
-  const [selectedButton, setSelectedButton] = useState(''); // default is 'populaires'
-
-  // state pour stocker l'option choisie
-  const [option, setOption] = useState('populaires');
-
-
-
-  // // contenu du titre en fonction de l'option choisie
-  // const titleContent = option === 'populaires' ? 'Quizz les + populaires' :
-  //   option === 'recents' ? 'Quizz les + récents' :
-  //     option === 'hasard' ? 'Quizz au hasard' : '';
-
 
   useEffect(() => {
-    const fetchQuizz = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8082/api/quizz`);
-        let shuffledQuizzList = response.data.sort(() => Math.random() - 0.5);
-        setQuizzList(shuffledQuizzList.slice(0, 6));
-        setLoading(false);
-        console.log(response)
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchQuizz();
-  }, [id]);
+    // Simuler un chargement asynchrone
+    setTimeout(() => {
+      setQuizzList(fakeQuizzes);
+      setLoading(false);
+    }, 1000);
+  }, []);
 
+  if (loading) {
+    return <div className="text-center text-2xl font-bold text-gray-600">Chargement...</div>;
+  }
 
   return (
-    <div className='HomeList'>
-      <h1 className='title-home'> QUIZZ AU HASARD</h1>
-      <div>
-        {
-          quizzList.map(q => (
-            // <img src={img} className='img-favoris'  />
-            <Link className='title-article' to={`/quiz/${q.category.id}/${q.id}`}>
-            <div className='quizz' key={q.id}>
-              <h2>{q.title}</h2>
-              <p>{q.description}</p>
-              {/* Vous pouvez également ajouter d'autres informations que vous souhaitez afficher ici */}
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6">Quizz au hasard</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {quizzList.map(q => (
+          <Link key={q.id} to={`/quiz/${q.category.id}/${q.id}`} className="block">
+            <div className="bg-gray-50 p-4 rounded-lg shadow transition duration-300 ease-in-out transform hover:scale-105 h-full flex flex-col justify-between">
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{q.title}</h3>
+              <p className="text-gray-600 text-sm">{q.description.length > 100 ? q.description.substring(0, 100) + '...' : q.description}</p>
+              <div className="mt-4 text-blue-600 text-sm font-medium">Jouer maintenant</div>
             </div>
-                  </Link>
-          ))
-        }
+          </Link>
+        ))}
       </div>
     </div>
   )

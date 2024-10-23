@@ -1,187 +1,139 @@
-import './CreateQuiz.css'
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const CreateQuiz = () => {
-  const [title, setTitle] = useState('');
-  const [questions, setQuestions] = useState([{ question: '', answers: ['', '', '', ''], correct: 0 }]);
+export default function CreateQuiz() {
+  const navigate = useNavigate();
+  const [quizTitle, setQuizTitle] = useState('');
+  const [quizDescription, setQuizDescription] = useState('');
   const [category, setCategory] = useState('');
-  // const [image, setImage] = useState(null);
-  const [difficulty, setDifficulty] = useState('');
-  const [language, setLanguage] = useState('');
+  const [questions, setQuestions] = useState([{ question: '', answers: ['', '', '', ''], correctAnswer: 0 }]);
 
-  const handleQuizNameChange = (event) => {
-    setTitle(event.target.value);
+  const handleAddQuestion = () => {
+    setQuestions([...questions, { question: '', answers: ['', '', '', ''], correctAnswer: 0 }]);
   };
 
-  const handleQuestionChange = (event, index) => {
-    const value = event.target.value;
-    const updatedQuestions = [...questions];
-    updatedQuestions[index]['question'] = value;
-    setQuestions(updatedQuestions);
+  const handleQuestionChange = (index, field, value) => {
+    const newQuestions = [...questions];
+    newQuestions[index][field] = value;
+    setQuestions(newQuestions);
   };
 
-  const handleAnswerChange = (event, questionIndex, answerIndex) => {
-    const value = event.target.value;
-    const updatedQuestions = [...questions];
-    updatedQuestions[questionIndex]['answers'][answerIndex] = value;
-    setQuestions(updatedQuestions);
+  const handleAnswerChange = (questionIndex, answerIndex, value) => {
+    const newQuestions = [...questions];
+    newQuestions[questionIndex].answers[answerIndex] = value;
+    setQuestions(newQuestions);
   };
 
-  const handleCorrectChange = (event, questionIndex) => {
-    const value = event.target.value;
-    const updatedQuestions = [...questions];
-    updatedQuestions[questionIndex]['correct'] = parseInt(value);
-    setQuestions(updatedQuestions);
+  const handleCorrectAnswerChange = (questionIndex, value) => {
+    const newQuestions = [...questions];
+    newQuestions[questionIndex].correctAnswer = parseInt(value);
+    setQuestions(newQuestions);
   };
 
-  const addQuestion = () => {
-    setQuestions([...questions, { question: '', answers: ['', '', '', ''], correct: 0 }]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Ici, vous pouvez ajouter la logique pour envoyer le quiz au backend
+    console.log({ quizTitle, quizDescription, category, questions });
+    // Rediriger vers la page d'accueil ou la page du quiz créé
+    navigate('/');
   };
-
-  const removeQuestion = (index) => {
-    const updatedQuestions = [...questions];
-    updatedQuestions.splice(index, 1);
-    setQuestions(updatedQuestions);
-  };
-
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
-
-  // const handleImageChange = (event) => {
-  //   setImage(event.target.files[0]);
-  // };
-
-  // const handleDifficultyChange = (event) => {
-  //   setDifficulty(event.target.value);
-  // };
-
-  // const handleLanguageChange = (event) => {
-  //   setLanguage(event.target.value);
-  // };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  
-    // Create a JSON object
-    const data = {
-      title: title,
-      category: category,
-      questions: questions,
-    };
-  
-    // Send a POST request
-    fetch('http://localhost:8082/api/quizz', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      // Handle the response
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      // Handle the error
-    });
-  };
-  
-
 
   return (
-  <>
-      <h1>Créer votre propre quizz !</h1>
-    <div className='containor-create'>
-    <form className="create-quiz" onSubmit={handleSubmit}>
-    <label htmlFor="title">Titre du quiz</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={title}
-          onChange={handleQuizNameChange}
-        />
-
-      <label htmlFor="category">Category</label>
-      <select id="category" name="category" value={category} onChange={handleCategoryChange}>
-        <option value="">Choose a category</option>
-        <option value="Cinema">Cinema</option>
-        <option value="Technologie">Technology</option>
-        <option value="Gastronomie">Gastronomy</option>
-        <option value="Littérature">Literature</option>
-        <option value="Histoire">History</option>
-        <option value="Animaux">Animals</option>
-        <option value="Nature">Nature</option>
-        <option value="Astronomie">Astronomy</option>
-        <option value="Geographie">Geography</option>
-      </select>
-
-      {/* <label htmlFor="image">Image</label>
-      <input type="file" id="image" name="image" accept="image/*" onChange={handleImageChange} /> */}
-
-      {/* <label htmlFor="difficulty">Difficulty</label>
-      <select id="difficulty" name="difficulty" value={difficulty} onChange={handleDifficultyChange}>
-        <option value="">Choose a difficulty</option>
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select> */}
-
-      {/* <label htmlFor="language">Language</label>
-      <select id="language" name="language" value={language} onChange={handleLanguageChange}>
-        <option value="">Choose a language</option>
-        <option value="english">English</option>
-        <option value="french">French</option>
-        <option value="spanish">Spanish</option>
-        <option value="german">German</option>
-      </select>
-      */}
-{questions.map((question, index) => (
-  <div key={index}>
-    <label htmlFor={`questions-${index}`}>Question {index + 1}</label>
-    <input
-      type="text"
-      id={`questions-${index}`}
-      name="questions"
-      value={question.question}
-      onChange={(event) => handleQuestionChange(event, index)}
-    />
-    {question.answers.map((answer, answerIndex) => (
-      <div key={answerIndex}>
-        <label htmlFor={`answer-${index}-${answerIndex}`}>Answer {answerIndex + 1}</label>
-        <input
-          type="text"
-          id={`answer-${index}-${answerIndex}`}
-          name="answer"
-          value={answer}
-          onChange={(event) => handleAnswerChange(event, index, answerIndex)}
-        />
+    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+        <div className="p-8">
+          <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Créer un nouveau Quiz</h1>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="quizTitle" className="block text-sm font-medium text-gray-700">Titre du Quiz</label>
+              <input
+                type="text"
+                id="quizTitle"
+                value={quizTitle}
+                onChange={(e) => setQuizTitle(e.target.value)}
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="quizDescription" className="block text-sm font-medium text-gray-700">Description</label>
+              <textarea
+                id="quizDescription"
+                value={quizDescription}
+                onChange={(e) => setQuizDescription(e.target.value)}
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <div>
+              <label htmlFor="category" className="block text-sm font-medium text-gray-700">Catégorie</label>
+              <select
+                id="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                required
+              >
+                <option value="">Sélectionnez une catégorie</option>
+                <option value="histoire">Histoire</option>
+                <option value="science">Science</option>
+                <option value="geographie">Géographie</option>
+                <option value="culture">Culture générale</option>
+              </select>
+            </div>
+            {questions.map((question, questionIndex) => (
+              <div key={questionIndex} className="border-t pt-4">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">Question {questionIndex + 1}</h3>
+                <input
+                  type="text"
+                  value={question.question}
+                  onChange={(e) => handleQuestionChange(questionIndex, 'question', e.target.value)}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Entrez la question"
+                  required
+                />
+                {question.answers.map((answer, answerIndex) => (
+                  <div key={answerIndex} className="mt-2 flex items-center">
+                    <input
+                      type="text"
+                      value={answer}
+                      onChange={(e) => handleAnswerChange(questionIndex, answerIndex, e.target.value)}
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      placeholder={`Réponse ${answerIndex + 1}`}
+                      required
+                    />
+                    <input
+                      type="radio"
+                      name={`correctAnswer-${questionIndex}`}
+                      value={answerIndex}
+                      checked={question.correctAnswer === answerIndex}
+                      onChange={(e) => handleCorrectAnswerChange(questionIndex, e.target.value)}
+                      className="ml-2"
+                      required
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={handleAddQuestion}
+              className="mt-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Ajouter une question
+            </button>
+            <div>
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                Créer le Quiz
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    ))}
-    <label htmlFor={`correct-${index}`}>Correct Answer</label>
-    <select id={`correct-${index}`} name="correct" value={question.correct} onChange={(event) => handleCorrectChange(event, index)}>
-      <option value="0">Answer 1</option>
-      <option value="1">Answer 2</option>
-      <option value="2">Answer 3</option>
-      <option value="3">Answer 4</option>
-    </select>
-    <button type="button" onClick={() => removeQuestion(index)}>
-      Remove question
-    </button>
-  </div>
-))}
-<button type="button" onClick={addQuestion}>
-  Add question
-</button>
-<button type="submit">Submit quiz</button>
-</form>
-</div>
-</>
-);
-
-};
-
-export default CreateQuiz;
+    </div>
+  );
+}

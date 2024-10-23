@@ -1,87 +1,55 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import './index.css'
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import { addFavorite } from '../actions/favoris';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
-import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import Loader from '../components/Loader';
 
+// Données factices pour simuler le chargement des quiz d'une catégorie
+const fakeQuizzes = [
+  { id: 1, title: "Quiz sur l'Histoire de France", difficulty: "Moyen", questionCount: 15 },
+  { id: 2, title: "Les Grands Explorateurs", difficulty: "Difficile", questionCount: 20 },
+  { id: 3, title: "La Révolution Française", difficulty: "Facile", questionCount: 10 },
+  // Ajoutez d'autres quiz fictifs ici
+];
 
-
-export default function CurrentCategories() {
-
-  const { id } = useParams();
-  const dispatch = useDispatch();
-
-  const [quizzList, setQuizzList] = useState([]);
+function CurrentCategories() {
+  const { slug } = useParams();
+  const [quizzes, setQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isAlreadyFavorited, setIsAlreadyFavorited] = useState(false);
-  const favoriteQuizzes = useSelector((state) => state.favorites.favorites);
-  const isLogged = useSelector((state) => state.user.logged);
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [categoryName, setCategoryName] = useState('');
 
   useEffect(() => {
-    const fetchQuizz = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8082/api/quizz?category=${id}`);
-        setQuizzList(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchQuizz();
-  }, [id]);
-
-  const addToFavorites = (quiz) => {
-    const alreadyFavorited = favoriteQuizzes.some(favoriteQuiz => favoriteQuiz.id === quiz.id);
-    if (alreadyFavorited) {
-      setIsAlreadyFavorited(true);
-      setTimeout(() => {
-        setIsAlreadyFavorited(false);
-      }, 3000); // Hide message after 3 seconds
-      return;
-    }
-    dispatch(addFavorite(quiz));
-    setShowConfirmation(true);
+    // Simuler un appel API
     setTimeout(() => {
-      setShowConfirmation(false);
-    }, 3000); // Hide message after 3 seconds
-  };
+      setQuizzes(fakeQuizzes);
+      setCategoryName(slug.charAt(0).toUpperCase() + slug.slice(1).replace('-', ' '));
+      setLoading(false);
+    }, 1500); // Simuler un délai de chargement de 1.5 secondes
+  }, [slug]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <div className="flex justify-center items-center h-64"><Loader /></div>;
   }
+
   return (
-    <Fragment>
-      <div className='contain-categories'>
-        <h1 className='header-categories'>  {id}</h1>
-        {isAlreadyFavorited && (
-          <p className='text-alreadyfavoris'>Vous avez déjà ajouté ce quizz à vos favoris</p>
-        )}
-        {showConfirmation && (
-          <p className='text-addfavoris'>Le quizz a été ajouté à vos favoris</p>
-        )}
-        <div className='div-article'>
-          {quizzList.map(quizz => {
-            const isFavorite = favoriteQuizzes.some(favoriteQuiz => favoriteQuiz.id === quizz.id);
-            return (
-              <div className='img-categories quizz-image-container' key={quizz.id}>
-                <Link to={`/quiz/${id}/${quizz.id}`} className='titl-article'>
-                  <p className='quizzname'> {quizz.title} </p>
-                </Link>
-                {isLogged && (
-                  <button onClick={() => addToFavorites(quizz)} className='add-favoris'>
-                    <FontAwesomeIcon icon={isFavorite ? faHeartSolid : faHeartRegular} /> Ajouter aux favoris
-                  </button>
-                )}
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-10">Quizzes de {categoryName}</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {quizzes.map((quiz) => (
+          <Link key={quiz.id} to={`/quiz/${slug}/${quiz.id}`} className="block">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="p-6">
+                <h2 className="text-xl font-semibold text-gray-800 mb-2">{quiz.title}</h2>
+                <p className="text-sm text-gray-600 mb-4">Difficulté: {quiz.difficulty}</p>
+                <p className="text-sm text-gray-600">{quiz.questionCount} questions</p>
               </div>
-            );
-          })}
-        </div>
+              <div className="bg-gray-50 px-6 py-4">
+                <span className="text-blue-600 font-medium">Commencer le quiz</span>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
-    </Fragment>
+    </div>
   );
 }
+
+export default CurrentCategories;

@@ -39,7 +39,7 @@ export default function CreateQuiz() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#34495E] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
         <div className="p-8">
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Créer un nouveau Quiz</h1>

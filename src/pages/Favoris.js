@@ -14,9 +14,9 @@ const fakeFavorites = [
 
 function Favoris() {
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#34495E] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-center text-black mb-10">Mes Quiz Favoris</h1>
+        <h1 className="text-3xl font-bold text-center text-white mb-10">Mes Quiz Favoris</h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {fakeFavorites.map((quiz) => (
@@ -35,7 +35,7 @@ function Favoris() {
               <div className="bg-gray-50 px-6 py-4">
                 <Link 
                   to={`/quiz/${quiz.id}`} 
-                  className="flex items-center justify-center text-blue-600 hover:text-blue-800 transition-colors duration-300"
+                  className="flex items-center no-underline justify-center text-blue-600 hover:text-blue-800 transition-colors duration-300"
                 >
                   <FaPlay className="mr-2" />
                   Jouer maintenant

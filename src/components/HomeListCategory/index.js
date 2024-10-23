@@ -62,7 +62,7 @@ export default function HomeListCategory() {
       <h2 className="text-3xl font-bold text-gray-800 mb-6">Quizz au hasard</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {quizzList.map(q => (
-          <Link key={q.id} to={`/quiz/${q.category.id}/${q.id}`} className="block">
+          <Link key={q.id} to={`/quiz/${q.category.id}/${q.id}`} className="block no-underline">
             <div className="bg-gray-50 p-4 rounded-lg shadow transition duration-300 ease-in-out transform hover:scale-105 h-full flex flex-col justify-between">
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{q.title}</h3>
               <p className="text-gray-600 text-sm">{q.description.length > 100 ? q.description.substring(0, 100) + '...' : q.description}</p>

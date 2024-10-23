@@ -4,14 +4,14 @@ import HomeListCategory from '../HomeListCategory'
 
 export default function Home() {
     return (
-        <main className="bg-gray-100 min-h-screen py-8">
-            <div className="container mx-auto px-4">
-                <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Bienvenue sur GoQuiz</h1>
+        <main className="bg-[#34495E] min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <h1 className="text-4xl font-bold text-center text-white mb-12">Bienvenue sur GoQuiz</h1>
                 <div className="flex flex-col lg:flex-row gap-8">
-                    <div className="lg:w-1/4">
+                    <div className="lg:w-1/3">
                         <ListCategory />
                     </div>
-                    <div className="lg:w-3/4">
+                    <div className="lg:w-2/3">
                         <HomeListCategory />
                     </div>
                 </div>

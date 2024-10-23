@@ -21,7 +21,7 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
+    <div className="flex items-center justify-center min-h-screen bg-[#34495E]">
       <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Réinitialiser le mot de passe</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -45,7 +45,7 @@ function ForgotPassword() {
           </button>
         </form>
         <div className="mt-4 text-center">
-          <Link to="/login" className="text-sm text-blue-600 hover:underline">
+          <Link to="/login" className="text-sm no-underline text-blue-600 hover:underline">
             Retour à la page de connexion
           </Link>
         </div>

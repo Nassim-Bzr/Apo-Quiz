@@ -29,75 +29,77 @@ export default function Classement() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Classement des joueurs</h1>
-        
-        <div className="mb-8 flex justify-center space-x-4">
-          <select 
-            value={timeFrame} 
-            onChange={(e) => setTimeFrame(e.target.value)}
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="all">Tout le temps</option>
-            <option value="month">Ce mois</option>
-            <option value="week">Cette semaine</option>
-          </select>
-          <select 
-            value={category} 
-            onChange={(e) => setCategory(e.target.value)}
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="all">Toutes les catégories</option>
-            <option value="history">Histoire</option>
-            <option value="science">Science</option>
-            <option value="geography">Géographie</option>
-          </select>
-        </div>
+    <div className="min-h-screen bg-[#34495E] py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+        <div className="p-8">
+          <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Classement des joueurs</h1>
+          
+          <div className="mb-8 flex justify-center space-x-4">
+            <select 
+              value={timeFrame} 
+              onChange={(e) => setTimeFrame(e.target.value)}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">Tout le temps</option>
+              <option value="month">Ce mois</option>
+              <option value="week">Cette semaine</option>
+            </select>
+            <select 
+              value={category} 
+              onChange={(e) => setCategory(e.target.value)}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">Toutes les catégories</option>
+              <option value="history">Histoire</option>
+              <option value="science">Science</option>
+              <option value="geography">Géographie</option>
+            </select>
+          </div>
 
-        <div className="bg-white shadow-xl rounded-lg overflow-hidden">
-          <table className="min-w-full">
-            <thead className="bg-gray-200">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joueur</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quiz joués</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Série de victoires</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {fakeRankings.map((player, index) => (
-                <tr key={player.id} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <span className="text-sm font-medium text-gray-900 mr-2">{index + 1}</span>
-                      {getIcon(index + 1)}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{player.username}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{player.score}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{player.quizzesTaken}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{player.winStreak}</div>
-                  </td>
+          <div className="bg-white shadow-xl rounded-lg overflow-hidden">
+            <table className="min-w-full">
+              <thead className="bg-gray-200">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joueur</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quiz joués</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Série de victoires</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {fakeRankings.map((player, index) => (
+                  <tr key={player.id} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <span className="text-sm font-medium text-gray-900 mr-2">{index + 1}</span>
+                        {getIcon(index + 1)}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-gray-900">{player.username}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{player.score}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{player.quizzesTaken}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{player.winStreak}</div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-        <div className="mt-8 text-center">
-          <p className="text-gray-600">Continuez à jouer pour améliorer votre classement !</p>
-          <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-            Jouer maintenant
-          </button>
+          <div className="mt-8 text-center">
+            <p className="text-gray-600">Continuez à jouer pour améliorer votre classement !</p>
+            <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              Jouer maintenant
+            </button>
+          </div>
         </div>
       </div>
     </div>

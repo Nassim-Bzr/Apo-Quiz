@@ -39,15 +39,15 @@ function SearchBar({ setSearchResults }) {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <nav className="hidden md:flex space-x-12">
-            <Link to="/" className="text-gray-700 hover:text-blue-600 transition duration-300">Accueil</Link>
-            <Link to="/categories" className="text-gray-700 hover:text-blue-600 transition duration-300">Catégories</Link>
-            <Link to="/classement" className="text-gray-700 hover:text-blue-600 transition duration-300">Classement</Link>
+            <Link to="/" className="no-underline text-gray-700 hover:text-blue-600 transition duration-300">Accueil</Link>
+            <Link to="/categories" className="no-underline text-gray-700 hover:text-blue-600 transition duration-300">Catégories</Link>
+            <Link to="/classement" className="no-underline text-gray-700 hover:text-blue-600 transition duration-300">Classement</Link>
             {isAdmin && (
-              <Link to="/admin" className="text-gray-700 hover:text-blue-600 transition duration-300">Admin</Link>
+              <Link to="/admin" className="no-underline text-gray-700 hover:text-blue-600 transition duration-300">Admin</Link>
             )}
-            <Link to="/create" className="text-gray-700 hover:text-blue-600 transition duration-300">Créer un Quiz</Link>
-            <Link to="/favoris" className="text-gray-700 hover:text-blue-600 transition duration-300">Favoris</Link>
-            <Link to="/about" className="text-gray-700 hover:text-blue-600 transition duration-300">À propos</Link>
+            <Link to="/create" className="no-underline text-gray-700 hover:text-blue-600 transition duration-300">Créer un Quiz</Link>
+            <Link to="/favoris" className="no-underline text-gray-700 hover:text-blue-600 transition duration-300">Favoris</Link>
+            <Link to="/about" className="no-underline text-gray-700 hover:text-blue-600 transition duration-300">À propos</Link>
           </nav>
 
           <form onSubmit={handleSubmit} className="flex-grow max-w-md mx-4">

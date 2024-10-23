@@ -26,7 +26,7 @@ export default function ListCategory() {
                     <li key={category.id} className="transition duration-300 ease-in-out transform hover:translate-x-2">
                         <Link 
                             to={`/categories/${category.slug}`}
-                            className={`flex items-center p-2 rounded-md ${category.color} text-white hover:opacity-80`}
+                            className={`flex items-center no-underline p-2 rounded-md ${category.color} text-white hover:opacity-80`}
                         >
                             <category.icon className="mr-2" />
                             <span>{category.name}</span>

@@ -20,12 +20,12 @@ const categories = [
 
 export default function Categories() {
     return (
-        <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-[#34495E] py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-                <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">Explorez nos catégories de quiz</h1>
+                <h1 className="text-4xl font-bold text-center text-white-800 mb-12">Explorez nos catégories de quiz</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {categories.map((category) => (
-                        <Link key={category.id} to={`/categories/${category.slug}`} className="block">
+                        <Link key={category.id} to={`/categories/${category.slug}`} className="block no-underline">
                             <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
                                 <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: `url(${category.image})` }}></div>
                                 <div className={`absolute inset-0 bg-gradient-to-r ${category.color} mix-blend-multiply`}></div>

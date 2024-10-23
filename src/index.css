@@ -3,3 +3,24 @@
 @import 'tailwindcss/utilities';
 
 /* Vos styles personnalisés ici */
+
+/* Styles personnalisés pour le loader */
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60% {
+    content: '...';
+  }
+  80%, 100% {
+    content: '';
+  }
+}
+
+.loader-text::after {
+  content: '';
+  animation: dots 1.5s infinite;
+}

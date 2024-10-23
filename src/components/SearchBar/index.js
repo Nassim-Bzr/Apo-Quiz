@@ -74,15 +74,15 @@ function SearchBar({ setSearchResults }) {
       {isMenuOpen && (
         <div className="md:hidden bg-white shadow-lg">
           <nav className="flex flex-col space-y-2 p-4">
-            <Link to="/" className="text-gray-700 hover:text-blue-600 transition duration-300">Accueil</Link>
-            <Link to="/categories" className="text-gray-700 hover:text-blue-600 transition duration-300">Catégories</Link>
-            <Link to="/classement" className="text-gray-700 hover:text-blue-600 transition duration-300">Classement</Link>
+            <Link to="/" className=" no-underline   text-gray-700 hover:text-blue-600 transition duration-300">Accueil</Link>
+            <Link to="/categories" className=" no-underline text-gray-700 hover:text-blue-600 transition duration-300">Catégories</Link>
+            <Link to="/classement" className=" no-underline text-gray-700 hover:text-blue-600 transition duration-300">Classement</Link>
             {isAdmin && (
-              <Link to="/admin" className="text-gray-700 hover:text-blue-600 transition duration-300">Admin</Link>
+              <Link to="/admin" className=" no-underline  text-gray-700 hover:text-blue-600 transition duration-300">Admin</Link>
             )}
-            <Link to="/create" className="text-gray-700 hover:text-blue-600 transition duration-300">Créer un Quiz</Link>
-            <Link to="/favoris" className="text-gray-700 hover:text-blue-600 transition duration-300">Favoris</Link>
-            <Link to="/about" className="text-gray-700 hover:text-blue-600 transition duration-300">À propos</Link>
+            <Link to="/create" className=" no-underline  text-gray-700 hover:text-blue-600 transition duration-300">Créer un Quiz</Link>
+            <Link to="/favoris" className=" no-underline  text-gray-700 hover:text-blue-600 transition duration-300">Favoris</Link>
+            <Link to="/about" className=" no-underline  text-gray-700 hover:text-blue-600 transition duration-300">À propos</Link>
           </nav>
         </div>
       )}
